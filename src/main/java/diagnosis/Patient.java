@@ -4,9 +4,9 @@ import java.util.Objects;
 
 public class Patient {
     private final Integer id;
-    private final String name;
+    private String name;
     private Integer age;
-    private final Gender gender;
+    private Gender gender;
 
 
     public Patient(Integer id, String name, Integer age, Gender gender) {
@@ -32,8 +32,16 @@ public class Patient {
         return gender;
     }
 
+    public void setName(String name) {
+        this.name = name;
+    }
+
     public void setAge(Integer age) {
         this.age = age;
+    }
+
+    public void setGender(Gender gender) {
+        this.gender = gender;
     }
 
     @Override

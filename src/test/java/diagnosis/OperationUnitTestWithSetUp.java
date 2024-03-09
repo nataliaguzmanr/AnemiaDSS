@@ -1,9 +1,6 @@
-package atm;
+package diagnosis;
 
 
-import dss.Measurement;
-import dss.MeasurementUnit;
-import dss.RuleTest;
 import org.drools.ruleunits.api.RuleUnitProvider;
 import org.drools.ruleunits.api.RuleUnitInstance;
 
@@ -14,11 +11,9 @@ import org.slf4j.LoggerFactory;
 import java.util.List;
 import java.util.Set;
 
-import static java.util.stream.Collectors.toList;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
-import org.junit.BeforeClass;
 import org.junit.Before;
 
 

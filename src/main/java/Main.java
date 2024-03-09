@@ -1,8 +1,6 @@
-import atm.Operation;
-import atm.OperationUnit;
-import atm.Tries;
-import dss.Measurement;
-import dss.MeasurementUnit;
+import diagnosis.Operation;
+import diagnosis.OperationUnit;
+import diagnosis.Tries;
 import org.drools.ruleunits.api.RuleUnitInstance;
 import org.drools.ruleunits.api.RuleUnitProvider;
 

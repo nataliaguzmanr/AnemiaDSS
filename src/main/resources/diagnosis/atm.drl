@@ -15,7 +15,7 @@
  *
  * Author: Alberto Gil de la Fuente
  */
-package atm;
+package diagnosis;
 
 unit OperationUnit;
 

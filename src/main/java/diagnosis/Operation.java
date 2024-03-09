@@ -1,4 +1,4 @@
-package atm;
+package diagnosis;
 
 /**
  * @author alberto.gildelafuent

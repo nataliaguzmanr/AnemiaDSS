@@ -1,5 +1,7 @@
 package diagnosis;
 
+import java.util.LinkedList;
+import java.util.List;
 import java.util.Objects;
 
 public class Patient {
@@ -8,12 +10,21 @@ public class Patient {
     private Integer age;
     private Gender gender;
 
+    //-----------------------------
+    private List<MedicalStaff> medicalStaff;
+    private List<Sign> signs;
+    private List<Anemia> anemias;
+    //-----------------------------
+
 
     public Patient(Integer id, String name, Integer age, Gender gender) {
         this.id = id;
         this.name = name;
         this.age = age;
         this.gender = gender;
+        this.medicalStaff = new LinkedList<MedicalStaff>();
+        this.signs = new LinkedList<Sign>();
+        this.anemias = new LinkedList<Anemia>();
     }
 
     public Integer getId() {
@@ -32,6 +43,10 @@ public class Patient {
         return gender;
     }
 
+    public List<MedicalStaff> getMedicalStaff() {
+        return medicalStaff;
+    }
+
     public void setName(String name) {
         this.name = name;
     }
@@ -44,6 +59,26 @@ public class Patient {
         this.gender = gender;
     }
 
+    public void setMedicalStaff(List<MedicalStaff> medicalStaff) {
+        this.medicalStaff = medicalStaff;
+    }
+
+    public List<Sign> getSigns() {
+        return signs;
+    }
+
+    public void setSigns(List<Sign> signs) {
+        this.signs = signs;
+    }
+
+    public List<Anemia> getAnemias() {
+        return anemias;
+    }
+
+    public void setAnemias(List<Anemia> anemias) {
+        this.anemias = anemias;
+    }
+
     @Override
     public String toString() {
         return "Patient{" +
@@ -51,6 +86,7 @@ public class Patient {
                 ", name='" + name + '\'' +
                 ", age=" + age +
                 ", gender=" + gender +
+                ", medicalStaff=" + medicalStaff +
                 '}';
     }
 

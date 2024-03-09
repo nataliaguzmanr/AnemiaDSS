@@ -1,5 +1,7 @@
 package diagnosis;
 
+import java.util.LinkedList;
+import java.util.List;
 import java.util.Objects;
 
 public class Symptom {
@@ -7,9 +9,14 @@ public class Symptom {
     private final Integer id;
     private String name;
 
+    //-----------------------------
+    private List<Sign> signs;
+    //-----------------------------
+
     public Symptom(Integer id, String name) {
         this.id = id;
         this.name = name;
+        this.signs = new LinkedList<Sign>();
     }
 
     public Integer getId() {
@@ -22,6 +29,14 @@ public class Symptom {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public List<Sign> getSigns() {
+        return signs;
+    }
+
+    public void setSigns(List<Sign> signs) {
+        this.signs = signs;
     }
 
     @Override

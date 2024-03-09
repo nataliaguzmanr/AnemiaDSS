@@ -1,5 +1,7 @@
 package diagnosis;
 
+import java.util.LinkedList;
+import java.util.List;
 import java.util.Objects;
 
 public class MedicalStaff {
@@ -8,10 +10,16 @@ public class MedicalStaff {
     private  String user;
     private  String password;
 
+    //-----------------------------
+    private List<Patient> patients;
+    //-----------------------------
+
+
     public MedicalStaff(Integer id, String user, String password) {
         this.id = id;
         this.user = user;
         this.password = password;
+        this.patients = new LinkedList<Patient>();
     }
 
     public Integer getId() {
@@ -20,6 +28,14 @@ public class MedicalStaff {
 
     public String getUser() {
         return user;
+    }
+
+    public List<Patient> getPatients() {
+        return patients;
+    }
+
+    public void setPatients(List<Patient> patients) {
+        this.patients = patients;
     }
 
     public void setUser(String user) {
@@ -53,6 +69,7 @@ public class MedicalStaff {
                 "id=" + id +
                 ", user='" + user + '\'' +
                 ", password='" + password + '\'' +
+                ", patients=" + patients +
                 '}';
     }
 }

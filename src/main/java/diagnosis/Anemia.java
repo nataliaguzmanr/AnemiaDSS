@@ -6,9 +6,15 @@ public class Anemia {
     private final Integer Id;
     private AnemiaType anemia;
 
-    public Anemia(Integer id, AnemiaType anemia) {
+    //-----------------------------
+    private Patient patient;
+    //-----------------------------
+
+
+    public Anemia(Integer id, AnemiaType anemia, Patient patient) {
         Id = id;
         this.anemia = anemia;
+        this.patient = patient;
     }
 
     public Integer getId() {
@@ -21,6 +27,14 @@ public class Anemia {
 
     public void setAnemia(AnemiaType anemia) {
         this.anemia = anemia;
+    }
+
+    public Patient getPatient() {
+        return patient;
+    }
+
+    public void setPatient(Patient patient) {
+        this.patient = patient;
     }
 
     @Override

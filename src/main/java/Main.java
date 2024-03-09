@@ -7,7 +7,7 @@ import org.drools.ruleunits.api.RuleUnitProvider;
 import java.util.List;
 
 public class Main {
-
+//.
     public static void main(String[] args) {
         OperationUnit operationUnit = new OperationUnit();
 

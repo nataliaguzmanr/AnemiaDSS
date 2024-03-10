@@ -1,5 +1,7 @@
 package diagnosis;
 
+import java.util.LinkedList;
+import java.util.List;
 import java.util.Objects;
 
 public class Anemia {
@@ -7,15 +9,16 @@ public class Anemia {
     private AnemiaType anemia;
 
     //-----------------------------
-    private Patient patient;
+    private List<Patient> patients;
     //-----------------------------
 
 
-    public Anemia(Integer id, AnemiaType anemia, Patient patient) {
+    public Anemia(Integer id, AnemiaType anemia) {
         Id = id;
         this.anemia = anemia;
-        this.patient = patient;
+        this.patients = new LinkedList<Patient>();
     }
+
 
     public Integer getId() {
         return Id;
@@ -29,12 +32,12 @@ public class Anemia {
         this.anemia = anemia;
     }
 
-    public Patient getPatient() {
-        return patient;
+    public List<Patient> getPatients() {
+        return patients;
     }
 
-    public void setPatient(Patient patient) {
-        this.patient = patient;
+    public void setPatients(List<Patient> patients) {
+        this.patients = patients;
     }
 
     @Override

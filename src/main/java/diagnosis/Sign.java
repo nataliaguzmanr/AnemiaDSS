@@ -50,6 +50,9 @@ public class Sign {
     public void setSymptoms(List<Symptom> symptoms) {
         this.symptoms = symptoms;
     }
+    public void addSymptom(Symptom symptom) {
+        this.symptoms.add(symptom);
+    }
 
     @Override
     public boolean equals(Object o) {
@@ -69,6 +72,7 @@ public class Sign {
         return "Sign{" +
                 "id=" + id +
                 ", date=" + date +
+                ", symptoms=" + symptoms +
                 '}';
     }
 }

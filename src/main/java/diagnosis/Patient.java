@@ -13,6 +13,7 @@ public class Patient {
     //-----------------------------
     private List<MedicalStaff> medicalStaff;
     private List<Sign> signs;
+
     private List<Anemia> anemias;
     //-----------------------------
 
@@ -71,12 +72,20 @@ public class Patient {
         this.signs = signs;
     }
 
+    public void addSign(Sign sign) {
+        this.signs.add(sign);
+    }
+
     public List<Anemia> getAnemias() {
         return anemias;
     }
 
     public void setAnemias(List<Anemia> anemias) {
         this.anemias = anemias;
+    }
+
+    public void addAnemia(Anemia anemia) {
+        this.anemias.add(anemia);
     }
 
     @Override
@@ -102,4 +111,23 @@ public class Patient {
     public int hashCode() {
         return Objects.hash(id, name, age, gender);
     }
+
+
+    public Float detectQuantSymptom(String name){
+        //accedemos al ultimo porque es el mas reciente
+        Sign s = this.getSigns().get(0);
+        System.out.println(s);
+
+        for (Symptom sy : s.getSymptoms()){
+            if (sy instanceof Quantitative){
+                if (sy.getName().equals("Hb")){
+                    System.out.println(((Quantitative) sy).getNumericValue());
+                    return ((Quantitative) sy).getNumericValue();
+                }
+            }
+        }
+        return null;
+    }
+
+
 }

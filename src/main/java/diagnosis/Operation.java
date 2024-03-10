@@ -3,6 +3,7 @@ package diagnosis;
 /**
  * @author alberto.gildelafuent
  */
+
 public class Operation {
 
     private final int id_operation; // id of the operation

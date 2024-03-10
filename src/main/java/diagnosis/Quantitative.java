@@ -36,7 +36,9 @@ public class Quantitative extends Symptom {
     @Override
     public String toString() {
         return "Quantitative{" +
-                "numericValue=" + numericValue +
+                "id=" + this.getId() +
+                ", name=" + this.getName() +
+                ", numericValue=" + numericValue +
                 '}';
     }
 }

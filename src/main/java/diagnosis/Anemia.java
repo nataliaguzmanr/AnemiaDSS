@@ -20,6 +20,8 @@ public class Anemia {
     }
 
 
+
+
     public Integer getId() {
         return Id;
     }

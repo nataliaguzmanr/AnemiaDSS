@@ -1,5 +1,6 @@
 package diagnosis;
 
+import diagnosis.Patient;
 import org.drools.ruleunits.api.DataSource;
 import org.drools.ruleunits.api.DataStore;
 import org.drools.ruleunits.api.RuleUnitData;

@@ -14,7 +14,7 @@ when
 then
     Anemia a = new Anemia (1, AnemiaType.ANEMIC_SYNDROME);
     $patient.addAnemia(a);
-
+    //do not apply the modify (dont want to consider as a new fact to which the rule can be applied)
     patientsWithAnemicSyndrome.add($patient);
     System.out.println( $patient + " Anemic Syndrome. ");
 end

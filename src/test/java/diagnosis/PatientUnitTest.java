@@ -7,7 +7,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.util.Date;
-import java.util.List;
 import java.util.Set;
 
 import static org.junit.Assert.assertEquals;
@@ -18,8 +17,8 @@ public class PatientUnitTest {
     static final Logger LOG = LoggerFactory.getLogger(OperationUnitTest.class);
 
     @Test
-    public void testAnemicSyndrome() {
-        System.out.println("primer test");
+    public void testAnemicSyndromeHb() {
+        System.out.println("First test");
         LOG.info("Creating RuleUnit");
         PatientUnit patientUnit = new PatientUnit();
 
@@ -39,6 +38,7 @@ public class PatientUnitTest {
             Patient p2 = new Patient(2, "Marta", 53, Gender.FEMALE);
             Sign s2 = new Sign(2, new Date(), p2);
             p2.addSign(s2);
+
             Quantitative qt2 = new Quantitative(2, "Hb", 7F);
             Quantitative qt3 = new Quantitative(3, "VCM", 16.5F);
             s2.addSymptom(qt2);
@@ -71,7 +71,40 @@ public class PatientUnitTest {
             assertEquals(1, patientsWithAnemicSyndrome.size());
             assertTrue(patientsWithAnemicSyndrome.contains(p2));
 
-            System.out.println(patientUnit.getTestString());
+            //System.out.println(patientUnit.getTestString());
+
+
+        } finally {
+            instance.close();
+        }
+    }
+
+    @Test
+    public void testAnemicSyndromeTinnitius() {
+        LOG.info("Creating RuleUnit");
+        PatientUnit patientUnit = new PatientUnit();
+
+        RuleUnitInstance<PatientUnit> instance = RuleUnitProvider.get().createRuleUnitInstance(patientUnit);
+        try {
+            LOG.info("Insert data");
+            Patient p1 = new Patient(1, "Paco", 23, Gender.MALE);
+            Sign s1 = new Sign(1, new Date(), p1);
+            p1.addSign(s1);
+
+            Quantitative qt1 = new Quantitative(1, "Hb", 17.3F);
+            s1.addSymptom(qt1);
+            Qualitative ql1 = new Qualitative(1, "tinnitius", true);
+            s1.addSymptom(ql1);
+
+            patientUnit.getPatients().add(p1);
+
+            LOG.info("Fire rules");
+            instance.fire();
+            Set<Patient> patientsWithAnemicSyndrome = patientUnit.getPatientsWithAnemicSyndrome();
+            assertEquals(1, patientsWithAnemicSyndrome.size());
+            assertTrue(patientsWithAnemicSyndrome.contains(p1));
+
+            //System.out.println(patientUnit.getTestString());
 
 
         } finally {

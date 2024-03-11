@@ -121,12 +121,30 @@ public class Patient {
         for (Symptom sy : s.getSymptoms()){
             if (sy instanceof Quantitative){
                 if (sy.getName().equals("Hb")){
-                    System.out.println(((Quantitative) sy).getNumericValue());
+                    //System.out.println(((Quantitative) sy).getNumericValue());
                     return ((Quantitative) sy).getNumericValue();
                 }
             }
         }
         return null;
+    }
+
+    public boolean detectQuanlitativeSymptom(String name){
+        //accedemos al ultimo porque es el mas reciente
+        Sign s = this.getSigns().get(0);
+        //System.out.println(s);
+
+        for (Symptom sy : s.getSymptoms()){
+            if (sy instanceof Qualitative){
+                if (sy.getName().equals("tinnitius")){
+                    //System.out.println(((Quantitative) sy).getNumericValue());
+                    return ((Qualitative) sy).getPresence();
+                }
+            }
+        }
+
+        return false;
+
     }
 
 

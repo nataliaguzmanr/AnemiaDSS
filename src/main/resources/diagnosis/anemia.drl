@@ -1,21 +1,36 @@
 
 package diagnosis;
 
+
 unit PatientUnit;
 
-rule "1. Anemic Syndrome due to low Hb"
+import diagnosis.Anemia
+import diagnosis.AnemiaType
+
+
+rule "Anemic Syndrome due to low Hb"
 when
-    $patient : /patients[detectQuantSymptom("Hb")<8.00]
+    $patient : /patients[detectQuantSymptom("Hb")<8]
 then
-    System.out.println( $patient + " Anemic Syndrome. ");
     Anemia a = new Anemia (1, AnemiaType.ANEMIC_SYNDROME);
-    modify ($patient) {
-    addAnemia(a)
-    }
+    $patient.addAnemia(a);
+
+    patientsWithAnemicSyndrome.add($patient);
     System.out.println( $patient + " Anemic Syndrome. ");
 end
 
 
+rule "Anemic Syndrome due to tinnitius"
+when
+    $patient : /patients[detectQuanlitativeSymptom("tinnitius")]
+then
+    Anemia a = new Anemia (1, AnemiaType.ANEMIC_SYNDROME);
+    modify ($patient) {
+    addAnemia(a)
+    }
+    patientsWithAnemicSyndrome.add($patient);
+    System.out.println( $patient + " Anemic Syndrome - tinnitius ");
+end
 
 
 

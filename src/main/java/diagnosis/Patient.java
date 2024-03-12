@@ -90,6 +90,15 @@ public class Patient {
         this.anemias.add(anemia);
     }
 
+    public void addSymptom(Symptom symptom) {
+        this.symptoms.add(symptom);
+    }
+
+    public void detectSymptom(String name){
+
+
+    }
+
 
 
 

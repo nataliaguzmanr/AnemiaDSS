@@ -20,7 +20,7 @@ then
 end
 
 
-rule "Anemic Syndrome due to tinnitius"
+/*rule "Anemic Syndrome due to tinnitius"
 when
     $patient : /patients[detectQuanlitativeSymptom("tinnitius")]
 then
@@ -30,7 +30,8 @@ then
     }
     patientsWithAnemicSyndrome.add($patient);
     System.out.println( $patient + " Anemic Syndrome - tinnitius ");
-end
+end*/
+
 
 
 

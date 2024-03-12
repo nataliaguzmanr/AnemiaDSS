@@ -62,4 +62,6 @@ public class Symptom {
                 ", patient=" + patient +
                 '}';
     }
+
+
 }

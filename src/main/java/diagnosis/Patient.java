@@ -1,7 +1,6 @@
 package diagnosis;
 
 import java.time.LocalDate;
-import java.util.LinkedList;
 import java.util.List;
 import java.util.Objects;
 
@@ -12,8 +11,8 @@ public class Patient {
     private Gender gender;
     private LocalDate date;
     private List<MedicalStaff> medicalStaff;
-    private List<Symptom> symptoms;
-    private List<Anemia> anemias;
+    private List<Symptom> symptomsList;
+    private List<Anemia> anemiasList;
 
     public Patient(Integer id, String name, Integer age, Gender gender, LocalDate date) {
         this.id = id;
@@ -64,12 +63,12 @@ public class Patient {
         if (this == o) return true;
         if (!(o instanceof Patient)) return false;
         Patient patient = (Patient) o;
-        return Objects.equals(getId(), patient.getId()) && Objects.equals(getName(), patient.getName()) && Objects.equals(getAge(), patient.getAge()) && getGender() == patient.getGender() && Objects.equals(getDate(), patient.getDate()) && Objects.equals(medicalStaff, patient.medicalStaff) && Objects.equals(symptoms, patient.symptoms) && Objects.equals(anemias, patient.anemias);
+        return Objects.equals(getId(), patient.getId()) && Objects.equals(getName(), patient.getName()) && Objects.equals(getAge(), patient.getAge()) && getGender() == patient.getGender() && Objects.equals(getDate(), patient.getDate()) && Objects.equals(medicalStaff, patient.medicalStaff) && Objects.equals(symptomsList, patient.symptomsList) && Objects.equals(anemiasList, patient.anemiasList);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(getId(), getName(), getAge(), getGender(), getDate(), medicalStaff, symptoms, anemias);
+        return Objects.hash(getId(), getName(), getAge(), getGender(), getDate(), medicalStaff, symptomsList, anemiasList);
     }
 
     @Override
@@ -81,24 +80,33 @@ public class Patient {
                 ", gender=" + gender +
                 ", date=" + date +
                 ", medicalStaff=" + medicalStaff +
-                ", symptoms=" + symptoms +
-                ", anemias=" + anemias +
+                ", symptoms=" + symptomsList +
+                ", anemias=" + anemiasList +
                 '}';
     }
 
     public void addAnemia(Anemia anemia) {
-        this.anemias.add(anemia);
+        this.anemiasList.add(anemia);
     }
 
     public void addSymptom(Symptom symptom) {
-        this.symptoms.add(symptom);
+        this.symptomsList.add(symptom);
     }
 
-    public void detectSymptom(String name){
+    public Float detectSymptomName(String name){
 
+        for (int i = 0; i< symptomsList.size(); i++){
 
+            Symptom symp= symptomsList.get(i);
+
+            if(name.equalsIgnoreCase(symp.getName())){
+
+                return symp.getValue();
+            }
+            
+        }
+        return null;
     }
-
 
 
 

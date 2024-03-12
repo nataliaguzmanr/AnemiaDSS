@@ -8,7 +8,7 @@ import java.util.Objects;
 public class Symptom {
 
     private final Integer id;
-    private final float value;
+    private final Float value;
     private final String name;
     private Patient patient;
 
@@ -24,7 +24,7 @@ public class Symptom {
         return id;
     }
 
-    public float getValue() {
+    public Float getValue() {
         return value;
     }
 

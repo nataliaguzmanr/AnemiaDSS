@@ -15,6 +15,14 @@ public class Patient {
     private List<Symptom> symptoms;
     private List<Anemia> anemias;
 
+    public Patient(Integer id, String name, Integer age, Gender gender, LocalDate date) {
+        this.id = id;
+        this.name = name;
+        this.age = age;
+        this.gender = gender;
+        this.date = date;
+    }
+
     public Integer getId() {
         return id;
     }

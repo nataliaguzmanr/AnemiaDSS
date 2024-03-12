@@ -26,7 +26,7 @@ public class PatientUnitTest {
         try {
             LOG.info("Insert data");
             Patient p1 = new Patient(1, "Paco", 23, Gender.MALE);
-            Sign s1 = new Sign(1, new Date(), p1);
+            Symptom s1 = new Symptom(1, new Date(), p1);
             p1.addSign(s1);
             Quantitative qt1 = new Quantitative(1, "Hb", 17.3F);
             s1.addSymptom(qt1);
@@ -36,7 +36,7 @@ public class PatientUnitTest {
 //            System.out.println(p1.getSigns());
 
             Patient p2 = new Patient(2, "Marta", 53, Gender.FEMALE);
-            Sign s2 = new Sign(2, new Date(), p2);
+            Symptom s2 = new Symptom(2, new Date(), p2);
             p2.addSign(s2);
 
             Quantitative qt2 = new Quantitative(2, "Hb", 7F);
@@ -88,7 +88,7 @@ public class PatientUnitTest {
         try {
             LOG.info("Insert data");
             Patient p1 = new Patient(1, "Paco", 23, Gender.MALE);
-            Sign s1 = new Sign(1, new Date(), p1);
+            Symptom s1 = new Symptom(1, new Date(), p1);
             p1.addSign(s1);
 
             Quantitative qt1 = new Quantitative(1, "Hb", 17.3F);

@@ -1,5 +1,6 @@
 package diagnosis;
 
+import java.time.LocalDate;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Objects;
@@ -9,24 +10,10 @@ public class Patient {
     private String name;
     private Integer age;
     private Gender gender;
-
-    //-----------------------------
+    private LocalDate date;
     private List<MedicalStaff> medicalStaff;
-    private List<Sign> signs;
-
+    private List<Symptom> symptoms;
     private List<Anemia> anemias;
-    //-----------------------------
-
-
-    public Patient(Integer id, String name, Integer age, Gender gender) {
-        this.id = id;
-        this.name = name;
-        this.age = age;
-        this.gender = gender;
-        this.medicalStaff = new LinkedList<MedicalStaff>();
-        this.signs = new LinkedList<Sign>();
-        this.anemias = new LinkedList<Anemia>();
-    }
 
     public Integer getId() {
         return id;
@@ -36,56 +23,45 @@ public class Patient {
         return name;
     }
 
-    public Integer getAge() {
-        return age;
-    }
-
-    public Gender getGender() {
-        return gender;
-    }
-
-    public List<MedicalStaff> getMedicalStaff() {
-        return medicalStaff;
-    }
-
     public void setName(String name) {
         this.name = name;
+    }
+
+    public Integer getAge() {
+        return age;
     }
 
     public void setAge(Integer age) {
         this.age = age;
     }
 
+    public Gender getGender() {
+        return gender;
+    }
+
     public void setGender(Gender gender) {
         this.gender = gender;
     }
 
-    public void setMedicalStaff(List<MedicalStaff> medicalStaff) {
-        this.medicalStaff = medicalStaff;
+    public LocalDate getDate() {
+        return date;
     }
 
-    public List<Sign> getSigns() {
-        return signs;
+    public void setDate(LocalDate date) {
+        this.date = date;
     }
 
-    public void setSigns(List<Sign> signs) {
-        this.signs = signs;
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Patient)) return false;
+        Patient patient = (Patient) o;
+        return Objects.equals(getId(), patient.getId()) && Objects.equals(getName(), patient.getName()) && Objects.equals(getAge(), patient.getAge()) && getGender() == patient.getGender() && Objects.equals(getDate(), patient.getDate()) && Objects.equals(medicalStaff, patient.medicalStaff) && Objects.equals(symptoms, patient.symptoms) && Objects.equals(anemias, patient.anemias);
     }
 
-    public void addSign(Sign sign) {
-        this.signs.add(sign);
-    }
-
-    public List<Anemia> getAnemias() {
-        return anemias;
-    }
-
-    public void setAnemias(List<Anemia> anemias) {
-        this.anemias = anemias;
-    }
-
-    public void addAnemia(Anemia anemia) {
-        this.anemias.add(anemia);
+    @Override
+    public int hashCode() {
+        return Objects.hash(getId(), getName(), getAge(), getGender(), getDate(), medicalStaff, symptoms, anemias);
     }
 
     @Override
@@ -95,57 +71,20 @@ public class Patient {
                 ", name='" + name + '\'' +
                 ", age=" + age +
                 ", gender=" + gender +
+                ", date=" + date +
                 ", medicalStaff=" + medicalStaff +
+                ", symptoms=" + symptoms +
+                ", anemias=" + anemias +
                 '}';
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Patient patient = (Patient) o;
-        return Objects.equals(id, patient.id) && Objects.equals(name, patient.name) && Objects.equals(age, patient.age) && gender == patient.gender;
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(id, name, age, gender);
+    public void addAnemia(Anemia anemia) {
+        this.anemias.add(anemia);
     }
 
 
-    public Float detectQuantSymptom(String name){
-        //accedemos al ultimo porque es el mas reciente
-        Sign s = this.getSigns().get(0);
-        System.out.println(s);
 
-        for (Symptom sy : s.getSymptoms()){
-            if (sy instanceof Quantitative){
-                if (sy.getName().equals("Hb")){
-                    //System.out.println(((Quantitative) sy).getNumericValue());
-                    return ((Quantitative) sy).getNumericValue();
-                }
-            }
-        }
-        return null;
-    }
 
-    public boolean detectQuanlitativeSymptom(String name){
-        //accedemos al ultimo porque es el mas reciente
-        Sign s = this.getSigns().get(0);
-        //System.out.println(s);
-
-        for (Symptom sy : s.getSymptoms()){
-            if (sy instanceof Qualitative){
-                if (sy.getName().equals("tinnitius")){
-                    //System.out.println(((Quantitative) sy).getNumericValue());
-                    return ((Qualitative) sy).getPresence();
-                }
-            }
-        }
-
-        return false;
-
-    }
 
 
 }

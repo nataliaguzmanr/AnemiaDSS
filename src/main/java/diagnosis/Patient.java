@@ -1,6 +1,7 @@
 package diagnosis;
 
 import java.time.LocalDate;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Objects;
 
@@ -20,6 +21,8 @@ public class Patient {
         this.age = age;
         this.gender = gender;
         this.date = date;
+        this.symptomsList = new LinkedList<>();
+        this.anemiasList = new LinkedList<>();
     }
 
     public Integer getId() {

@@ -10,7 +10,7 @@ import diagnosis.AnemiaType
 
 rule "Anemic Syndrome due to low Hb"
 when
-    $patient : /patients[detectQuantSymptom("Hb")<8]
+    $patient : /patients[detectSymptomName("Hb")<8]
 then
     Anemia a = new Anemia (1, AnemiaType.ANEMIC_SYNDROME);
     $patient.addAnemia(a);

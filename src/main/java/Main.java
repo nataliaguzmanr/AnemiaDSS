@@ -1,45 +1,18 @@
-import diagnosis.Operation;
-import diagnosis.OperationUnit;
-import diagnosis.Tries;
+import diagnosis.*;
 import org.drools.ruleunits.api.RuleUnitInstance;
 import org.drools.ruleunits.api.RuleUnitProvider;
 
+import java.time.LocalDate;
 import java.util.List;
 
 public class Main {
 //.
     public static void main(String[] args) {
-        //holaaaaaaa
-        OperationUnit operationUnit = new OperationUnit();
+        Patient   p1 = new Patient(1, "Paco", 58, Gender.MALE, LocalDate.of(1987,10,12));
+        Symptom s1 = new Symptom(1, 9, "Hb", p1);
+        p1.addSymptom(s1);
 
-        RuleUnitInstance<OperationUnit> instance = RuleUnitProvider.get().createRuleUnitInstance(operationUnit);
-
-        try {
-
-            Operation op1 = new Operation(1, true, false, true, Tries.EXPIRED, 100, 1000, 500);
-            Operation op2 = new Operation(2, true, false, true, Tries.NOT_EXPIRED, 100, 1000, 500);
-            Operation op3 = new Operation(3, true, false, true, Tries.NOT_EXPIRED, 1000, 100, 500);
-            Operation op4 = new Operation(4, true, false, true, Tries.NOT_EXPIRED, 1000, 10000, 500);
-            Operation op5 = new Operation(5, true, true, true, Tries.EXPIRED, 100, 1000, 500);
-            Operation op6 = new Operation(6, false, true, true, Tries.NOT_EXPIRED, 100, 1000, 500);
-            Operation op7 = new Operation(6, false, true, true, Tries.NOT_EXPIRED, 100, 1000, 500);
-
-            operationUnit.getOperations().add(op1);
-            operationUnit.getOperations().add(op2);
-            operationUnit.getOperations().add(op3);
-            operationUnit.getOperations().add(op4);
-            operationUnit.getOperations().add(op5);
-            operationUnit.getOperations().add(op6);
-            operationUnit.getOperations().add(op7);
-
-            instance.fire();
-            List<Operation> authorizedOperations = instance.executeQuery("FindAuthorizedOperations").toList("$operations");
-
-            System.out.println(authorizedOperations);
-            //I print rule applied, the one which fits the conditions is op3
-
-        } finally {
-            instance.close();
-        }
+        Float val = p1.detectSymptomValue("Hb");
+        System.out.println(val);
     }
 }

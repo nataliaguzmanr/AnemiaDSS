@@ -1,9 +1,13 @@
 package diagnosis;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Objects;
+
+import static java.util.Objects.hash;
+
 
 public class Patient {
     private final Integer id;
@@ -21,8 +25,8 @@ public class Patient {
         this.age = age;
         this.gender = gender;
         this.date = date;
-        this.symptomsList = new LinkedList<>();
-        this.anemiasList = new LinkedList<>();
+        this.symptomsList = new ArrayList<>();
+        this.anemiasList = new ArrayList<>();
     }
 
     public Integer getId() {
@@ -71,7 +75,7 @@ public class Patient {
 
     @Override
     public int hashCode() {
-        return Objects.hash(getId(), getName(), getAge(), getGender(), getDate(), medicalStaff, symptomsList, anemiasList);
+        return hash(getId(), getName(), getAge(), getGender(), getDate());
     }
 
     @Override
@@ -81,7 +85,7 @@ public class Patient {
                 ", name='" + name + '\'' +
                 ", age=" + age +
                 ", gender=" + gender +
-                ", date=" + date +
+                //", date=" + date +
                 ", medicalStaff=" + medicalStaff +
                 ", symptoms=" + symptomsList +
                 ", anemias=" + anemiasList +
@@ -96,7 +100,7 @@ public class Patient {
         this.symptomsList.add(symptom);
     }
 
-    public Float detectSymptomName(String name){
+    public Float detectSymptomValue(String name){
 
         for (int i = 0; i< symptomsList.size(); i++){
 

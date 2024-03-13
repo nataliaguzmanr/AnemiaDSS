@@ -13,6 +13,7 @@ public class PatientUnit implements RuleUnitData {
     private final DataStore<Patient> patients;
     private String testString;
     private final Set<Patient> patientsWithAnemicSyndrome;
+    private final Set<Patient> patientsWithPosthemorragicAnemia;
 
 
     public PatientUnit() {
@@ -22,6 +23,7 @@ public class PatientUnit implements RuleUnitData {
     public PatientUnit(DataStore<Patient> patients) {
         this.patients = patients;
         this.patientsWithAnemicSyndrome = new HashSet<>();
+        this.patientsWithPosthemorragicAnemia = new HashSet<>();
     }
 
     public DataStore<Patient> getPatients() {
@@ -30,6 +32,9 @@ public class PatientUnit implements RuleUnitData {
 
     public Set<Patient> getPatientsWithAnemicSyndrome() {
         return this.patientsWithAnemicSyndrome;
+    }
+    public Set<Patient> getPatientsWithPosthemorragicAnemia() {
+        return this.patientsWithPosthemorragicAnemia;
     }
 
     public String getTestString() {

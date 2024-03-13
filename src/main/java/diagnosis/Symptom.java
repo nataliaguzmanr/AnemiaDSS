@@ -5,6 +5,8 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Objects;
 
+import static java.util.Objects.hash;
+
 public class Symptom {
 
     private final Integer id;
@@ -40,17 +42,18 @@ public class Symptom {
         this.patient = patient;
     }
 
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (!(o instanceof Symptom)) return false;
         Symptom symptom = (Symptom) o;
-        return Float.compare(getValue(), symptom.getValue()) == 0 && Objects.equals(getId(), symptom.getId()) && Objects.equals(getName(), symptom.getName()) && Objects.equals(getPatient(), symptom.getPatient());
+        return Objects.equals(getId(), symptom.getId()) && Objects.equals(getValue(), symptom.getValue()) && Objects.equals(getName(), symptom.getName()) && Objects.equals(getPatient(), symptom.getPatient());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(getId(), getValue(), getName(), getPatient());
+        return hash(getId(), getValue(), getName(), getPatient());
     }
 
     @Override

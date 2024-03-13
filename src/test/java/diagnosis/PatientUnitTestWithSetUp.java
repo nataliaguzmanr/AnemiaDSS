@@ -13,6 +13,7 @@ import java.time.LocalDate;
 import java.util.Date;
 import java.util.List;
 import java.util.Set;
+import java.util.LinkedList;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
@@ -50,7 +51,9 @@ public class PatientUnitTestWithSetUp {
         //No tiene nada
         p1 = new Patient(1, "Paco", 58, Gender.MALE, LocalDate.of(1987,10,12));
         Symptom s1 = new Symptom(1, 9, "Hb", p1);
+        Symptom s4 = new Symptom(1, 4.1F, "RBC", p1);
         p1.addSymptom(s1);
+        p1.addSymptom(s4);
 
         //Anemic Syndrome
         p2 = new Patient(2, "Marta", 18, Gender.FEMALE, LocalDate.of(1987,10,12));
@@ -82,9 +85,25 @@ public class PatientUnitTestWithSetUp {
         try {
             LOG.info("Fire rules");
             instance.fire();
+
             Set<Patient> patientsWithAnemicSyndrome = patientUnit.getPatientsWithAnemicSyndrome();
             assertEquals(1, patientsWithAnemicSyndrome.size());
             assertTrue(patientsWithAnemicSyndrome.contains(p2));
+            //System.out.println(patientUnit.getTestString());
+        } finally {
+            instance.close();
+        }
+    }
+    @Test
+    public void testPosthemorragicAnemiaMHCH1Expected() {
+        System.out.println("testPosthemorragicAnemiaMHCH1Expected");
+        try {
+            LOG.info("Fire rules");
+            instance.fire();
+
+            Set<Patient> patientsWithPosthemorragicAnemia = patientUnit.getPatientsWithPosthemorragicAnemia();
+            assertEquals(1, patientUnit.getPatientsWithPosthemorragicAnemia().size());
+            assertTrue(patientsWithPosthemorragicAnemia.contains(p1));
             //System.out.println(patientUnit.getTestString());
         } finally {
             instance.close();

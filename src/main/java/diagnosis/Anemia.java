@@ -19,9 +19,6 @@ public class Anemia {
         this.patients = new LinkedList<Patient>();
     }
 
-
-
-
     public Integer getId() {
         return Id;
     }

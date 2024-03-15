@@ -18,6 +18,7 @@ public class PatientUnit implements RuleUnitData {
     private final Set<Patient> patientsWithMegaloblasticAnemia;
     private final Set<Patient> patientsWithAplasticAnemia;
     private final Set<Patient> patientsWithChronicDiseaseAnemia;
+    private final Set<Patient> patientsWithPolycythemia;
     private final Set<Patient> patientsMALE;
 
 
@@ -35,6 +36,7 @@ public class PatientUnit implements RuleUnitData {
         this.patientsWithMegaloblasticAnemia = new HashSet<>();
         this.patientsWithAplasticAnemia = new HashSet<>();
         this.patientsWithChronicDiseaseAnemia = new HashSet<>();
+        this.patientsWithPolycythemia = new HashSet<>();
         this.patientsMALE = new HashSet<>();
 
     }
@@ -65,6 +67,11 @@ public class PatientUnit implements RuleUnitData {
     public Set<Patient> getPatientsWithChronicDiseaseAnemia(){
         return this.patientsWithChronicDiseaseAnemia;
     }
+
+    public Set<Patient> getPatientsWithPolycythemia(){
+        return this.patientsWithPolycythemia;
+    }
+
 
     public Set<Patient> getPatientsMALE() {
         return this.patientsMALE;

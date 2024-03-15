@@ -231,5 +231,37 @@ then
 
 end
 
+rule "40. PolycythemiaHb"
+when
+    $patient : /patients[(detectSymptomValue("Hb")>15.3 && getGender().equals(gender.FEMALE)) || (detectSymptomValue("Hb")>17.5 && getGender().equals(gender.MALE))]
 
+then
+    Anemia a = new Anemia (10, AnemiaType.POLYCYTHEMIA);
+    $patient.addAnemia(a);
+    patientsWithPolycythemia.add($patient);
+
+end
+
+rule "41. PolycythemiaPVM"
+when
+    $patient : /patients[(detectSymptomValue("PVM")>47 && getGender().equals(gender.FEMALE)) || (detectSymptomValue("PVM")>53 && getGender().equals(gender.MALE))]
+
+then
+    Anemia a = new Anemia (10, AnemiaType.POLYCYTHEMIA);
+    $patient.addAnemia(a);
+    patientsWithPolycythemia.add($patient);
+
+end
+
+
+rule "43. PolycythemiaGlucocorticoids"
+when
+    $patient : /patients[detectSymptomValue("Glucocorticoids")>25]
+
+then
+    Anemia a = new Anemia (10, AnemiaType.POLYCYTHEMIA);
+    $patient.addAnemia(a);
+    patientsWithPolycythemia.add($patient);
+
+end
 

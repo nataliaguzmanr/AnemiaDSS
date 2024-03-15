@@ -32,6 +32,8 @@ public class PatientUnitTestWithSetUp {
     Patient pat_aplastic;
     Patient pat_chronicDiseaseMALE;
     Patient pat_chronicDiseaseFEMALE;
+    Patient pat_polycythemia1;
+    Patient pat_polycythemia2;
 
 
     /**
@@ -83,6 +85,7 @@ public class PatientUnitTestWithSetUp {
         pat_ironDef.addSymptom(mch2);
         pat_ironDef.addSymptom(ferr);
 
+
         //Megaloblastic anemia
         pat_megaloblastic = new Patient("Almudena", 29, Gender.FEMALE, LocalDate.of(2024, 3,15));
         Symptom b12 = new Symptom(177, "B12", pat_megaloblastic);
@@ -97,6 +100,7 @@ public class PatientUnitTestWithSetUp {
         pat_megaloblasticFolicAc = new Patient("Pepe", 43, Gender.MALE, LocalDate.of(2024, 3,15));
         Symptom fa = new Symptom(2, "B12", pat_megaloblasticFolicAc);
         pat_megaloblasticFolicAc.addSymptom(fa);
+
 
         //Aplastic Anemia
         pat_aplastic = new Patient("Natalia", 27,  Gender.FEMALE, LocalDate.of(2024, 3,15));
@@ -115,6 +119,17 @@ public class PatientUnitTestWithSetUp {
         Symptom ferr2 = new Symptom(210, "Ferritine", pat_chronicDiseaseFEMALE);
         pat_chronicDiseaseFEMALE.addSymptom(ferr2);
 
+
+        //Polycythemia
+        pat_polycythemia1 = new Patient("Manolo", 76, Gender.MALE, LocalDate.of(1987,10,12));
+        Symptom hb2 = new Symptom(17.8F, "Hb", pat_polycythemia1);
+        pat_polycythemia1.addSymptom(hb2);
+
+        pat_polycythemia2 = new Patient("Manolo", 76, Gender.MALE, LocalDate.of(1987,10,12));
+        Symptom hb3 = new Symptom(16.3F, "Hb", pat_polycythemia2);
+        pat_polycythemia2.addSymptom(hb3);
+
+
 //---------------------------------------------------------------------------------------
 
         patientUnit.getPatients().add(pat_posthemorrhagic);
@@ -127,6 +142,7 @@ public class PatientUnitTestWithSetUp {
         patientUnit.getPatients().add(pat_aplastic);
         patientUnit.getPatients().add(pat_chronicDiseaseMALE);
         patientUnit.getPatients().add(pat_chronicDiseaseFEMALE);
+        patientUnit.getPatients().add(pat_polycythemia1);
 
         //System.out.println(patientUnit.getTestString());
 
@@ -458,34 +474,23 @@ public class PatientUnitTestWithSetUp {
         }
     }
 
+    @Test
+    public void testPolycythemiaHb_1Expected() {
+        System.out.println("\n---test Polycythemia Hb 1 Expected");
+        try {
+            LOG.info("Fire rules");
+            instance.fire();
+
+            Set<Patient> patientsWithPolycythemia = patientUnit.getPatientsWithPolycythemia();
+            assertEquals(1, patientUnit.getPatientsWithPolycythemia().size());
+            assertTrue(patientsWithPolycythemia.contains(pat_polycythemia1));
 
 
-//    @Test
-//    public void testAuthorizedOperations() {
-//        try {
-//            LOG.info("Run query to find authorized operations. Rules are also fired");
-//            instance.fire();
-//            List<Operation> authorizedOperations = instance.executeQuery("FindAuthorizedOperations").toList("$operations");
-//            assertEquals(1, authorizedOperations.size());
-//            assertEquals(op3, authorizedOperations.get(0));
-//        } finally {
-//            instance.close();
-//        }
-//    }
-//
-//    @Test
-//    public void testNonVerifiedOperationRule() {
-//        try {
-//            LOG.info("Run query to find non authorized operations due to non verified cards. Rules are also fired");
-//            instance.fire();
-//            Set<Operation> operaitionsNotVerified = operationUnit.getOperationsUnauthorizedNotVerified();
-//            assertEquals(2, operaitionsNotVerified.size());
-//            assertTrue(operaitionsNotVerified.contains(op6));
-//            assertTrue(operaitionsNotVerified.contains(op7));
-//
-//        } finally {
-//            instance.close();
-//        }
-//    }
+        } finally {
+            instance.close();
+        }
+    }
+
+
 
 }

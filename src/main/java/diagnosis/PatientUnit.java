@@ -14,8 +14,11 @@ public class PatientUnit implements RuleUnitData {
     private final Set<Patient> patientsWithAnemicSyndrome;
     private final Set<Patient> patientsWithPosthemorragicAnemia;
     private final Set<Patient> patientsWithHemolyticAnemia;
-    private final Set<Patient> patientsIronDeficiencyAnemia;
-    private final Set<Patient> gender;
+    private final Set<Patient> patientsWithIronDeficiencyAnemia;
+    private final Set<Patient> patientsWithMegaloblasticAnemia;
+    private final Set<Patient> patientsWithAplasticAnemia;
+    private final Set<Patient> patientsWithChronicDiseaseAnemia;
+    private final Set<Patient> patientsMALE;
 
 
 
@@ -28,8 +31,11 @@ public class PatientUnit implements RuleUnitData {
         this.patientsWithAnemicSyndrome = new HashSet<>();
         this.patientsWithPosthemorragicAnemia = new HashSet<>();
         this.patientsWithHemolyticAnemia = new HashSet<>();
-        this.patientsIronDeficiencyAnemia = new HashSet<>();
-        this.gender = new HashSet<>();
+        this.patientsWithIronDeficiencyAnemia = new HashSet<>();
+        this.patientsWithMegaloblasticAnemia = new HashSet<>();
+        this.patientsWithAplasticAnemia = new HashSet<>();
+        this.patientsWithChronicDiseaseAnemia = new HashSet<>();
+        this.patientsMALE = new HashSet<>();
 
     }
 
@@ -43,16 +49,25 @@ public class PatientUnit implements RuleUnitData {
     public Set<Patient> getPatientsWithPosthemorrhagicAnemia() {
         return this.patientsWithPosthemorragicAnemia;
     }
-
     public Set<Patient> getPatientsWithHemolyticAnemia() {
         return this.patientsWithHemolyticAnemia;
     }
     public Set<Patient> getPatientsWithIronDeficiencyAnemia(){
-        return this.patientsIronDeficiencyAnemia;
+        return this.patientsWithIronDeficiencyAnemia;
+    }
+    public Set<Patient> getPatientsWithMegaloblasticAnemia(){
+        return this.patientsWithMegaloblasticAnemia;
+    }
+    public Set<Patient> getPatientsWithAplasticAnemia(){
+        return this.patientsWithAplasticAnemia;
     }
 
-    public Set<Patient> getGender() {
-        return this.gender;
+    public Set<Patient> getPatientsWithChronicDiseaseAnemia(){
+        return this.patientsWithChronicDiseaseAnemia;
+    }
+
+    public Set<Patient> getPatientsMALE() {
+        return this.patientsMALE;
     }
 
     public String getTestString() {

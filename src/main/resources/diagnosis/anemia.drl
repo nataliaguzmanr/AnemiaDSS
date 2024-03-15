@@ -34,15 +34,14 @@ end*/
 
 //9. sin completar, no se hacer compuestas :) o no se obtener el genero :/
 
-rule "Return gender"
+rule "Return genderMALE"
 when
-    $patient : /patients[getGender().equals("MALE")]
+    $patient : /patients[getGender().equals(gender.MALE)]
 
 then
-   System.out.println("male");
+   patientsMALE.add($patient);
 
-end*/
-
+end
 
 //SIN TERMINAR F
 rule "9. PosthemorragicAnemiaRBC"
@@ -55,7 +54,6 @@ then
     patientsWithPosthemorrhagicAnemia.add($patient);
 
 end
-
 
 rule "10. PosthemorragicAnemiaMCHC"
 when
@@ -78,7 +76,6 @@ then
     patientsWithPosthemorrhagicAnemia.add($patient);
 
 end
-
 
 rule "16. HemolyticAnemiaMCH>"
 when
@@ -124,53 +121,115 @@ then
 
 end
 
-
-
-
-
-
-
-
-
-
-//----------------------------
-/*
-unit OperationUnit;
-
-rule "authorization of operations"
+rule "29. IronDefAnemiaFerritin"
 when
-    $operation : /operations[verified == true, date_expired == false, correctPin == true, tries == Tries.NOT_EXPIRED, balance >= price, limit >= price]
+    $patient : /patients[detectSymptomValue("Ferritin")<12]
+
 then
-    // IF I WANT TO DEBUG THE CODE, I CAN PRINT HERE WHATEVER I WANT System.out.println( op );
-    System.out.println( $operation + " authorized. ");
-    // Student, please try to do this instead of modify like before. What is the difference?
-    //$operation.setAuthorized(true);
-    // or
-    modify ($operation) {
-    setAuthorized(true)
-    }
-    System.out.println( $operation + " authorized. ");
+    Anemia a = new Anemia (6, AnemiaType.IRON_DEFICIENCY_ANEMIA);
+    $patient.addAnemia(a);
+    patientsWithIronDeficiencyAnemia.add($patient);
+
 end
 
-rule "invalid verification"
+rule "32. MegaloblasticAnemiaB12"
 when
-    $operation : /operations[verified == false]
+    $patient : /patients[detectSymptomValue("B12")<200]
+
 then
-    System.out.println( $operation + " not authorized due to lack of verification. ");
-    modify ($operation) { setAuthorized(false)}
-    operationsUnauthorizedNotVerified.add($operation);
+    Anemia a = new Anemia (7, AnemiaType.MEGALOBLASTIC_ANEMIA);
+    $patient.addAnemia(a);
+    patientsWithMegaloblasticAnemia.add($patient);
+
 end
 
-rule "exceeded limit"
+rule "33. MegaloblasticAnemiaFolicAcid"
 when
-    $operation : /operations[limit < price]
+    $patient : /patients[detectSymptomValue("Folic Acid")<2.7]
+
 then
-    System.out.println( $operation + " not authorized due to limit. ");
-    modify ($operation) { setAuthorized(false)}
-    operationsUnauthorizedExceededLimit.add($operation);
+    Anemia a = new Anemia (7, AnemiaType.MEGALOBLASTIC_ANEMIA);
+    $patient.addAnemia(a);
+    patientsWithMegaloblasticAnemia.add($patient);
+
 end
 
-query FindAuthorizedOperations
-    $operations : /operations[ authorized == true]
+rule "32-33. MegaloblasticAnemiaB12FolicAcid"
+when
+    $patient : /patients[(detectSymptomValue("Folic Acid")<2.7 || detectSymptomValue("B12")<200)]
+
+then
+    Anemia a = new Anemia (7, AnemiaType.MEGALOBLASTIC_ANEMIA);
+    $patient.addAnemia(a);
+    patientsWithMegaloblasticAnemia.add($patient);
+
 end
-*/
+
+rule "35. AplasticAnemiaPlaquets"
+when
+    $patient : /patients[detectSymptomValue("Plaquets")<7.4]
+
+then
+    Anemia a = new Anemia (8, AnemiaType.APLASTIC_ANEMIA);
+    $patient.addAnemia(a);
+    patientsWithAplasticAnemia.add($patient);
+
+end
+
+rule "36. AplasticAnemiaLeukocytes"
+when
+    $patient : /patients[detectSymptomValue("Leukopcytes")<4.5]
+
+then
+    Anemia a = new Anemia (8, AnemiaType.APLASTIC_ANEMIA);
+    $patient.addAnemia(a);
+    patientsWithAplasticAnemia.add($patient);
+
+end
+
+rule "37. ChronicDiseaseAnemiaEPO"
+when
+    $patient : /patients[detectSymptomValue("EPO")<2.6]
+
+then
+    Anemia a = new Anemia (9, AnemiaType.CHRONIC_ANEMIA);
+    $patient.addAnemia(a);
+    patientsWithChronicDiseaseAnemia.add($patient);
+
+end
+
+rule "38. ChronicDiseaseAnemiaFerritineMALE"
+when
+    $patient : /patients[detectSymptomValue("Ferritine")>300 && getGender().equals(gender.MALE)]
+
+then
+    Anemia a = new Anemia (9, AnemiaType.CHRONIC_ANEMIA);
+    $patient.addAnemia(a);
+    patientsWithChronicDiseaseAnemia.add($patient);
+
+end
+
+rule "39. ChronicDiseaseAnemiaFerritinFEMALE"
+when
+    $patient : /patients[detectSymptomValue("Ferritine")>150 && getGender().equals(gender.FEMALE)]
+
+then
+    Anemia a = new Anemia (9, AnemiaType.CHRONIC_ANEMIA);
+    $patient.addAnemia(a);
+    patientsWithChronicDiseaseAnemia.add($patient);
+
+end
+
+rule "38-39. ChronicDiseaseAnemiaFerritinFEMALE"
+when
+    $patient : /patients[(detectSymptomValue("Ferritine")>150 && getGender().equals(gender.FEMALE)) || (detectSymptomValue("Ferritine")>300 && getGender().equals(gender.MALE))]
+
+then
+    Anemia a = new Anemia (9, AnemiaType.CHRONIC_ANEMIA);
+    $patient.addAnemia(a);
+    patientsWithChronicDiseaseAnemia.add($patient);
+
+end
+
+
+

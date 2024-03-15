@@ -10,10 +10,7 @@ import org.slf4j.LoggerFactory;
 
 import java.time.LocalDate;
 
-import java.util.Date;
-import java.util.List;
 import java.util.Set;
-import java.util.LinkedList;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
@@ -25,10 +22,10 @@ public class PatientUnitTestWithSetUp {
 
     PatientUnit patientUnit;
     RuleUnitInstance<PatientUnit> instance;
-    Patient p1;
-    Patient p2;
-    Patient p3;
-    Patient p4;
+    Patient pat_posthemorrhagic;
+    Patient pat_syndrome;
+    Patient pat_hemolytic;
+    Patient pat_ironDef;
     Patient p5;
     Patient p6;
     Patient p7;
@@ -48,27 +45,46 @@ public class PatientUnitTestWithSetUp {
         instance = RuleUnitProvider.get().createRuleUnitInstance(patientUnit);
         LOG.info("Insert data");
 
-        //No tiene nada
-        p1 = new Patient(1, "Paco", 58, Gender.MALE, LocalDate.of(1987,10,12));
-        Symptom s1 = new Symptom(1, 9, "Hb", p1);
-        Symptom s4 = new Symptom(1, 4.1F, "RBC", p1);
-        p1.addSymptom(s1);
-        p1.addSymptom(s4);
-
         //Anemic Syndrome
-        p2 = new Patient(2, "Marta", 18, Gender.FEMALE, LocalDate.of(1987,10,12));
-        Symptom s2 = new Symptom(2, 7.5F, "Hb", p2);
-        p2.addSymptom(s2);
+        pat_syndrome = new Patient("Marta", 18, Gender.FEMALE, LocalDate.of(1987,10,12));
+        Symptom hb1 = new Symptom(7.5F, "Hb", pat_syndrome);
+        pat_syndrome.addSymptom(hb1);
 
-        //no tiene nada
-        p3 = new Patient(3, "Lucia", 58, Gender.FEMALE, LocalDate.of(1987,10,12));
-        Symptom s3 = new Symptom(3, 20, "EPO", p3);
-        p3.addSymptom(s3);
+        //Posthemorragic anemia
+        pat_posthemorrhagic = new Patient("Paco", 58, Gender.MALE, LocalDate.of(1987,10,12));
+        Symptom hb = new Symptom(9, "Hb", pat_posthemorrhagic);
+        Symptom rbcM = new Symptom(4.1F, "RBC", pat_posthemorrhagic);
+        Symptom mhch = new Symptom(307F, "MHCH", pat_posthemorrhagic);
+        Symptom fe1 = new Symptom(55, "Fe", pat_posthemorrhagic);
+        pat_posthemorrhagic.addSymptom(hb);
+        pat_posthemorrhagic.addSymptom(rbcM);
+        pat_posthemorrhagic.addSymptom(mhch);
+        pat_posthemorrhagic.addSymptom(fe1);
 
 
-        patientUnit.getPatients().add(p1);
-        patientUnit.getPatients().add(p2);
-        patientUnit.getPatients().add(p3);
+        //Hemolytic anemia
+        pat_hemolytic = new Patient("Lucia", 58, Gender.FEMALE, LocalDate.of(1987,10,12));
+        Symptom mch = new Symptom(40, "MCH", pat_hemolytic);
+        Symptom fe2 = new Symptom(200, "MCH", pat_hemolytic);
+        Symptom hapto = new Symptom(35, "MCH", pat_hemolytic);
+        pat_hemolytic.addSymptom(mch);
+        pat_hemolytic.addSymptom(fe2);
+        pat_hemolytic.addSymptom(hapto);
+
+
+        //Iron deficiency anemia
+        pat_ironDef = new Patient("Isidoro", 81, Gender.MALE, LocalDate.of(2024, 3,15));
+        Symptom mch2 = new Symptom(26, "MCH", pat_ironDef);
+        pat_ironDef.addSymptom(mch2);
+
+//---------------------------------------------------------------------------------------
+
+        patientUnit.getPatients().add(pat_posthemorrhagic);
+        patientUnit.getPatients().add(pat_syndrome);
+        patientUnit.getPatients().add(pat_hemolytic);
+        patientUnit.getPatients().add(pat_ironDef);
+        //System.out.println(patientUnit.getTestString());
+
 //        patientUnit.getPatients().add(p4);
 //        patientUnit.getPatients().add(p5);
 //        patientUnit.getPatients().add(p6);
@@ -78,7 +94,22 @@ public class PatientUnitTestWithSetUp {
     }
 
 
+    @Test
+    public void testGender() {
+        System.out.println("\n---test gender 1Expected");
+        try {
+            LOG.info("Fire rules");
+            instance.fire();
 
+            Set<Patient> genderPat = patientUnit.getGender();
+            assertEquals(1, patientUnit.getGender().size());
+            assertTrue(genderPat.contains(pat_posthemorrhagic));
+            System.out.println(patientUnit.getTestString());
+
+        } finally {
+            instance.close();
+        }
+    }
     @Test
     public void testAnemicSyndromeHb1Expected() {
         System.out.println("testAnemicSyndromeHb1Expected");
@@ -88,27 +119,131 @@ public class PatientUnitTestWithSetUp {
 
             Set<Patient> patientsWithAnemicSyndrome = patientUnit.getPatientsWithAnemicSyndrome();
             assertEquals(1, patientsWithAnemicSyndrome.size());
-            assertTrue(patientsWithAnemicSyndrome.contains(p2));
+            assertTrue(patientsWithAnemicSyndrome.contains(pat_syndrome));
             //System.out.println(patientUnit.getTestString());
         } finally {
             instance.close();
         }
     }
     @Test
-    public void testPosthemorragicAnemiaMHCH1Expected() {
+    public void testPosthemorragicAnemiaRBC1Expected() {
         System.out.println("testPosthemorragicAnemiaMHCH1Expected");
         try {
-            LOG.info("Fire rules");
+            LOG.info("Fire  10. PosthemorragicAnemiaMCHC rule");
             instance.fire();
 
-            Set<Patient> patientsWithPosthemorragicAnemia = patientUnit.getPatientsWithPosthemorragicAnemia();
-            assertEquals(1, patientUnit.getPatientsWithPosthemorragicAnemia().size());
-            assertTrue(patientsWithPosthemorragicAnemia.contains(p1));
+            Set<Patient> patientsWithPosthemorragicAnemia = patientUnit.getPatientsWithPosthemorrhagicAnemia();
+            assertEquals(1, patientUnit.getPatientsWithPosthemorrhagicAnemia().size());
+            assertTrue(patientsWithPosthemorragicAnemia.contains(pat_posthemorrhagic));
             //System.out.println(patientUnit.getTestString());
         } finally {
             instance.close();
         }
     }
+
+    @Test
+    public void testPosthemorragicAnemiaMHCH1Expected() {
+        System.out.println("test Posthemorragic Anemia MHCH 1Expected");
+        try {
+            LOG.info("Fire  11. PosthemorragicAnemiaFe rule");
+            instance.fire();
+
+            Set<Patient> patientsWithPosthemorragicAnemia = patientUnit.getPatientsWithPosthemorrhagicAnemia();
+            assertEquals(1, patientUnit.getPatientsWithPosthemorrhagicAnemia().size());
+            assertTrue(patientsWithPosthemorragicAnemia.contains(pat_posthemorrhagic));
+            //System.out.println(patientUnit.getTestString());
+        } finally {
+            instance.close();
+        }
+    }
+
+    @Test
+    public void testPosthemorrhagicAnemiaFe1Expected() {
+        System.out.println("test Posthemorragic Anemia Fe 1Expected");
+        try {
+            LOG.info("Fire rules");
+            instance.fire();
+
+            Set<Patient> patientsWithPosthemorrhagicAnemia = patientUnit.getPatientsWithPosthemorrhagicAnemia();
+            assertEquals(1, patientUnit.getPatientsWithPosthemorrhagicAnemia().size());
+            assertTrue(patientsWithPosthemorrhagicAnemia.contains(pat_posthemorrhagic));
+            System.out.println(patientUnit.getTestString());
+
+        } finally {
+            instance.close();
+        }
+    }
+
+    @Test
+    public void testHemolyticAnemiaMCH1Expected() {
+        System.out.println("\n---test Hemolytic Anemia MCH 1Expected");
+        try {
+            LOG.info("Fire rules");
+            instance.fire();
+
+            Set<Patient> patientsWithHemolyticAnemia = patientUnit.getPatientsWithHemolyticAnemia();
+            assertEquals(1, patientUnit.getPatientsWithHemolyticAnemia().size());
+            assertTrue(patientsWithHemolyticAnemia.contains(pat_hemolytic));
+            System.out.println(patientUnit.getTestString());
+
+        } finally {
+            instance.close();
+        }
+    }
+
+
+    @Test
+    public void testHemolyticAnemiaFe1Expected() {
+        System.out.println("\n---test Hemolytic Anemia Fe 1Expected");
+        try {
+            LOG.info("Fire rules");
+            instance.fire();
+
+            Set<Patient> patientsWithHemolyticAnemia = patientUnit.getPatientsWithHemolyticAnemia();
+            assertEquals(1, patientUnit.getPatientsWithHemolyticAnemia().size());
+            assertTrue(patientsWithHemolyticAnemia.contains(pat_hemolytic));
+            System.out.println(patientUnit.getTestString());
+
+        } finally {
+            instance.close();
+        }
+    }
+
+
+    @Test
+    public void testHemolyticAnemiaHaptoglobin1Expected() {
+        System.out.println("\n---test Hemolytic Anemia Haptoglobin 1Expected");
+        try {
+            LOG.info("Fire rules");
+            instance.fire();
+
+            Set<Patient> patientsWithHemolyticAnemia = patientUnit.getPatientsWithHemolyticAnemia();
+            assertEquals(1, patientUnit.getPatientsWithHemolyticAnemia().size());
+            assertTrue(patientsWithHemolyticAnemia.contains(pat_hemolytic));
+
+        } finally {
+            instance.close();
+        }
+    }
+
+
+    @Test
+    public void testIronDefAnemiaMCH1Expected() {
+        System.out.println("\n---test Iron deficiency Anemia MCH 1Expected");
+        try {
+            LOG.info("Fire rules");
+            instance.fire();
+
+            Set<Patient> patientsWithIronDeficiencyAnemia = patientUnit.getPatientsWithIronDeficiencyAnemia();
+            assertEquals(1, patientUnit.getPatientsWithIronDeficiencyAnemia().size());
+            assertTrue(patientsWithIronDeficiencyAnemia.contains(pat_ironDef));
+
+        } finally {
+            instance.close();
+        }
+    }
+
+
 
 
 

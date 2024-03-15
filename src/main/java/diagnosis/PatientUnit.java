@@ -1,6 +1,5 @@
 package diagnosis;
 
-import diagnosis.Patient;
 import org.drools.ruleunits.api.DataSource;
 import org.drools.ruleunits.api.DataStore;
 import org.drools.ruleunits.api.RuleUnitData;
@@ -14,6 +13,10 @@ public class PatientUnit implements RuleUnitData {
     private String testString;
     private final Set<Patient> patientsWithAnemicSyndrome;
     private final Set<Patient> patientsWithPosthemorragicAnemia;
+    private final Set<Patient> patientsWithHemolyticAnemia;
+    private final Set<Patient> patientsIronDeficiencyAnemia;
+    private final Set<Patient> gender;
+
 
 
     public PatientUnit() {
@@ -24,6 +27,10 @@ public class PatientUnit implements RuleUnitData {
         this.patients = patients;
         this.patientsWithAnemicSyndrome = new HashSet<>();
         this.patientsWithPosthemorragicAnemia = new HashSet<>();
+        this.patientsWithHemolyticAnemia = new HashSet<>();
+        this.patientsIronDeficiencyAnemia = new HashSet<>();
+        this.gender = new HashSet<>();
+
     }
 
     public DataStore<Patient> getPatients() {
@@ -33,8 +40,19 @@ public class PatientUnit implements RuleUnitData {
     public Set<Patient> getPatientsWithAnemicSyndrome() {
         return this.patientsWithAnemicSyndrome;
     }
-    public Set<Patient> getPatientsWithPosthemorragicAnemia() {
+    public Set<Patient> getPatientsWithPosthemorrhagicAnemia() {
         return this.patientsWithPosthemorragicAnemia;
+    }
+
+    public Set<Patient> getPatientsWithHemolyticAnemia() {
+        return this.patientsWithHemolyticAnemia;
+    }
+    public Set<Patient> getPatientsWithIronDeficiencyAnemia(){
+        return this.patientsIronDeficiencyAnemia;
+    }
+
+    public Set<Patient> getGender() {
+        return this.gender;
     }
 
     public String getTestString() {

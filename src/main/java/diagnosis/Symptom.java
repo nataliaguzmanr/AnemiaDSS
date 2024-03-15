@@ -9,7 +9,8 @@ import static java.util.Objects.hash;
 
 public class Symptom {
 
-    private final Integer id;
+    // ANADIR private final Integer id;
+    private  Integer id;
     private final Float value;
     private final String name;
     private Patient patient;
@@ -17,6 +18,12 @@ public class Symptom {
 
     public Symptom(Integer id, float value, String name, Patient patient) {
         this.id = id;
+        this.value = value;
+        this.name = name;
+        this.patient = patient;
+    }
+
+    public Symptom(float value, String name, Patient patient) {
         this.value = value;
         this.name = name;
         this.patient = patient;
@@ -59,9 +66,9 @@ public class Symptom {
     @Override
     public String toString() {
         return "Symptom{" +
-                "id=" + id +
+                //"id=" + id +
                 ", value=" + value +
-                ", name='" + name + '\'' +
+                ", name='" + name  +
                 ", patient=" + patient +
                 '}';
     }

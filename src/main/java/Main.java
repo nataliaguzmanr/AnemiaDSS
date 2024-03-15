@@ -14,5 +14,21 @@ public class Main {
 
         Float val = p1.detectSymptomValue("Hb");
         System.out.println(val);
+
+        Gender g= p1.getGender();
+        System.out.println(g);
+
+        boolean b = checkGender(g);
+        System.out.println(b);
     }
+
+    public static boolean checkGender(Gender g){
+        if (g.equals(Gender.MALE)){
+            return true;
+        }else{
+            return false;
+        }
+    }
+
+
 }

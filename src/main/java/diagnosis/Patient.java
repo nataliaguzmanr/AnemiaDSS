@@ -10,7 +10,8 @@ import static java.util.Objects.hash;
 
 
 public class Patient {
-    private final Integer id;
+    //anadir private final Integer id
+    private  Integer id;
     private String name;
     private Integer age;
     private Gender gender;
@@ -29,6 +30,14 @@ public class Patient {
         this.anemiasList = new ArrayList<>();
     }
 
+    public Patient(String name, Integer age, Gender gender, LocalDate date) {
+        this.name = name;
+        this.age = age;
+        this.gender = gender;
+        this.date = date;
+        this.symptomsList = new ArrayList<>();
+        this.anemiasList = new ArrayList<>();
+    }
     public Integer getId() {
         return id;
     }
@@ -81,11 +90,11 @@ public class Patient {
     @Override
     public String toString() {
         return "Patient{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
+                //"id=" + id +
+                ", name='" + name  +
                 ", age=" + age +
                 ", gender=" + gender +
-                //", date=" + date +
+                //", date=" + date+
                 ", medicalStaff=" + medicalStaff +
                 ", symptoms=" + symptomsList +
                 ", anemias=" + anemiasList +

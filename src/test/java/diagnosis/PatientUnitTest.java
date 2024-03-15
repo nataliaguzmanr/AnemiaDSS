@@ -25,15 +25,15 @@ public class PatientUnitTest {
 //        RuleUnitInstance<PatientUnit> instance = RuleUnitProvider.get().createRuleUnitInstance(patientUnit);
 //        try {
 //            LOG.info("Insert data");
-//            Patient p1 = new Patient(1, "Paco", 23, Gender.MALE);
-//            Symptom s1 = new Symptom(1, new Date(), p1);
-//            p1.addSign(s1);
+//            Patient pat_posthemorraogic = new Patient(1, "Paco", 23, Gender.MALE);
+//            Symptom s1 = new Symptom(1, new Date(), pat_posthemorraogic);
+//            pat_posthemorraogic.addSign(s1);
 //            Quantitative qt1 = new Quantitative(1, "Hb", 17.3F);
 //            s1.addSymptom(qt1);
 //
 //
-////            System.out.println(p1);
-////            System.out.println(p1.getSigns());
+////            System.out.println(pat_posthemorraogic);
+////            System.out.println(pat_posthemorraogic.getSigns());
 //
 //            Patient p2 = new Patient(2, "Marta", 53, Gender.FEMALE);
 //            Symptom s2 = new Symptom(2, new Date(), p2);
@@ -46,7 +46,7 @@ public class PatientUnitTest {
 //
 //            System.out.println(p2.getSigns());
 //
-//            patientUnit.getPatients().add(p1);
+//            patientUnit.getPatients().add(pat_posthemorraogic);
 //            patientUnit.getPatients().add(p2);
 //
 ///*            Operation op1 = new Operation(1, true, false, true, Tries.EXPIRED, 100, 1000, 500);
@@ -87,22 +87,22 @@ public class PatientUnitTest {
 //        RuleUnitInstance<PatientUnit> instance = RuleUnitProvider.get().createRuleUnitInstance(patientUnit);
 //        try {
 //            LOG.info("Insert data");
-//            Patient p1 = new Patient(1, "Paco", 23, Gender.MALE);
-//            Symptom s1 = new Symptom(1, new Date(), p1);
-//            p1.addSign(s1);
+//            Patient pat_posthemorraogic = new Patient(1, "Paco", 23, Gender.MALE);
+//            Symptom s1 = new Symptom(1, new Date(), pat_posthemorraogic);
+//            pat_posthemorraogic.addSign(s1);
 //
 //            Quantitative qt1 = new Quantitative(1, "Hb", 17.3F);
 //            s1.addSymptom(qt1);
 //            Qualitative ql1 = new Qualitative(1, "tinnitius", true);
 //            s1.addSymptom(ql1);
 //
-//            patientUnit.getPatients().add(p1);
+//            patientUnit.getPatients().add(pat_posthemorraogic);
 //
 //            LOG.info("Fire rules");
 //            instance.fire();
 //            Set<Patient> patientsWithAnemicSyndrome = patientUnit.getPatientsWithAnemicSyndrome();
 //            assertEquals(1, patientsWithAnemicSyndrome.size());
-//            assertTrue(patientsWithAnemicSyndrome.contains(p1));
+//            assertTrue(patientsWithAnemicSyndrome.contains(pat_posthemorraogic));
 //
 //            //System.out.println(patientUnit.getTestString());
 //

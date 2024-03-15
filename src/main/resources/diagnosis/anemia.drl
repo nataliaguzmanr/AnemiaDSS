@@ -19,18 +19,6 @@ then
    //System.out.println( $patient + " Anemic Syndrome. ");
 end
 
-
-
-rule "PosthemorragicAnemiaMCHC"
-when
-    $patient : /patients[detectSymptomValue("RBC")<4.5]//, getGender().equals("MALE")]
-
-then
-    Anemia a = new Anemia (2, AnemiaType.POSTHEMORRAGIC_ANEMIA);
-    $patient.addAnemia(a);
-    patientsWithPosthemorragicAnemia.add($patient);
-
-end
 /*rule "Anemic Syndrome due to tinnitius"
 when
     $patient : /patients[detectQuanlitativeSymptom("tinnitius")]
@@ -43,6 +31,98 @@ then
     System.out.println( $patient + " Anemic Syndrome - tinnitius ");
 end*/
 
+
+//9. sin completar, no se hacer compuestas :) o no se obtener el genero :/
+
+rule "Return gender"
+when
+    $patient : /patients[getGender().equals("MALE")]
+
+then
+   System.out.println("male");
+
+end*/
+
+
+//SIN TERMINAR F
+rule "9. PosthemorragicAnemiaRBC"
+when
+    $patient : /patients[detectSymptomValue("RBC")<4.5] //and /patients[getGender().equals("MALE")]
+
+then
+    Anemia a = new Anemia (2, AnemiaType.POSTHEMORRAGIC_ANEMIA);
+    $patient.addAnemia(a);
+    patientsWithPosthemorrhagicAnemia.add($patient);
+
+end
+
+
+rule "10. PosthemorragicAnemiaMCHC"
+when
+    $patient : /patients[detectSymptomValue("MHCH")<310]
+
+then
+    Anemia a = new Anemia (2, AnemiaType.POSTHEMORRAGIC_ANEMIA);
+    $patient.addAnemia(a);
+    patientsWithPosthemorrhagicAnemia.add($patient);
+
+end
+
+rule "11. PosthemorragicAnemiaFe"
+when
+    $patient : /patients[detectSymptomValue("Fe")<60]
+
+then
+    Anemia a = new Anemia (2, AnemiaType.POSTHEMORRAGIC_ANEMIA);
+    $patient.addAnemia(a);
+    patientsWithPosthemorrhagicAnemia.add($patient);
+
+end
+
+
+rule "16. HemolyticAnemiaMCH>"
+when
+    $patient : /patients[detectSymptomValue("MCH")>32]
+
+then
+    Anemia a = new Anemia (3, AnemiaType.HEMOLYTIC_ANEMIA);
+    $patient.addAnemia(a);
+    patientsWithHemolyticAnemia.add($patient);
+
+end
+
+rule "19. HemolyticAnemiaFe"
+when
+    $patient : /patients[detectSymptomValue("Fe")>170]
+
+then
+    Anemia a = new Anemia (3, AnemiaType.HEMOLYTIC_ANEMIA);
+    $patient.addAnemia(a);
+    patientsWithHemolyticAnemia.add($patient);
+
+end
+
+rule "20. HemolyticAnemiaHaptoglobin"
+when
+    $patient : /patients[detectSymptomValue("Haptoglobin")<41]
+
+then
+    Anemia a = new Anemia (3, AnemiaType.HEMOLYTIC_ANEMIA);
+    $patient.addAnemia(a);
+    patientsWithHemolyticAnemia.add($patient);
+
+end
+
+rule "28. IronDefAnemiaMCH<"
+when
+    $patient : /patients[detectSymptomValue("MCH")<27]
+
+then
+    Anemia a = new Anemia (6, AnemiaType.IRON_DEFICIENCY_ANEMIA);
+    $patient.addAnemia(a);
+    patientsWithIronDeficiencyAnemia.add($patient);
+
+end
 
 
 

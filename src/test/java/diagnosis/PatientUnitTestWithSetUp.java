@@ -34,7 +34,9 @@ public class PatientUnitTestWithSetUp {
     Patient pat_chronicDiseaseFEMALE;
     Patient pat_polycythemia1;
     Patient pat_polycythemia2;
-
+    Patient pat_polycythemia3;
+    Patient pat_polycythemia4;
+    Patient pat_polycythemia5;
 
     /**
      * This method will be run before EACH single test. If we want to have common code for all tests we can use @BeforeClass
@@ -123,12 +125,28 @@ public class PatientUnitTestWithSetUp {
         //Polycythemia
         pat_polycythemia1 = new Patient("Manolo", 76, Gender.MALE, LocalDate.of(1987,10,12));
         Symptom hb2 = new Symptom(17.8F, "Hb", pat_polycythemia1);
+        Symptom pvm1 = new Symptom(52, "PVM", pat_polycythemia1);
         pat_polycythemia1.addSymptom(hb2);
+        pat_polycythemia1.addSymptom(pvm1);
 
-        pat_polycythemia2 = new Patient("Manolo", 76, Gender.MALE, LocalDate.of(1987,10,12));
+        pat_polycythemia2 = new Patient("Manuel", 60, Gender.MALE, LocalDate.of(1987,10,12));
         Symptom hb3 = new Symptom(16.3F, "Hb", pat_polycythemia2);
+        Symptom pvm2 = new Symptom(55, "PVM", pat_polycythemia2);
         pat_polycythemia2.addSymptom(hb3);
+        pat_polycythemia2.addSymptom(pvm2);
 
+        pat_polycythemia3 = new Patient("Loli", 56, Gender.FEMALE, LocalDate.of(1987,10,12));
+        Symptom pvm3 = new Symptom(50, "PVM", pat_polycythemia3);
+        pat_polycythemia3.addSymptom(pvm3);
+
+
+        pat_polycythemia4 = new Patient("Loli", 56, Gender.FEMALE, LocalDate.of(1987,10,12));
+        Symptom glucocor = new Symptom(27, "Glucocorticoids", pat_polycythemia4);
+        pat_polycythemia4.addSymptom(glucocor);
+
+        pat_polycythemia5 = new Patient("Dolores", 56, Gender.FEMALE, LocalDate.of(1987,10,12));
+        Symptom RBC = new Symptom(5.9F, "RBC", pat_polycythemia5);
+        pat_polycythemia5.addSymptom(RBC);
 
 //---------------------------------------------------------------------------------------
 
@@ -143,6 +161,11 @@ public class PatientUnitTestWithSetUp {
         patientUnit.getPatients().add(pat_chronicDiseaseMALE);
         patientUnit.getPatients().add(pat_chronicDiseaseFEMALE);
         patientUnit.getPatients().add(pat_polycythemia1);
+        patientUnit.getPatients().add(pat_polycythemia2);
+        patientUnit.getPatients().add(pat_polycythemia3);
+        patientUnit.getPatients().add(pat_polycythemia4);
+        patientUnit.getPatients().add(pat_polycythemia5);
+
 
         //System.out.println(patientUnit.getTestString());
 
@@ -482,7 +505,7 @@ public class PatientUnitTestWithSetUp {
             instance.fire();
 
             Set<Patient> patientsWithPolycythemia = patientUnit.getPatientsWithPolycythemia();
-            assertEquals(1, patientUnit.getPatientsWithPolycythemia().size());
+            assertEquals(5, patientUnit.getPatientsWithPolycythemia().size());
             assertTrue(patientsWithPolycythemia.contains(pat_polycythemia1));
 
 
@@ -491,6 +514,57 @@ public class PatientUnitTestWithSetUp {
         }
     }
 
+    @Test
+    public void testPolycythemiaPVM_3Expected() {
+        System.out.println("\n---test Polycythemia PVM 3 Expected");
+        try {
+            LOG.info("Fire rules");
+            instance.fire();
 
+            Set<Patient> patientsWithPolycythemia = patientUnit.getPatientsWithPolycythemia();
+            assertEquals(3, patientUnit.getPatientsWithPolycythemia().size());
+            //Hb pat1
+            assertTrue(patientsWithPolycythemia.contains(pat_polycythemia2));
+            assertTrue(patientsWithPolycythemia.contains(pat_polycythemia3));
+
+
+        } finally {
+            instance.close();
+        }
+    }
+
+    @Test
+    public void testPolycythemiaGlucocorticoids_4Expected() {
+        System.out.println("\n---test Polycythemia glucocorticoids 4 Expected");
+        try {
+            LOG.info("Fire rules");
+            instance.fire();
+
+            Set<Patient> patientsWithPolycythemia = patientUnit.getPatientsWithPolycythemia();
+            assertEquals(4, patientUnit.getPatientsWithPolycythemia().size());
+            assertTrue(patientsWithPolycythemia.contains(pat_polycythemia4));
+
+
+        } finally {
+            instance.close();
+        }
+    }
+
+    @Test
+    public void testPolycythemiaRBC_5Expected() {
+        System.out.println("\n---test Polycythemia glucocorticoids 1 Expected");
+        try {
+            LOG.info("Fire rules");
+            instance.fire();
+
+            Set<Patient> patientsWithPolycythemia = patientUnit.getPatientsWithPolycythemia();
+            assertEquals(5, patientUnit.getPatientsWithPolycythemia().size());
+            assertTrue(patientsWithPolycythemia.contains(pat_polycythemia5));
+
+
+        } finally {
+            instance.close();
+        }
+    }
 
 }

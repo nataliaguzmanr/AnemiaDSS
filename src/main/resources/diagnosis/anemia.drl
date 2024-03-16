@@ -253,7 +253,6 @@ then
 
 end
 
-
 rule "43. PolycythemiaGlucocorticoids"
 when
     $patient : /patients[detectSymptomValue("Glucocorticoids")>25]
@@ -265,3 +264,13 @@ then
 
 end
 
+rule "45. PolycythemiaRBC"
+when
+    $patient : /patients[(detectSymptomValue("RBC")>5.3 && getGender().equals(gender.FEMALE)) || (detectSymptomValue("RBC")>5.9 && getGender().equals(gender.MALE))]
+
+then
+    Anemia a = new Anemia (10, AnemiaType.POLYCYTHEMIA);
+    $patient.addAnemia(a);
+    patientsWithPolycythemia.add($patient);
+
+end

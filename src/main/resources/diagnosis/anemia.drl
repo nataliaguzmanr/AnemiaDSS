@@ -7,33 +7,6 @@ unit PatientUnit;
 import diagnosis.Anemia
 import diagnosis.AnemiaType
 
-
-rule "Anemic Syndrome due to low Hb"
-when
-    $patient : /patients[detectSymptomValue("Hb")<8]
-then
-    Anemia a = new Anemia (1, AnemiaType.ANEMIC_SYNDROME);
-    $patient.addAnemia(a);
-    //do not apply the modify (dont want to consider as a new fact to which the rule can be applied)
-    patientsWithAnemicSyndrome.add($patient);
-    System.out.println( $patient + " Anemic Syndrome due to low Hb. ");
-end
-
-/*rule "Anemic Syndrome due to tinnitius"
-when
-    $patient : /patients[detectQuanlitativeSymptom("tinnitius")]
-then
-    Anemia a = new Anemia (1, AnemiaType.ANEMIC_SYNDROME);
-    modify ($patient) {
-    addAnemia(a)
-    }
-    patientsWithAnemicSyndrome.add($patient);
-    System.out.println( $patient + " Anemic Syndrome - tinnitius ");
-end*/
-
-
-//9. sin completar, no se hacer compuestas :) o no se obtener el genero :/
-
 rule "Return genderMALE"
 when
     $patient : /patients[getGender().equals(gender.MALE)]
@@ -43,15 +16,62 @@ then
 
 end
 
-//SIN TERMINAR F
+rule "1. AnemicSyndromeHb"
+when
+    $patient : /patients[detectSymptomValue("Hb")<8]
+then
+    Anemia a = new Anemia (1, AnemiaType.ANEMIC_SYNDROME);
+    $patient.addAnemia(a);
+    //do not apply the modify (dont want to consider as a new fact to which the rule can be applied)
+    patientsWithAnemicSyndrome.add($patient);
+    System.out.println( $patient + " -> 1. AnemicSyndromeHb");
+end
+
+rule "3. AnemicSyndromeTinnitius"
+when
+    $patient : /patients[detectSymptomValue("Tinnitius") == 1.0]
+then
+    Anemia a = new Anemia (1, AnemiaType.ANEMIC_SYNDROME);
+    patientsWithAnemicSyndrome.add($patient);
+    System.out.println( $patient + " -> 3. AnemicSyndromeTinnitius");
+end
+
+rule "5. AnemicSyndromeChestPain"
+when
+    $patient : /patients[detectSymptomValue("Chest pain") == 1.0]
+then
+    Anemia a = new Anemia (1, AnemiaType.ANEMIC_SYNDROME);
+    patientsWithAnemicSyndrome.add($patient);
+    System.out.println( $patient + " -> 5. AnemicSyndromeChestPain");
+end
+
+rule "6. AnemicSyndromeInfarction"
+when
+    $patient : /patients[detectSymptomValue("Infarction") == 1.0]
+then
+    Anemia a = new Anemia (1, AnemiaType.ANEMIC_SYNDROME);
+    patientsWithAnemicSyndrome.add($patient);
+    System.out.println( $patient + " -> 6. AnemicSyndromeInfarction");
+end
+
+rule "8. AnemicSyndromeMusclePain"
+when
+    $patient : /patients[detectSymptomValue("Muscle pain") == 1.0]
+then
+    Anemia a = new Anemia (1, AnemiaType.ANEMIC_SYNDROME);
+    patientsWithAnemicSyndrome.add($patient);
+    System.out.println( $patient + " -> 8. AnemicSyndromeMusclePain");
+end
+
 rule "9. PosthemorragicAnemiaRBC"
 when
-    $patient : /patients[detectSymptomValue("RBC")<4.5] //and /patients[getGender().equals("MALE")]
+    $patient : /patients[(detectSymptomValue("RBC")<4.1 && getGender().equals(gender.FEMALE)) || (detectSymptomValue("RBC")<4.5 && getGender().equals(gender.MALE)) ]
 
 then
     Anemia a = new Anemia (2, AnemiaType.POSTHEMORRAGIC_ANEMIA);
     $patient.addAnemia(a);
     patientsWithPosthemorrhagicAnemia.add($patient);
+    System.out.println( $patient + " -> 9. PosthemorragicAnemiaRBC");
 
 end
 
@@ -63,6 +83,7 @@ then
     Anemia a = new Anemia (2, AnemiaType.POSTHEMORRAGIC_ANEMIA);
     $patient.addAnemia(a);
     patientsWithPosthemorrhagicAnemia.add($patient);
+    System.out.println( $patient + " -> 10. PosthemorragicAnemiaMCHC");
 
 end
 
@@ -74,7 +95,40 @@ then
     Anemia a = new Anemia (2, AnemiaType.POSTHEMORRAGIC_ANEMIA);
     $patient.addAnemia(a);
     patientsWithPosthemorrhagicAnemia.add($patient);
+    System.out.println( $patient + " -> 11. PosthemorragicAnemiaFe");
+end
 
+rule "12. PosthemorragicAnemiaExternHem"
+when
+    $patient : /patients[detectSymptomValue("Extern hemorrhage") == 1]
+
+then
+    Anemia a = new Anemia (2, AnemiaType.POSTHEMORRAGIC_ANEMIA);
+    $patient.addAnemia(a);
+    patientsWithPosthemorrhagicAnemia.add($patient);
+    System.out.println( $patient + " -> 12. PosthemorragicAnemiaExternHemorrage");
+end
+
+rule "13. PosthemorragicAnemiaInternHem"
+when
+    $patient : /patients[detectSymptomValue("Intern hemorrhage") == 1]
+
+then
+    Anemia a = new Anemia (2, AnemiaType.POSTHEMORRAGIC_ANEMIA);
+    $patient.addAnemia(a);
+    patientsWithPosthemorrhagicAnemia.add($patient);
+    System.out.println( $patient + " -> 13. PosthemorragicAnemiaInternHemorrhage");
+end
+
+rule "14. HemolyticAnemiaHb"
+when
+    $patient : /patients[( (detectSymptomValue("Hb")<12.3 && detectSymptomValue("Hb")>10) && getGender().equals(gender.FEMALE)) || ( (detectSymptomValue("Hb")<13.5 && detectSymptomValue("Hb")>10) && getGender().equals(gender.MALE))]
+
+then
+    Anemia a = new Anemia (3, AnemiaType.HEMOLYTIC_ANEMIA);
+    $patient.addAnemia(a);
+    patientsWithHemolyticAnemia.add($patient);
+    System.out.println( $patient + " -> 14. HemolyticAnemiaHb");
 end
 
 rule "16. HemolyticAnemiaMCH>"
@@ -85,7 +139,27 @@ then
     Anemia a = new Anemia (3, AnemiaType.HEMOLYTIC_ANEMIA);
     $patient.addAnemia(a);
     patientsWithHemolyticAnemia.add($patient);
+    System.out.println( $patient + " -> 16. HemolyticAnemiaMCH>");
+end
 
+rule "17. HemolyticAnemiaHbUrine"
+when
+    $patient : /patients[detectSymptomValue("Hb in urine") == 1]
+then
+    Anemia a = new Anemia (3, AnemiaType.HEMOLYTIC_ANEMIA);
+    $patient.addAnemia(a);
+    patientsWithHemolyticAnemia.add($patient);
+    System.out.println( $patient + " -> 17. HemolyticAnemiaHbUrine");
+end
+
+rule "18. HemolyticAnemiaFeUrine"
+when
+    $patient : /patients[detectSymptomValue("Fe in urine") == 1]
+then
+    Anemia a = new Anemia (3, AnemiaType.HEMOLYTIC_ANEMIA);
+    $patient.addAnemia(a);
+    patientsWithHemolyticAnemia.add($patient);
+    System.out.println( $patient + " -> 18. HemolyticAnemiaFeUrine");
 end
 
 rule "19. HemolyticAnemiaFe"
@@ -96,6 +170,7 @@ then
     Anemia a = new Anemia (3, AnemiaType.HEMOLYTIC_ANEMIA);
     $patient.addAnemia(a);
     patientsWithHemolyticAnemia.add($patient);
+     System.out.println( $patient + " -> 19. HemolyticAnemiaFe");
 
 end
 
@@ -107,6 +182,20 @@ then
     Anemia a = new Anemia (3, AnemiaType.HEMOLYTIC_ANEMIA);
     $patient.addAnemia(a);
     patientsWithHemolyticAnemia.add($patient);
+    System.out.println( $patient + " -> 20. HemolyticAnemiaHaptoglobin");
+
+end
+
+//21.	If bacterial infections, then inherited spherocytosis.
+rule "21. InheritedSpherocytosisBactInfection"
+when
+    $patient : /patients[detectSymptomValue("Bacterial infection")==1]
+
+then
+    Anemia a = new Anemia (3, AnemiaType.INHERITED_SPHEROCYTHOSIS);
+    $patient.addAnemia(a);
+    patientsWithHemolyticAnemia.add($patient);
+    System.out.println( $patient + " -> 21. InheritedSpherocytosisBactInfection");
 
 end
 
@@ -118,6 +207,7 @@ then
     Anemia a = new Anemia (6, AnemiaType.IRON_DEFICIENCY_ANEMIA);
     $patient.addAnemia(a);
     patientsWithIronDeficiencyAnemia.add($patient);
+    System.out.println( $patient + " -> 28. IronDefAnemiaMCH<");
 
 end
 
@@ -129,6 +219,7 @@ then
     Anemia a = new Anemia (6, AnemiaType.IRON_DEFICIENCY_ANEMIA);
     $patient.addAnemia(a);
     patientsWithIronDeficiencyAnemia.add($patient);
+    System.out.println( $patient + " -> 29. IronDefAnemiaFerritin");
 
 end
 
@@ -140,6 +231,7 @@ then
     Anemia a = new Anemia (7, AnemiaType.MEGALOBLASTIC_ANEMIA);
     $patient.addAnemia(a);
     patientsWithMegaloblasticAnemia.add($patient);
+    System.out.println( $patient + " -> 32. MegaloblasticAnemiaB12");
 
 end
 
@@ -151,6 +243,7 @@ then
     Anemia a = new Anemia (7, AnemiaType.MEGALOBLASTIC_ANEMIA);
     $patient.addAnemia(a);
     patientsWithMegaloblasticAnemia.add($patient);
+    System.out.println( $patient + " -> 33. MegaloblasticAnemiaFolicAcid");
 
 end
 
@@ -162,7 +255,7 @@ then
     Anemia a = new Anemia (7, AnemiaType.MEGALOBLASTIC_ANEMIA);
     $patient.addAnemia(a);
     patientsWithMegaloblasticAnemia.add($patient);
-
+    System.out.println( $patient + " -> 32-33. MegaloblasticAnemiaB12FolicAcid");
 end
 
 rule "35. AplasticAnemiaPlaquets"
@@ -173,6 +266,7 @@ then
     Anemia a = new Anemia (8, AnemiaType.APLASTIC_ANEMIA);
     $patient.addAnemia(a);
     patientsWithAplasticAnemia.add($patient);
+    System.out.println( $patient + " -> 35. AplasticAnemiaPlaquets");
 
 end
 
@@ -184,6 +278,7 @@ then
     Anemia a = new Anemia (8, AnemiaType.APLASTIC_ANEMIA);
     $patient.addAnemia(a);
     patientsWithAplasticAnemia.add($patient);
+    System.out.println( $patient + " -> 36. AplasticAnemiaLeukocytes");
 
 end
 
@@ -195,6 +290,7 @@ then
     Anemia a = new Anemia (9, AnemiaType.CHRONIC_ANEMIA);
     $patient.addAnemia(a);
     patientsWithChronicDiseaseAnemia.add($patient);
+    System.out.println( $patient + " -> 37. ChronicDiseaseAnemiaEPO");
 
 end
 
@@ -206,7 +302,7 @@ then
     Anemia a = new Anemia (9, AnemiaType.CHRONIC_ANEMIA);
     $patient.addAnemia(a);
     patientsWithChronicDiseaseAnemia.add($patient);
-
+    System.out.println( $patient + " -> 38. ChronicDiseaseAnemiaFerritineMALE");
 end
 
 rule "39. ChronicDiseaseAnemiaFerritinFEMALE"
@@ -217,6 +313,7 @@ then
     Anemia a = new Anemia (9, AnemiaType.CHRONIC_ANEMIA);
     $patient.addAnemia(a);
     patientsWithChronicDiseaseAnemia.add($patient);
+    System.out.println( $patient + " -> 39. ChronicDiseaseAnemiaFerritinFEMALE");
 
 end
 
@@ -228,6 +325,7 @@ then
     Anemia a = new Anemia (9, AnemiaType.CHRONIC_ANEMIA);
     $patient.addAnemia(a);
     patientsWithChronicDiseaseAnemia.add($patient);
+    System.out.println( $patient + " -> 38-39. ChronicDiseaseAnemiaFerritinFEMALE_MALE");
 
 end
 
@@ -239,6 +337,7 @@ then
     Anemia a = new Anemia (10, AnemiaType.POLYCYTHEMIA);
     $patient.addAnemia(a);
     patientsWithPolycythemia.add($patient);
+    System.out.println( $patient + " -> 40. PolycythemiaHb");
 
 end
 
@@ -250,6 +349,7 @@ then
     Anemia a = new Anemia (10, AnemiaType.POLYCYTHEMIA);
     $patient.addAnemia(a);
     patientsWithPolycythemia.add($patient);
+    System.out.println( $patient + " -> 41. PolycythemiaPVM");
 
 end
 
@@ -261,6 +361,7 @@ then
     Anemia a = new Anemia (10, AnemiaType.POLYCYTHEMIA);
     $patient.addAnemia(a);
     patientsWithPolycythemia.add($patient);
+    System.out.println( $patient + " -> 43. PolycythemiaGlucocorticoids");
 
 end
 
@@ -272,5 +373,6 @@ then
     Anemia a = new Anemia (10, AnemiaType.POLYCYTHEMIA);
     $patient.addAnemia(a);
     patientsWithPolycythemia.add($patient);
+    System.out.println( $patient + " -> 45. PolycythemiaRBC");
 
 end

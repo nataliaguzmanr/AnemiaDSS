@@ -91,13 +91,13 @@ public class Patient {
     public String toString() {
         return "Patient{" +
                 //"id=" + id +
-                ", name='" + name  +
+                " name='" + name  +
                 ", age=" + age +
                 ", gender=" + gender +
                 //", date=" + date+
-                ", medicalStaff=" + medicalStaff +
-                ", symptoms=" + symptomsList +
-                ", anemias=" + anemiasList +
+                //", medicalStaff=" + medicalStaff +
+                //", symptoms=" + symptomsList +
+                //", anemias=" + anemiasList +
                 '}';
     }
 

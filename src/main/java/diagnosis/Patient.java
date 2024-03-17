@@ -112,20 +112,14 @@ public class Patient {
     public Float detectSymptomValue(String name){
 
         for (int i = 0; i< symptomsList.size(); i++){
-
             Symptom symp= symptomsList.get(i);
 
-            if(name.equalsIgnoreCase(symp.getName())){
-
+            if(name.equalsIgnoreCase(symp.getName())) {
                 return symp.getValue();
             }
-            
         }
         return null;
     }
-
-
-
 
 
 }

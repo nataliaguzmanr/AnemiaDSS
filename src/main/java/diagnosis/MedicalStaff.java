@@ -7,18 +7,18 @@ import java.util.Objects;
 public class MedicalStaff {
 
     private final Integer id;
-    private  String user;
-    private  String password;
 
-    //-----------------------------
+    private  String name;
+    //private  String password;
+
     private List<Patient> patients;
     //-----------------------------
 
 
-    public MedicalStaff(Integer id, String user, String password) {
+    public MedicalStaff(Integer id, String user)  {
         this.id = id;
-        this.user = user;
-        this.password = password;
+        this.name = user;
+  //      this.password = password;
         this.patients = new LinkedList<Patient>();
     }
 
@@ -26,8 +26,8 @@ public class MedicalStaff {
         return id;
     }
 
-    public String getUser() {
-        return user;
+    public String getName() {
+        return name;
     }
 
     public List<Patient> getPatients() {
@@ -38,37 +38,29 @@ public class MedicalStaff {
         this.patients = patients;
     }
 
-    public void setUser(String user) {
-        this.user = user;
+    public void setName(String name) {
+        this.name = name;
     }
 
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         MedicalStaff that = (MedicalStaff) o;
-        return Objects.equals(id, that.id) && Objects.equals(user, that.user) && Objects.equals(password, that.password);
+        return Objects.equals(id, that.id) && Objects.equals(name, that.name);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, user, password);
+        return Objects.hash(id, name);
     }
 
     @Override
     public String toString() {
         return "MedicalStaff{" +
                 "id=" + id +
-                ", user='" + user + '\'' +
-                ", password='" + password + '\'' +
+                ", user='" + name + '\'' +
                 ", patients=" + patients +
                 '}';
     }

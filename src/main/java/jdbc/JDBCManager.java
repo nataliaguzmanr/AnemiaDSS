@@ -17,10 +17,10 @@ public class JDBCManager {
         try {
             // Open the DB connection
             Class.forName("org.sqlite.JDBC");
-            String dbPath = "/AnemiaDSS/src/main/java/db/AnemiaDSSdb.db";
+            //DriverManager.registerDriver(new org.sqlite.JDBC());
+            String dbPath = "/db/AnemiaDSSdb.db";
 
             c = DriverManager.getConnection("jdbc:sqlite:." + dbPath);
-            System.out.println(c);
             c.createStatement().execute("PRAGMA foreign_keys=ON");
 
             if (c != null) {
@@ -74,7 +74,7 @@ public class JDBCManager {
 
             // TABLE PATIENT
             String sql = "CREATE TABLE Patient ("
-                    + "	patient_id	    INTEGER PRIMARY KEY AUTOINCREMENT,"
+                    + "	patient_id INTEGER PRIMARY KEY AUTOINCREMENT,"
                     + "	name TEXT NOT NULL,"
                     + "	gender TEXT NOT NULL,"
                     + "	age	INTEGER,"

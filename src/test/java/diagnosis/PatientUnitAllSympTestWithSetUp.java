@@ -32,7 +32,7 @@ public class PatientUnitAllSympTestWithSetUp {
         LOG.info("Insert data");
 
         //ANEMIC SYNDROME
-        pat_AllAnemicSynd = new Patient("All anemic syndrome symptoms PATIENT", 50 , Gender.MALE, LocalDate.of(2024, 3,16));
+        pat_AllAnemicSynd = new Patient("All anemic syndrome symptoms PATIENT", 50 , Gender.MALE);
         Symptom hb1 = new Symptom(7.5F, "Hb", pat_AllAnemicSynd);
         pat_AllAnemicSynd.addSymptom(hb1);
         Symptom epo = new Symptom(18.7F, "EPO", pat_AllAnemicSynd);
@@ -66,7 +66,7 @@ public class PatientUnitAllSympTestWithSetUp {
 
 
         //POSHEMORRHAGIC ANEMIA
-        pat_AllPosthemorrhagic = new Patient("All poshemorrhagic anemia symptoms PATIENT", 50 , Gender.MALE, LocalDate.of(2024, 3,16));
+        pat_AllPosthemorrhagic = new Patient("All poshemorrhagic anemia symptoms PATIENT", 50 , Gender.MALE);
         Symptom ret = new Symptom(2.8F, "Reticulocytes", pat_AllPosthemorrhagic);
         pat_AllPosthemorrhagic.addSymptom(ret);
         Symptom rbc1 = new Symptom(4.4F, "RBC", pat_AllPosthemorrhagic);

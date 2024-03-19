@@ -1,16 +1,20 @@
 package diagnosis;
 
+import java.io.Serial;
+import java.io.Serializable;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Objects;
 
-public class Anemia {
+public class Anemia implements Serializable {
+
+
+    @Serial
+    private static final long serialVersionUID = -9096161678878767301L;
+
     private final Integer Id;
     private AnemiaType anemia;
-
-    //-----------------------------
     private List<Patient> patients;
-    //-----------------------------
 
 
     public Anemia(Integer id, AnemiaType anemia) {

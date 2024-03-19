@@ -1,5 +1,8 @@
 package diagnosis;
 
+import java.io.Serial;
+import java.io.Serializable;
+import java.time.LocalDate;
 import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
@@ -7,23 +10,33 @@ import java.util.Objects;
 
 import static java.util.Objects.hash;
 
-public class Symptom {
+public class Symptom implements Serializable {
 
+    @Serial
+    private static final long serialVersionUID = 4970354669582451896L;
     // ANADIR private final Integer id;
-    private  Integer id;
-    private final Float value;
-    private final String name;
+    private Integer id;
+    private Float value;
+    private String name;
+    private LocalDate symptom_date;
     private Patient patient;
 
 
-    public Symptom(Integer id, float value, String name, Patient patient) {
+    public Symptom(Integer id, float value, String name, Patient patient, LocalDate symptom_date) {
         this.id = id;
         this.value = value;
         this.name = name;
+        this.symptom_date = symptom_date;
         this.patient = patient;
     }
 
     public Symptom(float value, String name, Patient patient) {
+        this.value = value;
+        this.name = name;
+        this.patient = patient;
+    }
+    public Symptom(Integer id, float value, String name, Patient patient) {
+        this.id = id;
         this.value = value;
         this.name = name;
         this.patient = patient;
@@ -41,6 +54,13 @@ public class Symptom {
         return name;
     }
 
+    public LocalDate getDate() {
+        return symptom_date;
+    }
+
+    public void setDate(LocalDate symptom_date) {
+        this.symptom_date = symptom_date;
+    }
     public Patient getPatient() {
         return patient;
     }
@@ -53,9 +73,9 @@ public class Symptom {
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (!(o instanceof Symptom)) return false;
+        if (o == null || getClass() != o.getClass()) return false;
         Symptom symptom = (Symptom) o;
-        return Objects.equals(getId(), symptom.getId()) && Objects.equals(getValue(), symptom.getValue()) && Objects.equals(getName(), symptom.getName()) && Objects.equals(getPatient(), symptom.getPatient());
+        return Objects.equals(id, symptom.id) && Objects.equals(value, symptom.value) && Objects.equals(name, symptom.name) && Objects.equals(symptom_date, symptom.symptom_date) && Objects.equals(patient, symptom.patient);
     }
 
     @Override

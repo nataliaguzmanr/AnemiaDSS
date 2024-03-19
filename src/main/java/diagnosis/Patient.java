@@ -1,5 +1,7 @@
 package diagnosis;
 
+import java.io.Serial;
+import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.LinkedList;
@@ -9,32 +11,32 @@ import java.util.Objects;
 import static java.util.Objects.hash;
 
 
-public class Patient {
+public class Patient implements Serializable {
+
+    @Serial
+    private static final long serialVersionUID = 2141646251721739510L;
     //anadir private final Integer id
-    private  Integer id;
+    private   Integer id;
     private String name;
     private Integer age;
     private Gender gender;
-    private LocalDate date;
     private List<MedicalStaff> medicalStaff;
     private List<Symptom> symptomsList;
     private List<Anemia> anemiasList;
 
-    public Patient(Integer id, String name, Integer age, Gender gender, LocalDate date) {
+    public Patient(Integer id, String name, Integer age, Gender gender) {
         this.id = id;
         this.name = name;
         this.age = age;
         this.gender = gender;
-        this.date = date;
         this.symptomsList = new ArrayList<>();
         this.anemiasList = new ArrayList<>();
     }
 
-    public Patient(String name, Integer age, Gender gender, LocalDate date) {
+    public Patient(String name, Integer age, Gender gender) {
         this.name = name;
         this.age = age;
         this.gender = gender;
-        this.date = date;
         this.symptomsList = new ArrayList<>();
         this.anemiasList = new ArrayList<>();
     }
@@ -66,25 +68,18 @@ public class Patient {
         this.gender = gender;
     }
 
-    public LocalDate getDate() {
-        return date;
-    }
-
-    public void setDate(LocalDate date) {
-        this.date = date;
-    }
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (!(o instanceof Patient)) return false;
         Patient patient = (Patient) o;
-        return Objects.equals(getId(), patient.getId()) && Objects.equals(getName(), patient.getName()) && Objects.equals(getAge(), patient.getAge()) && getGender() == patient.getGender() && Objects.equals(getDate(), patient.getDate()) && Objects.equals(medicalStaff, patient.medicalStaff) && Objects.equals(symptomsList, patient.symptomsList) && Objects.equals(anemiasList, patient.anemiasList);
+        return Objects.equals(getId(), patient.getId()) && Objects.equals(getName(), patient.getName()) && Objects.equals(getAge(), patient.getAge()) && getGender() == patient.getGender() &&  Objects.equals(medicalStaff, patient.medicalStaff) && Objects.equals(symptomsList, patient.symptomsList) && Objects.equals(anemiasList, patient.anemiasList);
     }
 
     @Override
     public int hashCode() {
-        return hash(getId(), getName(), getAge(), getGender(), getDate());
+        return hash(getId(), getName(), getAge(), getGender());
     }
 
     @Override

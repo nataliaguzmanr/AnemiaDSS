@@ -59,7 +59,7 @@ public class PatientUnitTestWithSetUp {
         LOG.info("Insert data");
 
         //Anemic Syndrome
-        pat_syndrome = new Patient("Marta", 18, Gender.FEMALE, LocalDate.of(1987,10,12));
+        pat_syndrome = new Patient("Marta", 18, Gender.FEMALE);
         Symptom hb1 = new Symptom(7.5F, "Hb", pat_syndrome);
         Symptom tin = new Symptom(1.0F, "Tinnitus", pat_syndrome);
         Symptom chp = new Symptom(1.0F, "Chest pain", pat_syndrome);
@@ -72,7 +72,7 @@ public class PatientUnitTestWithSetUp {
         pat_syndrome.addSymptom(mp);
 
         //Posthemorragic anemia
-        pat_posthemorrhagic = new Patient("Paco", 58, Gender.MALE, LocalDate.of(1987,10,12));
+        pat_posthemorrhagic = new Patient("Paco", 58, Gender.MALE);
         Symptom hb = new Symptom(9, "Hb", pat_posthemorrhagic);
         Symptom rbcM = new Symptom(4.1F, "RBC", pat_posthemorrhagic);
         Symptom mhch = new Symptom(307F, "MHCH", pat_posthemorrhagic);
@@ -88,7 +88,7 @@ public class PatientUnitTestWithSetUp {
 
 
         //Hemolytic anemia
-        pat_hemolytic1 = new Patient("Lucia", 58, Gender.FEMALE, LocalDate.of(1987,10,12));
+        pat_hemolytic1 = new Patient("Lucia", 58, Gender.FEMALE);
         Symptom mch = new Symptom(40, "MCH", pat_hemolytic1);
         Symptom fe2 = new Symptom(200, "MCH", pat_hemolytic1);
         Symptom hapto = new Symptom(35, "MCH", pat_hemolytic1);
@@ -98,7 +98,7 @@ public class PatientUnitTestWithSetUp {
         pat_hemolytic1.addSymptom(hapto);
         pat_hemolytic1.addSymptom(hb_greaterFEMALE);
 
-        pat_hemolytic2 = new Patient("Lucas", 35, Gender.MALE, LocalDate.of(1987,10,12));
+        pat_hemolytic2 = new Patient("Lucas", 35, Gender.MALE);
         Symptom hb_greaterMALE = new Symptom(11.7F, "Hb", pat_hemolytic2);
         Symptom feUr = new Symptom(1.0F, "Fe in urine", pat_hemolytic2);
         Symptom hbUr = new Symptom(1.0F, "Hb in urine", pat_hemolytic2);
@@ -108,7 +108,7 @@ public class PatientUnitTestWithSetUp {
 
 
         //Inherited Spherocythosis
-        pat_spherocythosis = new Patient("Mar", 42, Gender.FEMALE, LocalDate.of(2005,1,2));
+        pat_spherocythosis = new Patient("Mar", 42, Gender.FEMALE);
         Symptom bi = new Symptom(1.0F, "Bacterial infection", pat_spherocythosis);
         Symptom ost = new Symptom(1.0F, "Osteoporosis", pat_spherocythosis);
         Symptom maxHyp = new Symptom(1.0F, "Maxilar bone hyperplasia", pat_spherocythosis);
@@ -120,7 +120,7 @@ public class PatientUnitTestWithSetUp {
 
 
         //Thalassemia
-        pat_thalassemia = new Patient("Francisco", 56, Gender.MALE, LocalDate.of(2012,10,27));
+        pat_thalassemia = new Patient("Francisco", 56, Gender.MALE);
         Symptom nau = new Symptom(1.0F, "Nausea or poor appetite", pat_thalassemia);
         Symptom bn = new Symptom(1.0F, "Brittle nails", pat_thalassemia);
         Symptom ti = new Symptom(1.0F, "Tongue inflamation", pat_thalassemia);
@@ -130,7 +130,7 @@ public class PatientUnitTestWithSetUp {
 
 
         //Iron deficiency anemia
-        pat_ironDef = new Patient("Isidoro", 81, Gender.MALE, LocalDate.of(2024, 3,15));
+        pat_ironDef = new Patient("Isidoro", 81, Gender.MALE);
         Symptom mch2 = new Symptom(26, "MCH", pat_ironDef);
         Symptom ferr = new Symptom(10, "Ferritin", pat_ironDef);
         Symptom dia = new Symptom(1.0F, "Diahrrea", pat_ironDef);
@@ -140,7 +140,7 @@ public class PatientUnitTestWithSetUp {
         pat_ironDef.addSymptom(par);
 
         //Megaloblastic anemia
-        pat_megaloblastic = new Patient("Almudena", 29, Gender.FEMALE, LocalDate.of(2024, 3,15));
+        pat_megaloblastic = new Patient("Almudena", 29, Gender.FEMALE);
         Symptom b12 = new Symptom(177, "B12", pat_megaloblastic);
         Symptom folicAc = new Symptom(2.55F, "Folic Acid", pat_megaloblastic);
         Symptom pet = new Symptom(1.0F, "Petechiae", pat_megaloblastic);
@@ -148,59 +148,59 @@ public class PatientUnitTestWithSetUp {
         pat_megaloblastic.addSymptom(folicAc);
         pat_megaloblastic.addSymptom(pet);
         //Megaloblastic anemia b12
-        pat_megaloblasticB12 = new Patient("Lola", 55, Gender.FEMALE, LocalDate.of(2024, 3,15));
+        pat_megaloblasticB12 = new Patient("Lola", 55, Gender.FEMALE);
         Symptom b12vit = new Symptom(185, "B12", pat_megaloblasticB12);
         pat_megaloblasticB12.addSymptom(b12vit);
         //Megaloblastic anemia Folic Acid
-        pat_megaloblasticFolicAc = new Patient("Pepe", 43, Gender.MALE, LocalDate.of(2024, 3,15));
+        pat_megaloblasticFolicAc = new Patient("Pepe", 43, Gender.MALE);
         Symptom fa = new Symptom(2, "B12", pat_megaloblasticFolicAc);
         pat_megaloblasticFolicAc.addSymptom(fa);
 
 
         //Aplastic Anemia
-        pat_aplastic = new Patient("Natalia", 27,  Gender.FEMALE, LocalDate.of(2024, 3,15));
+        pat_aplastic = new Patient("Natalia", 27,  Gender.FEMALE);
         Symptom plaq = new Symptom(7, "Plaquets", pat_aplastic);
         Symptom leuk = new Symptom(7, "Leukocytes", pat_aplastic);
         pat_aplastic.addSymptom(plaq);
         pat_aplastic.addSymptom(leuk);
 
-        pat_chronicDiseaseMALE = new Patient("Gustavo", 44,  Gender.MALE, LocalDate.of(2023, 12,22));
+        pat_chronicDiseaseMALE = new Patient("Gustavo", 44,  Gender.MALE);
         Symptom epo = new Symptom(2.3F, "EPO", pat_chronicDiseaseMALE);
         Symptom ferr1 = new Symptom(310, "Ferritine", pat_chronicDiseaseMALE);
         pat_chronicDiseaseMALE.addSymptom(epo);
         pat_chronicDiseaseMALE.addSymptom(ferr1);
 
-        pat_chronicDiseaseFEMALE = new Patient("Gadea", 44,  Gender.FEMALE, LocalDate.of(2023, 12,22));
+        pat_chronicDiseaseFEMALE = new Patient("Gadea", 44,  Gender.FEMALE);
         Symptom ferr2 = new Symptom(210, "Ferritine", pat_chronicDiseaseFEMALE);
         pat_chronicDiseaseFEMALE.addSymptom(ferr2);
 
 
         //Polycythemia
-        pat_polycythemia1 = new Patient("Manolo", 76, Gender.MALE, LocalDate.of(1987,10,12));
+        pat_polycythemia1 = new Patient("Manolo", 76, Gender.MALE);
         Symptom hb2 = new Symptom(17.8F, "Hb", pat_polycythemia1);
         Symptom pvm1 = new Symptom(52, "PVM", pat_polycythemia1);
         pat_polycythemia1.addSymptom(hb2);
         pat_polycythemia1.addSymptom(pvm1);
 
-        pat_polycythemia2 = new Patient("Manuel", 60, Gender.MALE, LocalDate.of(1987,10,12));
+        pat_polycythemia2 = new Patient("Manuel", 60, Gender.MALE);
         Symptom hb3 = new Symptom(16.3F, "Hb", pat_polycythemia2);
         Symptom pvm2 = new Symptom(55, "PVM", pat_polycythemia2);
         pat_polycythemia2.addSymptom(hb3);
         pat_polycythemia2.addSymptom(pvm2);
 
-        pat_polycythemia3 = new Patient("Loli", 56, Gender.FEMALE, LocalDate.of(1987,10,12));
+        pat_polycythemia3 = new Patient("Loli", 56, Gender.FEMALE);
         Symptom pvm3 = new Symptom(50, "PVM", pat_polycythemia3);
         Symptom cya = new Symptom(1.0F, "Cyanosis", pat_polycythemia3);
         pat_polycythemia3.addSymptom(pvm3);
         pat_polycythemia3.addSymptom(cya);
 
-        pat_polycythemia4 = new Patient("Loli", 56, Gender.FEMALE, LocalDate.of(1987,10,12));
+        pat_polycythemia4 = new Patient("Loli", 56, Gender.FEMALE);
         Symptom glucocor = new Symptom(27, "Glucocorticoids", pat_polycythemia4);
         Symptom thr= new Symptom(1.0F, "Thrombosis", pat_polycythemia4);
         pat_polycythemia4.addSymptom(glucocor);
         pat_polycythemia4.addSymptom(thr);
 
-        pat_polycythemia5 = new Patient("Dolores", 56, Gender.FEMALE, LocalDate.of(1987,10,12));
+        pat_polycythemia5 = new Patient("Dolores", 56, Gender.FEMALE);
         Symptom RBC = new Symptom(5.9F, "RBC", pat_polycythemia5);
         Symptom vom = new Symptom(1.0F, "Vomit", pat_polycythemia5);
         pat_polycythemia5.addSymptom(RBC);

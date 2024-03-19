@@ -1,18 +1,19 @@
 package diagnosis;
 
+import java.io.Serial;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Objects;
+import java.io.Serializable;
 
-public class MedicalStaff {
+public class MedicalStaff implements Serializable{
 
+
+    @Serial
+    private static final long serialVersionUID = 881034396276971561L;
     private final Integer id;
-
     private  String name;
-
-
     private List<Patient> patients;
-    //-----------------------------
 
 
     public MedicalStaff(Integer id, String user)  {

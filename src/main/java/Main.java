@@ -8,7 +8,7 @@ import java.util.List;
 public class Main {
 //.
     public static void main(String[] args) {
-        Patient   p1 = new Patient(1, "Paco", 58, Gender.MALE, LocalDate.of(1987,10,12));
+        Patient   p1 = new Patient(1, "Paco", 58, Gender.MALE);
         Symptom s1 = new Symptom(1, 9, "Hb", p1);
         p1.addSymptom(s1);
 

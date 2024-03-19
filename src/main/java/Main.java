@@ -24,6 +24,7 @@ public class Main {
         System.out.println(b);
 
         //JDBCManager jdbcMan = new JDBCManager();
+        //esto es solo un comentario
     }
 
     public static boolean checkGender(Gender g){

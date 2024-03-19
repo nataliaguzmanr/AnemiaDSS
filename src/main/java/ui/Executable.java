@@ -1,4 +1,4 @@
-package iface;
+package ui;
 
 public class Executable {
 }

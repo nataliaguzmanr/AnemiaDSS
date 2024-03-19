@@ -1,9 +1,6 @@
-package Interfaces;
+package ifaces;
 
 import java.sql.SQLException;
-import java.util.ArrayList;
-
-import diagnosis.MedicalStaff;
 
 public interface MedicalStaffManager {
     /**

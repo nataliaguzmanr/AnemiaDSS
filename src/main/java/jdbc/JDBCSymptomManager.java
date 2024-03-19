@@ -2,6 +2,7 @@ package jdbc;
 
 import diagnosis.Symptom;
 import ifaces.SymptomManager;
+import java.sql.Date;
 
 public class JDBCSymptomManager implements SymptomManager {
 
@@ -15,11 +16,11 @@ public class JDBCSymptomManager implements SymptomManager {
     @Override
     public void addSymptom(Symptom s) {
         try {
-            String sql = "INSERT INTO Symptom (latitude, longitude) VALUES (?, ?)";
+            /*String sql = "INSERT INTO Symptom (Float value, String name, Date ) VALUES (?, ?)";
             PreparedStatement prep = manager.getConnection().prepareStatement(sql);
             prep.setFloat(1, l.getLatitude());
             prep.setFloat(2, l.getLongitude());
-            prep.executeUpdate();
+            prep.executeUpdate();*/
 
         } catch (Exception e) {
             e.printStackTrace();

@@ -38,6 +38,10 @@ public class Patient implements Serializable {
         this.symptomsList = new ArrayList<>();
         this.anemiasList = new ArrayList<>();
     }
+    public Patient(Integer id) {
+        this.id = id;
+    }
+
     public Integer getId() {
         return id;
     }

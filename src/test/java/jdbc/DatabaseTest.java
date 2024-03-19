@@ -9,8 +9,7 @@ public class DatabaseTest {
     @Test
     public  void testConnection(){
         JDBCManager jdbcManager = new JDBCManager();
-
-        //jdbcManager.disconnect();
-        //System.exit(0);
+        jdbcManager.disconnect();
+        System.exit(0);
     }
 }

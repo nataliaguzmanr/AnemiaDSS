@@ -17,7 +17,7 @@ public class JDBCManager {
         try {
             // Open the DB connection
             Class.forName("org.sqlite.JDBC");
-            String dbPath = "/db/AnemiaDSSdb.db";
+            String dbPath = "AnemiaDSSdb.db";
 
             c = DriverManager.getConnection("jdbc:sqlite:." + dbPath);
             c.createStatement().execute("PRAGMA foreign_keys=ON");
@@ -66,36 +66,41 @@ public class JDBCManager {
             Statement stmt = c.createStatement();
 
             // TABLE PATIENT
-            String sql = "CREATE TABLE Patient (" + "	patient_id	    INTEGER PRIMARY KEY AUTOINCREMENT,"
+            String sql = "CREATE TABLE Patient ("
+                    + "	patient_id	    INTEGER PRIMARY KEY AUTOINCREMENT,"
                     + "	name TEXT NOT NULL,"
                     + "	gender TEXT NOT NULL,"
                     + "	age	INTEGER,"
-                    + "	appointment_date DATE,"
                     + " medicalStaff_id	INTEGER REFERENCES MedicalStaff(medicalStaff_id),"
                     + "symptoms_id INTEGER REFERENCES Symptom(symptom_id),"
-                    + "anemia_id INTEGER REFERENCES Anemia(anemia_id)"
+                    + "anemia_id INTEGER REFERENCES Anemia(anemiaTable_id)"
                     +");";
             stmt.executeUpdate(sql);
 
-/*            // TABLE DOCTOR (OK)
-            sql = "CREATE TABLE MedicalStaff (" + " medicalStaff_id	INTEGER PRIMARY KEY AUTOINCREMENT,"
-                    + " name		TEXT NOT NULL," + " dob 		DATE," + " address 	TEXT NOT NULL,"
-                    + " phone 		INTEGER NOT NULL," + " email 		TEXT" + ");";
+            // TABLE MEDICAL STAFF
+            sql = "CREATE TABLE MedicalStaff ("
+                    + " medicalStaff_id	INTEGER PRIMARY KEY AUTOINCREMENT,"
+                    + " name TEXT NOT NULL,"
+                    + " patient_id INTENFER REFERENCES Patient(patient_id) "
+                    +");";
             stmt.executeUpdate(sql);
-            // TABLE TASK AÑADIR ELDERLY ID, AÑADIR DE DECORACION UN COLUMNA DE HORARIO SI
-            // QUEREIS
-            sql = "CREATE TABLE Task (" + "	task_id			INTEGER PRIMARY KEY AUTOINCREMENT,"
-                    + "	description		TEXT NOT NULL," + " doctor_id		INTEGER REFERENCES Doctor(doctor_id),"
-                    + " duration		INTEGER NOT NULL," + " elderly_id 		INTEGER REFERENCES Elderly(elderly_id)"
+
+            // TABLE ANEMIA
+            sql = "CREATE TABLE Anemia ("
+                    + "	anemiaTable_id	INTEGER PRIMARY KEY AUTOINCREMENT,"
+                    + "	anemia_type	TEXT NOT NULL,"
+                    + " patient_id INTEGER REFERENCES Patient(patient_id)"
                     + ");";
             stmt.executeUpdate(sql);
 
-            sql = "CREATE TABLE Report (" + " report_id	    INTEGER PRIMARY KEY AUTOINCREMENT,"
-                    + " file_name		TEXT NOT NULL,"
-                    + " patient_id 		INTEGER REFERENCES Patient(patient_id)" + ");";
+            sql = "CREATE TABLE Report ("
+                    + " report_id INTEGER PRIMARY KEY AUTOINCREMENT,"
+                    + " file_name TEXT NOT NULL,"
+                    + " patient_id 	INTEGER REFERENCES Patient(patient_id)"
+                    + ");";
             stmt.executeUpdate(sql);
 
-*/
+
         } catch (SQLException e) {
             // Do not compile if tables already exist
             if (!e.getMessage().contains("already exists")) {

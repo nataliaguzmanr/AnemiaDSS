@@ -1,48 +1,31 @@
 package ifaces;
 
+import diagnosis.MedicalStaff;
+
 import java.sql.SQLException;
 
 public interface MedicalStaffManager {
     /**
-     * Adds a new doctor member to the database.
+     * Adds a new medical staff member to the database.
      *
-     * @param medicalStaffmember the Doctor object representing the doctor to be added
+     * @param medicalStaff the MedicalStaff object representing the heath proffesional to be added
      * @throws SQLException if a database access error occurs
      */
-    //public void addMedicalStaffMember(MedicalStaff medicalStaffmember) throws SQLException;
+    public void addMedicalStaff(MedicalStaff medicalStaff) throws SQLException;
 
 
     /**
-     * Searches for a doctor ID based on the user ID.
+     * Retrieves a medical staff by its ID.
      *
-     * @param id the user ID
-     * @return the doctor ID
+     * @param medicalStaff_id the medical staff ID
+     * @return the MedicalStaff object
      */
-    public int searchMedicalStaffIdfromUId(int id);
+    public MedicalStaff getMedicalStaff(int medicalStaff_id) throws SQLException;
 
 
-    /**
-     * Searches for a doctor by their ID.
-     *
-     * @param id the doctor ID
-     * @return the Doctor object
-     */
-    //public MedicalStaff searchMedicalSatffbyId(int id);
 
 
-    /**
-     * Updates the information of a doctor member in the database.
-     *
-     * @param medicalStaffmember the Doctor object representing the updated doctor information
-     */
-    //public void updateMedicalStaffMemberInfo(MedicalStaff medicalStaffmember);
 
 
-    /**
-     * Retrieves a list of all doctors from the database.
-     *
-     * @return an ArrayList of Doctor objects representing all the doctors
-     */
-    //public ArrayList<MedicalStaff> searchAllMedicalStaff();
 
-}
+    }

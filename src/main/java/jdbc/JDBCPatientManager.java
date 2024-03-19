@@ -8,7 +8,10 @@ import java.sql.Statement;
 import java.util.ArrayList;
 
 import diagnosis.*;
-public class JDBCPatientManager {
+import ifaces.PatientManager;
+
+public class JDBCPatientManager implements PatientManager {
+
 
     private JDBCManager patientManager;
     /**
@@ -26,22 +29,55 @@ public class JDBCPatientManager {
      * @param patient the Doctor object representing the doctor to be added
      * @throws SQLException if a database access error occurs
      */
-   /* @Override
+    @Override
     public void addPatient(Patient patient) throws SQLException {
         try {
-            String sql = "INSERT INTO Patient (name, gender, age) VALUES (?,?,?)";
+            String sql = "INSERT INTO Patient(name, age, gender) VALUES (?,?,?)";
             PreparedStatement prep = patientManager.getConnection().prepareStatement(sql);
             prep.setString(1, patient.getName());
-            prep.setString(2, patient.getGender());
-            prep.setInt(4, Doctormember.getPhone());
-            prep.setString(5, Doctormember.getEmail());
+            prep.setInt(2, patient.getAge());
+            prep.setString(3, patient.getGender().toString());
+
             prep.executeUpdate();
             prep.close();
         } catch (Exception e) {
             e.printStackTrace();
         }
 
-    }*/
+    }
 
-}//       java.sql.Date sqlDate = new java.sql.Date(Doctormember.getDob().getTime());
+
+    /**
+     * Retrieves a patient by its ID.
+     *
+     * @param patient_id the patient ID
+     * @return the Patient object
+     */
+    @Override
+    public Patient getPatient(int patient_id) throws SQLException {
+        Patient patient = null;
+        try {
+            String sql = "SELECT * FROM Patient WHERE patient_id = " + patient_id;
+            PreparedStatement pr = patientManager.getConnection().prepareStatement(sql);
+            ResultSet rs = pr.executeQuery();
+            if (rs.next()) {
+                String name = rs.getString("name");
+                String gender_str = rs.getString("gender");
+                Gender gender = Gender.valueOf(gender_str);
+                int age = rs.getInt("age");
+
+                patient = new Patient(patient_id, name, age, gender);
+            }
+            rs.close();
+            pr.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return patient;
+    }
+
+}
+
+//       java.sql.Date sqlDate = new java.sql.Date(Doctormember.getDob().getTime());
         //    prep.setDate(2, sqlDate);

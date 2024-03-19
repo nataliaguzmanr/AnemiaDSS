@@ -72,13 +72,22 @@ public class JDBCManager {
         try {
             Statement stmt = c.createStatement();
 
+            //TABLE MEDICAL STAFF - PATIENT
+            String sql = "CREATE TABLE MedicalStaff_Patient ("
+                    + " patient_id INTEGER REFERENCES Patient(patient_id), "
+                    + " medicalStaff_id INTEGER REFERENCES MedicalStaff(medicalStaff_id), "
+                    + " PRIMARY KEY (patient_id, medicalStaff_id)"
+                    +");";
+            stmt.executeUpdate(sql);
+
+
             // TABLE SYMPTOMS
-            String sql = "CREATE TABLE Symptom ("
+            sql = "CREATE TABLE Symptom ("
                     + " symptom_id	INTEGER PRIMARY KEY AUTOINCREMENT,"
                     + " value FLOAT NOT NULL,"
                     + " name TEXT NOT NULL,"
                     + " symptom_date DATE NOT NULL,"
-                    + " patient_id INTENFER REFERENCES Patient(patient_id) "
+                    + " patient_id INTEGER REFERENCES Patient(patient_id) "
                     +");";
             stmt.executeUpdate(sql);
 
@@ -98,7 +107,7 @@ public class JDBCManager {
             sql = "CREATE TABLE MedicalStaff ("
                     + " medicalStaff_id	INTEGER PRIMARY KEY AUTOINCREMENT,"
                     + " name TEXT NOT NULL,"
-                    + " patient_id INTENFER REFERENCES Patient(patient_id) "
+                    + " patient_id INTEGER REFERENCES Patient(patient_id) "
                     +");";
             stmt.executeUpdate(sql);
 

@@ -1,13 +1,11 @@
 package diagnosis;
 
-import java.io.Serial;
 import java.io.Serializable;
 import java.util.Objects;
 
 public class Report implements Serializable {
 
 
-    @Serial
     private static final long serialVersionUID = -7935685254551156926L;
     private Integer id;
     private String file_name;

@@ -1,6 +1,5 @@
 package diagnosis;
 
-import java.io.Serial;
 import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -13,7 +12,6 @@ import static java.util.Objects.hash;
 
 public class Patient implements Serializable {
 
-    @Serial
     private static final long serialVersionUID = 2141646251721739510L;
     //anadir private final Integer id
     private   Integer id;

@@ -17,12 +17,19 @@ public class JDBCManager {
         try {
             // Open the DB connection
             Class.forName("org.sqlite.JDBC");
-            String dbPath = "AnemiaDSSdb.db";
+            String dbPath = "/db/AnemiaDSSdb.db";
 
             c = DriverManager.getConnection("jdbc:sqlite:." + dbPath);
+            System.out.println(c);
             c.createStatement().execute("PRAGMA foreign_keys=ON");
 
-            //System.out.println("Database connection opened.");
+            if (c != null) {
+                System.out.print("Conected succesfully\n");
+            } else {
+                System.out.print("Conection unsuccesful\n");
+            }
+
+            System.out.println("Database connection opened.");
             // create tables
             this.createTables();
 

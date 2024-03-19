@@ -1,6 +1,6 @@
 package diagnosis;
 
-import java.io.Serial;
+
 import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.Date;
@@ -12,7 +12,6 @@ import static java.util.Objects.hash;
 
 public class Symptom implements Serializable {
 
-    @Serial
     private static final long serialVersionUID = 4970354669582451896L;
     // ANADIR private final Integer id;
     private Integer id;

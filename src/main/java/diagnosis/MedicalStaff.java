@@ -9,7 +9,7 @@ public class MedicalStaff {
     private final Integer id;
 
     private  String name;
-    //private  String password;
+
 
     private List<Patient> patients;
     //-----------------------------

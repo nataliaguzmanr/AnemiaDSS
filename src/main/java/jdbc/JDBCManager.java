@@ -72,7 +72,7 @@ public class JDBCManager {
                     + "	age	INTEGER,"
                     + "	appointment_date DATE,"
                     + " medicalStaff_id	INTEGER REFERENCES MedicalStaff(medicalStaff_id),"
-                    + "symptoms_id INTEGER REFERENCES Symptom(symptom_id)"
+                    + "symptoms_id INTEGER REFERENCES Symptom(symptom_id),"
                     + "anemia_id INTEGER REFERENCES Anemia(anemia_id)"
                     +");";
             stmt.executeUpdate(sql);

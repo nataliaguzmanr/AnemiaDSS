@@ -7,9 +7,11 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 
-import Interfaces.MedicalStaffManager;
+//import Interfaces.MedicalStaffManager;
 
-public class JDBCMedicalStaffManager implements MedicalStaffManager {
+
+///*implements MedicalStaffManager */
+public class JDBCMedicalStaffManager {
 
     private JDBCManager medicalStaffManager;
 

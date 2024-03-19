@@ -72,8 +72,18 @@ public class JDBCManager {
         try {
             Statement stmt = c.createStatement();
 
+            // TABLE SYMPTOMS
+            String sql = "CREATE TABLE Symptom ("
+                    + " symptom_id	INTEGER PRIMARY KEY AUTOINCREMENT,"
+                    + " value FLOAT NOT NULL,"
+                    + " name TEXT NOT NULL,"
+                    + " symptom_date DATE NOT NULL,"
+                    + " patient_id INTENFER REFERENCES Patient(patient_id) "
+                    +");";
+            stmt.executeUpdate(sql);
+
             // TABLE PATIENT
-            String sql = "CREATE TABLE Patient ("
+             sql = "CREATE TABLE Patient ("
                     + "	patient_id INTEGER PRIMARY KEY AUTOINCREMENT,"
                     + "	name TEXT NOT NULL,"
                     + "	gender TEXT NOT NULL,"
@@ -92,15 +102,7 @@ public class JDBCManager {
                     +");";
             stmt.executeUpdate(sql);
 
-            // TABLE SYMPTOMS
-            sql = "CREATE TABLE Symptom ("
-                    + " symptom_id	INTEGER PRIMARY KEY AUTOINCREMENT,"
-                    + " value FLOAT NOT NULL,"
-                    + " name TEXT NOT NULL,"
-                    + " symptom_date DATE NOT NULL,"
-                    + " patient_id INTENFER REFERENCES Patient(patient_id) "
-                    +");";
-            stmt.executeUpdate(sql);
+
 
             // TABLE ANEMIA
             sql = "CREATE TABLE Anemia ("

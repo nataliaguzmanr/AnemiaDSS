@@ -15,7 +15,7 @@ public class JDBCSymptomManager implements SymptomManager {
     @Override
     public void addSymptom(Symptom s) {
         try {
-            String sql = "INSERT INTO location (latitude, longitude) VALUES (?, ?)";
+            String sql = "INSERT INTO Symptom (latitude, longitude) VALUES (?, ?)";
             PreparedStatement prep = manager.getConnection().prepareStatement(sql);
             prep.setFloat(1, l.getLatitude());
             prep.setFloat(2, l.getLongitude());

@@ -13,6 +13,7 @@ public class Main {
         Symptom s1 = new Symptom(1, 9, "Hb", p1);
         p1.addSymptom(s1);
 
+
         Float val = p1.detectSymptomValue("Hb");
         System.out.println(val);
 

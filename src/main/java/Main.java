@@ -1,4 +1,5 @@
 import diagnosis.*;
+import jdbc.JDBCManager;
 import org.drools.ruleunits.api.RuleUnitInstance;
 import org.drools.ruleunits.api.RuleUnitProvider;
 
@@ -20,6 +21,8 @@ public class Main {
 
         boolean b = checkGender(g);
         System.out.println(b);
+
+        //JDBCManager jdbcMan = new JDBCManager();
     }
 
     public static boolean checkGender(Gender g){

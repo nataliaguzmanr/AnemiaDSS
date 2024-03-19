@@ -17,7 +17,7 @@ public class JDBCManager {
         try {
             // Open the DB connection
             Class.forName("org.sqlite.JDBC");
-            String dbPath = "/db/AnemiaDSSdb.db";
+            String dbPath = "/AnemiaDSS/src/main/java/db/AnemiaDSSdb.db";
 
             c = DriverManager.getConnection("jdbc:sqlite:." + dbPath);
             System.out.println(c);

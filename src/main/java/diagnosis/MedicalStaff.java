@@ -9,17 +9,23 @@ public class MedicalStaff implements Serializable{
 
 
     private static final long serialVersionUID = 881034396276971561L;
-    private final Integer id;
+    private Integer id;
     private  String name;
     private List<Patient> patients;
 
 
-    public MedicalStaff(Integer id, String user)  {
+
+    public MedicalStaff(Integer id, String name)  {
         this.id = id;
-        this.name = user;
-  //      this.password = password;
+        this.name = name;
         this.patients = new LinkedList<Patient>();
     }
+
+    public MedicalStaff( String name)  {
+        this.name = name;
+        this.patients = new LinkedList<Patient>();
+    }
+
 
     public Integer getId() {
         return id;

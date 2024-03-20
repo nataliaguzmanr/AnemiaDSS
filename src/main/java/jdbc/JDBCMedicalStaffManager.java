@@ -61,7 +61,7 @@ public class JDBCMedicalStaffManager implements MedicalStaffManager {
             if (rs.next()) {
                 String name = rs.getString("name");
 
-                medicalStaff = new MedicalStaff(name);
+                medicalStaff = new MedicalStaff(medicalStaff_id,name);
             }
             rs.close();
             pr.close();

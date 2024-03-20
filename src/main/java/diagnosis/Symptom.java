@@ -29,6 +29,20 @@ public class Symptom implements Serializable {
         this.patient = patient;
     }
 
+    public Symptom(float value, String name, LocalDate symptom_date, Patient patient) {
+        this.value = value;
+        this.name = name;
+        this.symptom_date = symptom_date;
+        this.patient = patient;
+    }
+
+    public Symptom(Integer id, float value, String name, LocalDate symptom_date) {
+        this.id = id;
+        this.value = value;
+        this.name = name;
+        this.symptom_date = symptom_date;
+    }
+
     public Symptom(float value, String name, Patient patient) {
         this.value = value;
         this.name = name;
@@ -85,12 +99,11 @@ public class Symptom implements Serializable {
     @Override
     public String toString() {
         return "Symptom{" +
-                //"id=" + id +
+                "id=" + id +
                 ", value=" + value +
-                ", name='" + name  +
+                ", name='" + name + '\'' +
+                ", symptom_date=" + symptom_date +
                 ", patient=" + patient +
                 '}';
     }
-
-
 }

@@ -111,8 +111,6 @@ public class JDBCManager {
                     +");";
             stmt.executeUpdate(sql);
 
-
-
             // TABLE ANEMIA
             sql = "CREATE TABLE Anemia ("
                     + "	anemiaTable_id	INTEGER PRIMARY KEY AUTOINCREMENT,"

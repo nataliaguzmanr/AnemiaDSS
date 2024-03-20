@@ -3,6 +3,7 @@ package ifaces;
 import diagnosis.Patient;
 
 import java.sql.SQLException;
+import java.util.List;
 
 public interface PatientManager {
 
@@ -21,4 +22,11 @@ public interface PatientManager {
      * @return the Patient object
      */
     public Patient getPatient(int patient_id) throws SQLException;
+
+    /**
+     * Retrieves all patients in data base.
+     *
+     * @return a list of Patients object
+     */
+    public List<Patient> getAllPatients() throws SQLException;
 }

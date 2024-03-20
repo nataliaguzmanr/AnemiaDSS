@@ -6,6 +6,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.List;
 
 import diagnosis.*;
 import ifaces.PatientManager;
@@ -77,7 +79,34 @@ public class JDBCPatientManager implements PatientManager {
         return patient;
     }
 
+    @Override
+    public List<Patient> getAllPatients() throws SQLException {
+
+        List<Patient> patients = new LinkedList<>();
+        Patient p = null;
+        try {
+            String sql = "SELECT * FROM Patient" ;
+            PreparedStatement pr = patientManager.getConnection().prepareStatement(sql);
+            ResultSet rs = pr.executeQuery();
+            while (rs.next()) {
+                int patient_id = rs.getInt("patient_id");
+                String name = rs.getString("name");
+                String gender_str = rs.getString("gender");
+                Gender gender = Gender.valueOf(gender_str);
+                int age = rs.getInt("age");
+
+                p = new Patient(patient_id, name, age, gender);
+                patients.add(p);
+            }
+            rs.close();
+            pr.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return patients;
+    }
+
 }
 
-//       java.sql.Date sqlDate = new java.sql.Date(Doctormember.getDob().getTime());
-        //    prep.setDate(2, sqlDate);
+

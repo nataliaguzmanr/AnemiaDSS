@@ -17,6 +17,14 @@ public class Report implements Serializable {
         this.patient = patient;
     }
 
+    //REVISAR
+    public Report(Integer id, String file_name, Integer patient_id) {
+        this.id = id;
+        this.file_name = file_name;
+        this.patient = new Patient(patient_id);
+    }
+
+
     public Integer getId() {
         return id;
     }

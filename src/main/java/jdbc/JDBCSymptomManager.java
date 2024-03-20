@@ -52,10 +52,8 @@ public class JDBCSymptomManager implements SymptomManager {
 
                 Float value = rs.getFloat("value");
                 String name = rs.getString("name");
-                java.sql.Date sqlDate = rs.getDate("symptom_date");
+                Date sqlDate = rs.getDate("symptom_date");
                 LocalDate symp_localDate = sqlDate.toLocalDate();
-                //LocalDate symp_localDate = date.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
-                //int patient_id = rs.getInt("patient_id"); SOS
 
                 symptom = new Symptom(symptom_id, value, name, symp_localDate);
             }

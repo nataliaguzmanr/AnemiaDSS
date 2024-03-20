@@ -163,7 +163,7 @@ public class DatabaseTest {
             int id=1;
             Patient p = jdbcPatientManager.getPatient(id);
             LocalDate s_Date = LocalDate.of(2024,3,20);
-            Symptom s = new Symptom(1.0F, "Headache", s_Date, p);
+            Symptom s = new Symptom(1.0F, "Vomit", s_Date, p);
             jdbcSymptomManager.addSymptom(s,id);
             System.out.println("\nsymptom: " +s);
         }catch (Exception e) {
@@ -179,7 +179,7 @@ public class DatabaseTest {
 
         try{
 
-            int id1 =1;
+            int id1 =6;
             Symptom s = jdbcSymptomManager.getSymptom(id1);
             System.out.println(s);
         }catch (Exception e) {

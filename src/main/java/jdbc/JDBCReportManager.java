@@ -70,8 +70,8 @@ public class JDBCReportManager implements ReportManager {
             while(rs.next()) {
                 Integer report_id = rs.getInt(1);
                 String file_name = rs.getString(2);
-                Integer patient_id = rs.getInt(3);
-                r = new Report(report_id, file_name, patient_id);
+                Patient p = new Patient(patient_id);
+                r = new Report(report_id, file_name, p);
                 reports.add(r);
             }
             rs.close();
@@ -79,7 +79,7 @@ public class JDBCReportManager implements ReportManager {
         }catch(Exception e) {
             e.printStackTrace();
         }
-        return os;
+        return reports;
     }
 
 

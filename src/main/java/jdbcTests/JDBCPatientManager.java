@@ -1,4 +1,4 @@
-package jdbc;
+package jdbcTests;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -6,7 +6,7 @@ import java.sql.SQLException;
 import java.util.LinkedList;
 import java.util.List;
 
-import POJOS.*;
+import diagnosisTests.*;
 import ifaces.PatientManager;
 
 public class JDBCPatientManager implements PatientManager {

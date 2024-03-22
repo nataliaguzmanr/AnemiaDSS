@@ -1,6 +1,6 @@
 package ifaces;
 
-import POJOS.Symptom;
+import diagnosisTests.Symptom;
 
 import java.sql.SQLException;
 

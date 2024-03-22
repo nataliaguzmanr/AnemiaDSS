@@ -1,4 +1,4 @@
-package POJOS;
+package diagnosisTests;
 
 
 import java.io.Serializable;
@@ -24,6 +24,11 @@ public class Symptom implements Serializable {
         this.name = name;
         this.symptom_date = symptom_date;
         this.patient = patient;
+    }
+
+    public Symptom(float value, String name) {
+        this.value = value;
+        this.name = name;
     }
 
     public Symptom(float value, String name, LocalDate symptom_date, Patient patient) {
@@ -95,7 +100,7 @@ public class Symptom implements Serializable {
 
     @Override
     public String toString() {
-        return "Symptom{" +
+        return "\nSymptom{" +
                 "id=" + id +
                 ", value=" + value +
                 ", name='" + name + '\'' +

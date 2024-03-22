@@ -72,7 +72,7 @@ public class ConditionSymtomTest {
         List<Boolean> bList;
         bList = u.equalsSymptomCondition(symptomListTest, condListTest);
         System.out.println(bList);
-        System.out.println("boolean list "+bList.size());
+        System.out.println("Boolean list "+bList.size());
 
         List<Float> weithtsList = new LinkedList();
         weithtsList.add(15.56F); // Plaquets
@@ -98,12 +98,12 @@ public class ConditionSymtomTest {
         weithtsList.add(0F);
         weithtsList.add(0F);
         weithtsList.add(0F);
-        System.out.println("weights list "+weithtsList.size());
+        System.out.println("Weights list "+weithtsList.size());
 
         Anemia a = new Anemia(1, AnemiaType.APLASTIC_ANEMIA, weithtsList, condListTest);
 
         float ap_score = u.getScore(a,bList);
-        System.out.println("SCORE: "+ap_score);
+        System.out.println("\nSCORE: "+ap_score);
 
 
     }

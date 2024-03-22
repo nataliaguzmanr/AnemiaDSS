@@ -17,8 +17,8 @@ public class Utilities {
         for (int n=0; n<conditionsList.size();n++){
             booleanList.add(n,false);
         }
-        System.out.println("\nFalse inizialized list "+booleanList);
-        System.out.println(booleanList.size());
+        //System.out.println("\nFalse inizialized list "+booleanList);
+        //System.out.println(booleanList.size());
 
 
         for(int i=0; i<symtomsList.size(); i++){
@@ -77,8 +77,8 @@ public class Utilities {
 
                 if( (i==j) && (booleanList.get(j).equals(true))){
                     score = score + weightsList.get(i);
-                    System.out.println(score);
-                    System.out.println("Weight: " +weightsList.get(i));
+                    //System.out.println(score);
+                    //System.out.println("Weight: " +weightsList.get(i));
                 }
 
             }

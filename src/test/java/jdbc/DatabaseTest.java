@@ -1,14 +1,10 @@
 package jdbc;
 
-import diagnosis.*;
-import jdbc.*;
+import POJOS.*;
 import org.junit.Test;
-import org.kie.internal.jaxb.LocalDateTimeXmlAdapter;
 
-import java.sql.Connection;
 import java.sql.SQLException;
 import java.time.LocalDate;
-import java.util.Date;
 import java.util.List;
 
 public class DatabaseTest {

@@ -1,16 +1,12 @@
 package jdbc;
 
-import diagnosis.MedicalStaff;
-import diagnosis.Patient;
-import diagnosis.Symptom;
+import POJOS.Symptom;
 import ifaces.SymptomManager;
 import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.time.Instant;
 import java.time.LocalDate;
-import java.time.ZoneId;
 
 public class JDBCSymptomManager implements SymptomManager {
 

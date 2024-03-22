@@ -1,8 +1,7 @@
-package diagnosis;
+package POJOS;
 
 
 import java.io.Serializable;
-import java.util.LinkedList;
 import java.util.List;
 import java.util.Objects;
 
@@ -11,26 +10,30 @@ public class Anemia implements Serializable {
     private static final long serialVersionUID = -9096161678878767301L;
 
     private final Integer Id;
-    private AnemiaType anemia;
-    private List<Patient> patients;
+    private AnemiaType anemiaType;
+    //private List<Patient> patients;
+    private final float[] weights;
 
-
-    public Anemia(Integer id, AnemiaType anemia) {
+    public Anemia(Integer id, AnemiaType anemia, float[] weights) {
         Id = id;
-        this.anemia = anemia;
-        this.patients = new LinkedList<Patient>();
+        this.anemiaType = anemia;
+        this.weights = weights;
+        //this.patients = new LinkedList<Patient>();
     }
+
+    //getScore()
+
 
     public Integer getId() {
         return Id;
     }
 
-    public AnemiaType getAnemia() {
-        return anemia;
+    public AnemiaType getAnemiaType() {
+        return anemiaType;
     }
 
-    public void setAnemia(AnemiaType anemia) {
-        this.anemia = anemia;
+    public void setAnemiaType(AnemiaType anemiaType) {
+        this.anemiaType = anemiaType;
     }
 
     public List<Patient> getPatients() {
@@ -46,19 +49,19 @@ public class Anemia implements Serializable {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Anemia anemia1 = (Anemia) o;
-        return Objects.equals(Id, anemia1.Id) && anemia == anemia1.anemia;
+        return Objects.equals(Id, anemia1.Id) && anemiaType == anemia1.anemiaType;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(Id, anemia);
+        return Objects.hash(Id, anemiaType);
     }
 
     @Override
     public String toString() {
         return "Anemia{" +
                 "Id=" + Id +
-                ", anemia=" + anemia +
+                ", anemia=" + anemiaType +
                 '}';
     }
 }

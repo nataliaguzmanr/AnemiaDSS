@@ -1,13 +1,4 @@
-package diagnosis;
-
-import org.drools.ruleunits.api.RuleUnitInstance;
-import org.drools.ruleunits.api.RuleUnitProvider;
-import org.junit.Test;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
-import java.util.Date;
-import java.util.Set;
+package POJOS;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;

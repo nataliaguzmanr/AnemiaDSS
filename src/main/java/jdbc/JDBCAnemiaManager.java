@@ -1,16 +1,12 @@
 package jdbc;
 
-import diagnosis.Anemia;
-import diagnosis.AnemiaType;
-import diagnosis.Gender;
-import diagnosis.Symptom;
+import POJOS.Anemia;
+import POJOS.AnemiaType;
 import ifaces.AnemiaManager;
 
-import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.time.LocalDate;
 
 public class JDBCAnemiaManager implements AnemiaManager {
 

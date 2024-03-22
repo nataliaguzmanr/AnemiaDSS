@@ -1,10 +1,4 @@
-import diagnosis.*;
-import jdbc.JDBCManager;
-import org.drools.ruleunits.api.RuleUnitInstance;
-import org.drools.ruleunits.api.RuleUnitProvider;
-
-import java.time.LocalDate;
-import java.util.List;
+import POJOS.*;
 
 public class Main {
 //.

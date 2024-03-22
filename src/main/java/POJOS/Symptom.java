@@ -1,11 +1,8 @@
-package diagnosis;
+package POJOS;
 
 
 import java.io.Serializable;
 import java.time.LocalDate;
-import java.util.Date;
-import java.util.LinkedList;
-import java.util.List;
 import java.util.Objects;
 
 import static java.util.Objects.hash;

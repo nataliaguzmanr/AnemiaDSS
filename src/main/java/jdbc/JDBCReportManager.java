@@ -1,9 +1,8 @@
 package jdbc;
 
-import diagnosis.Patient;
-import diagnosis.Report;
+import POJOS.Patient;
+import POJOS.Report;
 import ifaces.ReportManager;
-import ifaces.PatientManager;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;

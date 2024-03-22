@@ -6,7 +6,8 @@ import java.sql.SQLException;
 import java.util.LinkedList;
 import java.util.List;
 
-import diagnosisTests.*;
+import diagnosis.Gender;
+import diagnosis.Patient;
 import ifaces.PatientManager;
 
 public class JDBCPatientManager implements PatientManager {

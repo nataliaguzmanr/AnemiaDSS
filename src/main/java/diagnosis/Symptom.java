@@ -1,4 +1,4 @@
-package diagnosisTests;
+package diagnosis;
 
 
 import java.io.Serializable;

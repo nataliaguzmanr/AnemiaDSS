@@ -1,4 +1,6 @@
-import diagnosisTests.*;
+import diagnosis.Gender;
+import diagnosis.Patient;
+import diagnosis.Symptom;
 
 public class Main {
 //.

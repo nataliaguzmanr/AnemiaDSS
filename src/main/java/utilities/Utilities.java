@@ -1,8 +1,8 @@
 package utilities;
 
-import diagnosisTests.Anemia;
-import diagnosisTests.Condition;
-import diagnosisTests.Symptom;
+import diagnosis.Anemia;
+import diagnosis.Condition;
+import diagnosis.Symptom;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -10,7 +10,6 @@ import java.util.List;
 public class Utilities {
 
     public List<Boolean> equalsSymptomCondition(List<Symptom> symtomsList, List<Condition> conditionsList){
-
 
         List<Boolean> booleanList = new LinkedList<Boolean>();
         //inizialize list w/false same length as conditions

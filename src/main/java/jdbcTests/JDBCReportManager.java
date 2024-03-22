@@ -1,7 +1,7 @@
 package jdbcTests;
 
-import diagnosisTests.Patient;
-import diagnosisTests.Report;
+import diagnosis.Patient;
+import diagnosis.Report;
 import ifaces.ReportManager;
 
 import java.sql.PreparedStatement;

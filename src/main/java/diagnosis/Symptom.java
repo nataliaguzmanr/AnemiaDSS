@@ -14,15 +14,13 @@ public class Symptom implements Serializable {
     private Integer id;
     private Float value;
     private String name;
-    private LocalDate symptom_date;
     private Patient patient;
 
 
-    public Symptom(Integer id, float value, String name, Patient patient, LocalDate symptom_date) {
+    public Symptom(Integer id, float value, String name, Patient patient) {
         this.id = id;
         this.value = value;
         this.name = name;
-        this.symptom_date = symptom_date;
         this.patient = patient;
     }
 
@@ -31,18 +29,16 @@ public class Symptom implements Serializable {
         this.name = name;
     }
 
-    public Symptom(float value, String name, LocalDate symptom_date, Patient patient) {
+    public Symptom(float value, String name,  Patient patient) {
         this.value = value;
         this.name = name;
-        this.symptom_date = symptom_date;
         this.patient = patient;
     }
 
-    public Symptom(Integer id, float value, String name, LocalDate symptom_date) {
+    public Symptom(Integer id, float value, String name) {
         this.id = id;
         this.value = value;
         this.name = name;
-        this.symptom_date = symptom_date;
     }
 
     public Symptom(float value, String name, Patient patient) {
@@ -69,13 +65,7 @@ public class Symptom implements Serializable {
         return name;
     }
 
-    public LocalDate getDate() {
-        return symptom_date;
-    }
 
-    public void setDate(LocalDate symptom_date) {
-        this.symptom_date = symptom_date;
-    }
     public Patient getPatient() {
         return patient;
     }
@@ -90,7 +80,7 @@ public class Symptom implements Serializable {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Symptom symptom = (Symptom) o;
-        return Objects.equals(id, symptom.id) && Objects.equals(value, symptom.value) && Objects.equals(name, symptom.name) && Objects.equals(symptom_date, symptom.symptom_date) && Objects.equals(patient, symptom.patient);
+        return Objects.equals(id, symptom.id)  && Objects.equals(patient, symptom.patient);
     }
 
     @Override
@@ -104,7 +94,6 @@ public class Symptom implements Serializable {
                 "id=" + id +
                 ", value=" + value +
                 ", name='" + name + '\'' +
-                ", symptom_date=" + symptom_date +
                 ", patient=" + patient +
                 '}';
     }

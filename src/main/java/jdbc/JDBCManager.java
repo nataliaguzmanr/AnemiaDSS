@@ -1,4 +1,4 @@
-package jdbcTests;
+package jdbc;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -72,8 +72,16 @@ public class JDBCManager {
         try {
             Statement stmt = c.createStatement();
 
+            //TABLE CLINICAL HISTORY
+            String sql = "CREATE TABLE ClinicalHistory ("
+                    + " clinicalHistory_id INTEGER PRIMARY KEY AUTOINCREMENT,"
+                    + " symptoms_date DATE NOT NULL,"
+                    + " symptoms_id INTEGER REFERENCES Symptom(symptom_id)"
+                    + ");";
+            stmt.executeUpdate(sql);
+
             //TABLE MEDICAL STAFF - PATIENT
-            String sql = "CREATE TABLE MedicalStaff_Patient ("
+           sql = "CREATE TABLE MedicalStaff_Patient ("
                     + " patient_id INTEGER REFERENCES Patient(patient_id), "
                     + " medicalStaff_id INTEGER REFERENCES MedicalStaff(medicalStaff_id), "
                     + " PRIMARY KEY (patient_id, medicalStaff_id)"
@@ -86,7 +94,6 @@ public class JDBCManager {
                     + " symptom_id	INTEGER PRIMARY KEY AUTOINCREMENT,"
                     + " value FLOAT NOT NULL,"
                     + " name TEXT NOT NULL,"
-                    + " symptom_date DATE NOT NULL,"
                     + " patient_id INTEGER REFERENCES Patient(patient_id) "
                     +");";
             stmt.executeUpdate(sql);
@@ -97,9 +104,10 @@ public class JDBCManager {
                     + "	name TEXT NOT NULL,"
                     + "	gender TEXT NOT NULL,"
                     + "	age	INTEGER,"
+                    + " weight	INTEGER NOT NULL,"
                     + " medicalStaff_id	INTEGER REFERENCES MedicalStaff(medicalStaff_id),"
-                    + "symptoms_id INTEGER REFERENCES Symptom(symptom_id),"
-                    + "anemia_id INTEGER REFERENCES Anemia(anemiaTable_id)"
+                    + " symptoms_id INTEGER REFERENCES Symptom(symptom_id),"
+                    + " anemia_id INTEGER REFERENCES Anemia(anemiaTable_id)"
                     +");";
             stmt.executeUpdate(sql);
 
@@ -125,6 +133,8 @@ public class JDBCManager {
                     + " patient_id 	INTEGER REFERENCES Patient(patient_id)"
                     + ");";
             stmt.executeUpdate(sql);
+
+
 
 
         } catch (SQLException e) {

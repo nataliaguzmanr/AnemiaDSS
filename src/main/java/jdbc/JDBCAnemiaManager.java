@@ -1,4 +1,4 @@
-package jdbcTests;
+package jdbc;
 
 import diagnosis.Anemia;
 import diagnosis.AnemiaType;

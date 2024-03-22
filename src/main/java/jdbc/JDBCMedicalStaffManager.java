@@ -1,4 +1,4 @@
-package jdbcTests;
+package jdbc;
 
 import diagnosis.MedicalStaff;
 import ifaces.MedicalStaffManager;

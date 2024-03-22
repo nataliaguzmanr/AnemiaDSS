@@ -1,6 +1,7 @@
 package jdbcTests;
 
 import diagnosis.*;
+import jdbc.*;
 import org.junit.Test;
 
 import java.sql.SQLException;
@@ -161,7 +162,7 @@ public class DatabaseTest {
             LocalDate s_Date = LocalDate.of(2024,3,20);
             Symptom s = new Symptom(1.0F, "Vomit", s_Date, p);
             jdbcSymptomManager.addSymptom(s,id);
-            System.out.println("\nsymptom: " +s);
+            System.out.println("\nSymptom: " +s);
         }catch (Exception e) {
             throw new RuntimeException(e);
         }

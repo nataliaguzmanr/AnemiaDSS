@@ -1,4 +1,4 @@
-package POJOS;
+package diagnosisTests;
 
 
 import org.drools.ruleunits.api.RuleUnitInstance;

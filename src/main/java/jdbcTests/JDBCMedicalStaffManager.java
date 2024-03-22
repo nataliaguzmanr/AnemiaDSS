@@ -1,6 +1,6 @@
-package jdbc;
+package jdbcTests;
 
-import POJOS.MedicalStaff;
+import diagnosisTests.MedicalStaff;
 import ifaces.MedicalStaffManager;
 
 import java.sql.PreparedStatement;

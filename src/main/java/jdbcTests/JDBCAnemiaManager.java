@@ -1,7 +1,7 @@
-package jdbc;
+package jdbcTests;
 
-import POJOS.Anemia;
-import POJOS.AnemiaType;
+import diagnosisTests.Anemia;
+import diagnosisTests.AnemiaType;
 import ifaces.AnemiaManager;
 
 import java.sql.PreparedStatement;

@@ -1,6 +1,6 @@
-package jdbc;
+package jdbcTests;
 
-import POJOS.*;
+import diagnosisTests.*;
 import org.junit.Test;
 
 import java.sql.SQLException;

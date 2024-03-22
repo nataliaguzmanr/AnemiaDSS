@@ -1,4 +1,4 @@
-package POJOS;
+package diagnosisTests;
 
 
 import java.io.Serializable;
@@ -11,14 +11,19 @@ public class Anemia implements Serializable {
 
     private final Integer Id;
     private AnemiaType anemiaType;
-    //private List<Patient> patients;
-    private final float[] weights;
+    private List<Float> weights;
+    private List<Condition> conditions;
 
-    public Anemia(Integer id, AnemiaType anemia, float[] weights) {
+    public Anemia(Integer id, AnemiaType anemia, List<Float> weights, List<Condition> conditions) {
         Id = id;
         this.anemiaType = anemia;
         this.weights = weights;
-        //this.patients = new LinkedList<Patient>();
+        this.conditions = conditions;
+    }
+
+    public Anemia(Integer id, AnemiaType anemiaType) {
+        Id = id;
+        this.anemiaType = anemiaType;
     }
 
     //getScore()
@@ -36,12 +41,12 @@ public class Anemia implements Serializable {
         this.anemiaType = anemiaType;
     }
 
-    public List<Patient> getPatients() {
-        return patients;
+    public List<Float> getWeights() {
+        return weights;
     }
 
-    public void setPatients(List<Patient> patients) {
-        this.patients = patients;
+    public List<Condition> getConditions() {
+        return conditions;
     }
 
     @Override

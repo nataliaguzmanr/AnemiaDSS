@@ -1,7 +1,7 @@
 package ifaces;
 
-import POJOS.Patient;
-import POJOS.Report;
+import diagnosisTests.Patient;
+import diagnosisTests.Report;
 
 import java.util.List;
 

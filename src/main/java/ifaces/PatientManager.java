@@ -1,6 +1,6 @@
 package ifaces;
 
-import POJOS.Patient;
+import diagnosisTests.Patient;
 
 import java.sql.SQLException;
 import java.util.List;

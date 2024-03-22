@@ -26,7 +26,7 @@ public class ConditionSymtomTest {
         Condition c7_ap = new Condition("Dyspnea", 1F, 0F, "=");
 
         List<Condition> condListTest = new LinkedList<>();
-        condListTest.add(c1_ap); //15.56 -> plaquets
+        condListTest.add(c1_ap); //15.56 -> Plaquets
         condListTest.add(c0);
         condListTest.add(c0);
         condListTest.add(c2_ap); //17.78 -> leukocytes
@@ -40,17 +40,18 @@ public class ConditionSymtomTest {
         condListTest.add(c0);
         condListTest.add(c0);
         condListTest.add(c0);
-        condListTest.add(c4_ap); //13.34 ->
-        condListTest.add(c5_ap); //6.66
-        condListTest.add(c6_ap); //11.12
+        condListTest.add(c4_ap); //13.34 -> Skin paleness
+        condListTest.add(c5_ap); //6.66 -> Headache
+        condListTest.add(c6_ap); //11.12 -> Fatigue
         condListTest.add(c0);
         condListTest.add(c0);
-        condListTest.add(c7_ap);//8.88
+        condListTest.add(c7_ap);//8.88 -> Dyspnea
         condListTest.add(c0);
         condListTest.add(c0);
         condListTest.add(c0);
 
         System.out.println(condListTest);
+        System.out.println("Conditions list "+condListTest.size());
 
         Symptom s1 = new Symptom(7.9F, "Hb");
         Symptom s2 = new Symptom(1F, "Headache");
@@ -71,10 +72,13 @@ public class ConditionSymtomTest {
         List<Boolean> bList;
         bList = u.equalsSymptomCondition(symptomListTest, condListTest);
         System.out.println(bList);
+        System.out.println("boolean list "+bList.size());
 
         List<Float> weithtsList = new LinkedList();
-        weithtsList.add(17.78F); //Leukocytes
         weithtsList.add(15.56F); // Plaquets
+        weithtsList.add(0F);
+        weithtsList.add(0F);
+        weithtsList.add(17.78F); //Leukocytes
         weithtsList.add(0F);
         weithtsList.add(0F);
         weithtsList.add(20F); //RBC
@@ -85,8 +89,8 @@ public class ConditionSymtomTest {
         weithtsList.add(0F);
         weithtsList.add(0F);
         weithtsList.add(0F);
-        weithtsList.add(13.34F); //skin paleness
-        weithtsList.add(6.66F); //headche
+        weithtsList.add(13.34F); //Skin paleness
+        weithtsList.add(6.66F); //Headache
         weithtsList.add(11.12F); //fatigue
         weithtsList.add(0F);
         weithtsList.add(0F);
@@ -94,7 +98,7 @@ public class ConditionSymtomTest {
         weithtsList.add(0F);
         weithtsList.add(0F);
         weithtsList.add(0F);
-
+        System.out.println("weights list "+weithtsList.size());
 
         Anemia a = new Anemia(1, AnemiaType.APLASTIC_ANEMIA, weithtsList, condListTest);
 

@@ -4,6 +4,7 @@ import diagnosis.Anemia;
 import diagnosis.Condition;
 import diagnosis.Symptom;
 
+
 import java.util.LinkedList;
 import java.util.List;
 
@@ -17,6 +18,7 @@ public class Utilities {
             booleanList.add(n,false);
         }
         System.out.println("\nFalse inizialized list "+booleanList);
+        System.out.println(booleanList.size());
 
 
         for(int i=0; i<symtomsList.size(); i++){
@@ -35,40 +37,24 @@ public class Utilities {
                 if(sympName.equalsIgnoreCase(condName)){
 
                     if(condSign.equalsIgnoreCase(">")){
-
                         if (sympValue>condValue1){
-                            //return true;
-                            booleanList.add(j,true);
-                        }/*else{
-                            //return false;
-                            booleanList.add(j,false);
-                        }*/
+                            booleanList.set(j,true);
+                        }
 
                     }else if(condSign.equalsIgnoreCase("<")){
                         if (sympValue<condValue1){
-                            //return true;
-                            booleanList.add(j,true);
-                        }/*else{
-                            //return false;
-                            booleanList.add(j,false);
-                        }*/
+                            booleanList.set(j,true);
+                        }
                     }else if(condSign.equalsIgnoreCase("entre")){
                         if (sympValue>condValue1 && sympValue<condValue2){
-                            //return true;
-                            booleanList.add(j,true);
-                        }/*else{
-                            //return false;
-                            booleanList.add(j,false);
-                        }*/
+                            booleanList.set(j,true);
+                        }
 
                     }else if(condSign.equalsIgnoreCase("=")){
                         if (sympValue==condValue1){
-                            booleanList.add(j,true);
-                            //return true;
-                        }/*else{
-                            //return false;
-                            booleanList.add(j,false);
-                        }*/
+                            booleanList.set(j,true);
+
+                        }
                     }
 
                 }
@@ -91,7 +77,8 @@ public class Utilities {
 
                 if( (i==j) && (booleanList.get(j).equals(true))){
                     score = score + weightsList.get(i);
-                    //System.out.println(score);
+                    System.out.println(score);
+                    System.out.println("Weight: " +weightsList.get(i));
                 }
 
             }

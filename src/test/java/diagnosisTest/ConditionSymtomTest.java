@@ -1,5 +1,9 @@
-package diagnosisTests;
+package diagnosisTest;
 
+import diagnosis.Anemia;
+import diagnosis.AnemiaType;
+import diagnosis.Condition;
+import diagnosis.Symptom;
 import org.junit.Test;
 import utilities.Utilities;
 
@@ -22,21 +26,21 @@ public class ConditionSymtomTest {
         Condition c7_ap = new Condition("Dyspnea", 1F, 0F, "=");
 
         List<Condition> condListTest = new LinkedList<>();
-        condListTest.add(c1_ap); //15.56
+        condListTest.add(c1_ap); //15.56 -> plaquets
         condListTest.add(c0);
         condListTest.add(c0);
-        condListTest.add(c2_ap); //17.78
+        condListTest.add(c2_ap); //17.78 -> leukocytes
         condListTest.add(c0);
         condListTest.add(c0);
-        condListTest.add(c3_ap); //20.0
-        condListTest.add(c0);
-        condListTest.add(c0);
-        condListTest.add(c0);
+        condListTest.add(c3_ap); //20.0 -> RBC
         condListTest.add(c0);
         condListTest.add(c0);
         condListTest.add(c0);
         condListTest.add(c0);
-        condListTest.add(c4_ap); //13.34
+        condListTest.add(c0);
+        condListTest.add(c0);
+        condListTest.add(c0);
+        condListTest.add(c4_ap); //13.34 ->
         condListTest.add(c5_ap); //6.66
         condListTest.add(c6_ap); //11.12
         condListTest.add(c0);
@@ -58,7 +62,7 @@ public class ConditionSymtomTest {
         symptomListTest.add(s1);
         symptomListTest.add(s2);
         symptomListTest.add(s3);
-        //symptomListTest.add(s4);
+        symptomListTest.add(s4);
         symptomListTest.add(s5);
         System.out.println(symptomListTest);
 
@@ -69,23 +73,24 @@ public class ConditionSymtomTest {
         System.out.println(bList);
 
         List<Float> weithtsList = new LinkedList();
-        weithtsList.add(15.56F);
+        weithtsList.add(17.78F); //Leukocytes
+        weithtsList.add(15.56F); // Plaquets
         weithtsList.add(0F);
         weithtsList.add(0F);
-        weithtsList.add(20F);
-        weithtsList.add(0F);
-        weithtsList.add(0F);
-        weithtsList.add(0F);
-        weithtsList.add(0F);
+        weithtsList.add(20F); //RBC
         weithtsList.add(0F);
         weithtsList.add(0F);
         weithtsList.add(0F);
-        weithtsList.add(13.34F);
-        weithtsList.add(6.66F);
-        weithtsList.add(11.12F);
         weithtsList.add(0F);
         weithtsList.add(0F);
-        weithtsList.add(8.88F);
+        weithtsList.add(0F);
+        weithtsList.add(0F);
+        weithtsList.add(13.34F); //skin paleness
+        weithtsList.add(6.66F); //headche
+        weithtsList.add(11.12F); //fatigue
+        weithtsList.add(0F);
+        weithtsList.add(0F);
+        weithtsList.add(8.88F); //dyspnea
         weithtsList.add(0F);
         weithtsList.add(0F);
         weithtsList.add(0F);

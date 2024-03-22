@@ -1,4 +1,4 @@
-package diagnosisTests;
+package diagnosis;
 
 public class Condition {
 

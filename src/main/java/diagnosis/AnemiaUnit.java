@@ -1,4 +1,4 @@
-package diagnosisTests;
+package diagnosis;
 
 import org.drools.ruleunits.api.DataStore;
 

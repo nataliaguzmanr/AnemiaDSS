@@ -1,6 +1,6 @@
 package ifaces;
 
-import diagnosisTests.Symptom;
+import diagnosis.Symptom;
 
 import java.sql.SQLException;
 

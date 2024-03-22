@@ -1,6 +1,6 @@
 package jdbcTests;
 
-import diagnosisTests.*;
+import diagnosis.*;
 import org.junit.Test;
 
 import java.sql.SQLException;

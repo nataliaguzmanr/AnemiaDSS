@@ -1,6 +1,6 @@
 package jdbcTests;
 
-import diagnosisTests.Symptom;
+import diagnosis.Symptom;
 import ifaces.SymptomManager;
 import java.sql.Date;
 import java.sql.PreparedStatement;

@@ -1,7 +1,7 @@
 package ifaces;
 
-import diagnosisTests.Patient;
-import diagnosisTests.Report;
+import diagnosis.Patient;
+import diagnosis.Report;
 
 import java.util.List;
 

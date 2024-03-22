@@ -1,4 +1,4 @@
-package diagnosisTests;
+package diagnosis;
 
 import java.util.LinkedList;
 import java.util.List;

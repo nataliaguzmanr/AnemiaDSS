@@ -1,5 +1,9 @@
-package diagnosisTests;
+package diagnosisTest;
 
+import diagnosis.Gender;
+import diagnosis.Patient;
+import diagnosis.PatientUnit;
+import diagnosis.Symptom;
 import org.drools.ruleunits.api.RuleUnitInstance;
 import org.drools.ruleunits.api.RuleUnitProvider;
 import org.junit.Before;

@@ -1,6 +1,6 @@
 package ifaces;
 
-import diagnosisTests.MedicalStaff;
+import diagnosis.MedicalStaff;
 
 import java.sql.SQLException;
 

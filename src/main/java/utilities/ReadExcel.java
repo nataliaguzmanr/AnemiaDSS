@@ -29,7 +29,7 @@ public class ReadExcel {
         // we create an XSSF Workbook object for our XLSX Excel File
         //It is a class that is used to represent both high and low level Excel file formats.
         try (FileInputStream fis = new FileInputStream(excelFile); // we create an XSSF Workbook object for our XLSX Excel File
-             XSSFWorkbook workbook = new XSSFWorkbook(fis)) {
+              XSSFWorkbook workbook = new XSSFWorkbook(fis)) {
 
             // we get first sheet
             XSSFSheet sheet = workbook.getSheetAt(0);   //Get the HSSFSheet object at the given index

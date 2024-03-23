@@ -1,6 +1,10 @@
+import diagnosis.AnemiaType;
 import diagnosis.Gender;
 import diagnosis.Patient;
 import diagnosis.Symptom;
+import utilities.*;
+
+import java.util.List;
 
 public class Main {
 //.
@@ -22,6 +26,7 @@ public class Main {
         //JDBCManager jdbcMan = new JDBCManager();
         //esto es solo un comentario
 
+        List<Float> testWeights = ReadExcel.readWeights(AnemiaType.ANEMIC_SYNDROME);
 
 
         //-----------------------------------------------------------------------------------------

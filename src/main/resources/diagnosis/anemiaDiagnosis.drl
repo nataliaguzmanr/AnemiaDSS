@@ -1,5 +1,5 @@
 
-package diagnosisRules;
+package diagnosis;
 
 unit PatientUnit;
 import diagnosis.*;
@@ -7,9 +7,9 @@ import diagnosis.*;
 
 rule "Return genderMALE"
 when
-    $patient : /patients[getGender()]
+    //$patient : /patients[getGender()]
 
 then
-   patientsMALE.add($patient);
+   //patientsMALE.add($patient);
 
 end

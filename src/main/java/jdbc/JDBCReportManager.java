@@ -1,4 +1,4 @@
-package jdbcTests;
+package jdbc;
 
 import diagnosis.Patient;
 import diagnosis.Report;

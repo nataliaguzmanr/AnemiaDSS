@@ -1,4 +1,4 @@
-package jdbcTests;
+package jdbc;
 
 import diagnosis.Symptom;
 import ifaces.SymptomManager;
@@ -20,13 +20,13 @@ public class JDBCSymptomManager implements SymptomManager {
     @Override
     public void addSymptom(Symptom s, int patient_id) throws SQLException {
         try {
-            String sql = "INSERT INTO Symptom (value, name, symptom_date, patient_id) VALUES (?, ?, ?, ?)";
+            String sql = "INSERT INTO Symptom (value, name, patient_id) VALUES (?, ?, ?)";
             PreparedStatement prep = symptomManager.getConnection().prepareStatement(sql);
             prep.setFloat(1, s.getValue());
             prep.setString(2, s.getName());
-            Date date = Date.valueOf(s.getDate());
-            prep.setDate(3, date);
-            prep.setObject(4, patient_id);
+            //Date date = Date.valueOf(s.getDate());
+            //prep.setDate(3, date);
+            prep.setObject(3, patient_id);
 
 
             prep.executeUpdate();
@@ -48,10 +48,10 @@ public class JDBCSymptomManager implements SymptomManager {
 
                 Float value = rs.getFloat("value");
                 String name = rs.getString("name");
-                Date sqlDate = rs.getDate("symptom_date");
-                LocalDate symp_localDate = sqlDate.toLocalDate();
+                //Date sqlDate = rs.getDate("symptom_date");
+                //LocalDate symp_localDate = sqlDate.toLocalDate();
 
-                symptom = new Symptom(symptom_id, value, name, symp_localDate);
+                symptom = new Symptom(symptom_id, value, name);
             }
             rs.close();
             pr.close();

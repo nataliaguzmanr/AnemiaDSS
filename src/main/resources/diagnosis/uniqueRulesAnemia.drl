@@ -1,7 +1,8 @@
 
-package diagnosisRules;
+package diagnosis;
 
 unit PatientUnit;
+
 import diagnosis.*;
 
 

@@ -17,13 +17,6 @@ public class Symptom implements Serializable {
     private Patient patient;
 
 
-    public Symptom(Integer id, float value, String name, Patient patient) {
-        this.id = id;
-        this.value = value;
-        this.name = name;
-        this.patient = patient;
-    }
-
     public Symptom(float value, String name) {
         this.value = value;
         this.name = name;
@@ -41,11 +34,7 @@ public class Symptom implements Serializable {
         this.name = name;
     }
 
-    public Symptom(float value, String name, Patient patient) {
-        this.value = value;
-        this.name = name;
-        this.patient = patient;
-    }
+
     public Symptom(Integer id, float value, String name, Patient patient) {
         this.id = id;
         this.value = value;

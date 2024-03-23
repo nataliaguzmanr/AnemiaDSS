@@ -1,0 +1,15 @@
+
+package diagnosisRules;
+
+unit PatientUnit;
+import diagnosis.*;
+
+
+rule "Return genderMALE"
+when
+    $patient : /patients[getGender().equals(gender.MALE)]
+
+then
+   patientsMALE.add($patient);
+
+end

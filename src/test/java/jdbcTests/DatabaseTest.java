@@ -159,8 +159,7 @@ public class DatabaseTest {
         try{
             int id=1;
             Patient p = jdbcPatientManager.getPatient(id);
-            LocalDate s_Date = LocalDate.of(2024,3,20);
-            Symptom s = new Symptom(1.0F, "Vomit", s_Date, p);
+            Symptom s = new Symptom(1.0F, "Vomit",  p);
             jdbcSymptomManager.addSymptom(s,id);
             System.out.println("\nSymptom: " +s);
         }catch (Exception e) {

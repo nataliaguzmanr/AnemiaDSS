@@ -72,8 +72,22 @@ public class JDBCManager {
         try {
             Statement stmt = c.createStatement();
 
+
+            // TABLE PATIENT
+            String sql = "CREATE TABLE Patient ("
+                    + "	patient_id INTEGER PRIMARY KEY AUTOINCREMENT,"
+                    + "	name TEXT NOT NULL,"
+                    + "	gender TEXT NOT NULL,"
+                    + "	age	INTEGER,"
+                    + " weight	INTEGER NOT NULL,"
+                    + " medicalStaff_id	INTEGER REFERENCES MedicalStaff(medicalStaff_id),"
+                    + " symptoms_id INTEGER REFERENCES Symptom(symptom_id),"
+                    + " anemia_id INTEGER REFERENCES Anemia(anemiaTable_id)"
+                    +");";
+            stmt.executeUpdate(sql);
+
             //TABLE CLINICAL HISTORY
-            String sql = "CREATE TABLE ClinicalHistory ("
+            sql = "CREATE TABLE ClinicalHistory ("
                     + " clinicalHistory_id INTEGER PRIMARY KEY AUTOINCREMENT,"
                     + " symptoms_date DATE NOT NULL,"
                     + " symptoms_id INTEGER REFERENCES Symptom(symptom_id)"
@@ -98,18 +112,6 @@ public class JDBCManager {
                     +");";
             stmt.executeUpdate(sql);
 
-            // TABLE PATIENT
-             sql = "CREATE TABLE Patient ("
-                    + "	patient_id INTEGER PRIMARY KEY AUTOINCREMENT,"
-                    + "	name TEXT NOT NULL,"
-                    + "	gender TEXT NOT NULL,"
-                    + "	age	INTEGER,"
-                    + " weight	INTEGER NOT NULL,"
-                    + " medicalStaff_id	INTEGER REFERENCES MedicalStaff(medicalStaff_id),"
-                    + " symptoms_id INTEGER REFERENCES Symptom(symptom_id),"
-                    + " anemia_id INTEGER REFERENCES Anemia(anemiaTable_id)"
-                    +");";
-            stmt.executeUpdate(sql);
 
             // TABLE MEDICAL STAFF
             sql = "CREATE TABLE MedicalStaff ("

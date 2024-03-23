@@ -27,7 +27,6 @@ public class Main {
         //-----------------------------------------------------------------------------------------
 
 
-
     }
 
     public static boolean checkGender(Gender g){

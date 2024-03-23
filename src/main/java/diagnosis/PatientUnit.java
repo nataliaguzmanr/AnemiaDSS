@@ -10,7 +10,7 @@ import java.util.Set;
 public class PatientUnit implements RuleUnitData {
 
     private final DataStore<Patient> patients;
-    //LO PODEMOS QUITAR PORQUE NO LO ESTAMOS USANDO
+    //LO PODEMOS QUITAR PORQUE NO LO ESTAMOS USANDO TestString
     private String testString;
     private final Set<Patient> patientsWithAnemicSyndrome;
     private final Set<Patient> patientsWithPosthemorragicAnemia;

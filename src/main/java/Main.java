@@ -9,7 +9,7 @@ import java.util.List;
 public class Main {
 //.
     public static void main(String[] args) {
-        Patient p1 = new Patient(1, "Paco", 58, Gender.MALE);
+/*        Patient p1 = new Patient(1, "Paco", 58, Gender.MALE);
         Symptom s1 = new Symptom(1, 9, "Hb", p1);
         p1.addSymptom(s1);
 
@@ -21,7 +21,7 @@ public class Main {
         System.out.println(g);
 
         boolean b = checkGender(g);
-        System.out.println(b);
+        System.out.println(b);*/
 
         //JDBCManager jdbcMan = new JDBCManager();
         //esto es solo un comentario

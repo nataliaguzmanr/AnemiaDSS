@@ -21,9 +21,9 @@ public class MedicalStaff implements Serializable{
         this.patients = new LinkedList<Patient>();
     }
 
-    public MedicalStaff( String name)  {
+    public MedicalStaff(String name)  {
         this.name = name;
-        this.patients = new LinkedList<Patient>();
+       // this.patients = new LinkedList<Patient>();
     }
 
 

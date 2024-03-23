@@ -1,13 +1,9 @@
 
-package diagnosisTest;
-
+package diagnosisRules;
 
 unit PatientUnit;
+import diagnosis.*;
 
-import diagnosisTest.Anemia
-import diagnosisTest.AnemiaType
-import diagnosis.AnemiaType
-import diagnosis.Anemia
 
 rule "Return genderMALE"
 when

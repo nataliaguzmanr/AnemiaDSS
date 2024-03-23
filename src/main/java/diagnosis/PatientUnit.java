@@ -80,8 +80,6 @@ public class PatientUnit implements RuleUnitData {
     public Set<Patient> getPatientsWithPolycythemia(){
         return this.patientsWithPolycythemia;
     }
-
-
     public Set<Patient> getPatientsMALE() {
         return this.patientsMALE;
     }

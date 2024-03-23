@@ -9,20 +9,20 @@ public class Anemia implements Serializable {
 
     private static final long serialVersionUID = -9096161678878767301L;
 
-    private final Integer Id;
+    private final Integer id;
     private AnemiaType anemiaType;
     private List<Float> weights;
     private List<Condition> conditions;
 
     public Anemia(Integer id, AnemiaType anemia, List<Float> weights, List<Condition> conditions) {
-        Id = id;
+        this.id = id;
         this.anemiaType = anemia;
         this.weights = weights;
         this.conditions = conditions;
     }
 
     public Anemia(Integer id, AnemiaType anemiaType) {
-        Id = id;
+        this.id = id;
         this.anemiaType = anemiaType;
     }
 
@@ -30,7 +30,7 @@ public class Anemia implements Serializable {
 
 
     public Integer getId() {
-        return Id;
+        return id;
     }
 
     public AnemiaType getAnemiaType() {
@@ -54,18 +54,18 @@ public class Anemia implements Serializable {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Anemia anemia1 = (Anemia) o;
-        return Objects.equals(Id, anemia1.Id) && anemiaType == anemia1.anemiaType;
+        return Objects.equals(id, anemia1.id) && anemiaType == anemia1.anemiaType;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(Id, anemiaType);
+        return Objects.hash(id, anemiaType);
     }
 
     @Override
     public String toString() {
         return "Anemia{" +
-                "Id=" + Id +
+                "Id=" + id +
                 ", anemia=" + anemiaType +
                 '}';
     }

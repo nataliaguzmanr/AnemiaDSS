@@ -58,8 +58,9 @@ public class ReadExcel {
 
                 //vamos leyendo cada columna y guardando los valores en una variable para luego crear los metabolitos
                 anemiaTypeRead = cellIterator.next().getStringCellValue();
+                System.out.println(anemiaTypeRead);
 
-                String anemiaTypeToString = anemiaTypeRead.toString();
+                String anemiaTypeToString = anemiaType.toString();
 
                 if(anemiaTypeToString.equalsIgnoreCase(anemiaTypeRead)){
 

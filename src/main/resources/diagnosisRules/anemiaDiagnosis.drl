@@ -7,7 +7,7 @@ import diagnosis.*;
 
 rule "Return genderMALE"
 when
-    $patient : /patients[getGender().equals(gender.MALE)]
+    $patient : /patients[getGender()]
 
 then
    patientsMALE.add($patient);

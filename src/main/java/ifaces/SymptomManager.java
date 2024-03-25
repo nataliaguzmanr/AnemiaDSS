@@ -1,6 +1,6 @@
 package ifaces;
 
-import diagnosis.Symptom;
+import POJOS.Symptom;
 
 import java.sql.SQLException;
 
@@ -16,7 +16,7 @@ public interface SymptomManager {
     public void addSymptom(Symptom s, int patient_id) throws SQLException;
 
     /**
-     * Retrieves a medical staff by its ID.
+     * Retrieves a symptom by its ID.
      *
      * @param symptom_id the symptom ID
      * @return the Symptom object

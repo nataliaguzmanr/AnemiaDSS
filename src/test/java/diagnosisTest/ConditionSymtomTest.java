@@ -1,9 +1,9 @@
 package diagnosisTest;
 
-import diagnosis.Anemia;
-import diagnosis.AnemiaType;
-import diagnosis.Condition;
-import diagnosis.Symptom;
+import POJOS.Anemia;
+import POJOS.AnemiaType;
+import POJOS.Condition;
+import POJOS.Symptom;
 import org.junit.Test;
 import utilities.Utilities;
 

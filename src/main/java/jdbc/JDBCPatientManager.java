@@ -6,8 +6,8 @@ import java.sql.SQLException;
 import java.util.LinkedList;
 import java.util.List;
 
-import diagnosis.Gender;
-import diagnosis.Patient;
+import POJOS.Gender;
+import POJOS.Patient;
 import ifaces.PatientManager;
 
 public class JDBCPatientManager implements PatientManager {
@@ -15,7 +15,7 @@ public class JDBCPatientManager implements PatientManager {
 
     private JDBCManager patientManager;
     /**
-     * Constructs a new JDBCDoctorManager with the specified JDBCManager.
+     * Constructs a new JDBCPatientManager with the specified JDBCManager.
      *
      * @param jdbcManager the JDBCManager to be used
      */
@@ -24,7 +24,7 @@ public class JDBCPatientManager implements PatientManager {
     }
     /**
      *
-     * Adds a new doctor member to the database.
+     * Adds a new patient to the database.
      *
      * @param patient the Doctor object representing the doctor to be added
      * @throws SQLException if a database access error occurs
@@ -32,11 +32,12 @@ public class JDBCPatientManager implements PatientManager {
     @Override
     public void addPatient(Patient patient) throws SQLException {
         try {
-            String sql = "INSERT INTO Patient(name, age, gender) VALUES (?,?,?)";
+            String sql = "INSERT INTO Patient(name, age, gender, weight) VALUES (?,?,?,?)";
             PreparedStatement prep = patientManager.getConnection().prepareStatement(sql);
             prep.setString(1, patient.getName());
             prep.setInt(2, patient.getAge());
             prep.setString(3, patient.getGender().toString());
+            prep.setInt(4, patient.getWeight());
 
             prep.executeUpdate();
             prep.close();
@@ -65,8 +66,9 @@ public class JDBCPatientManager implements PatientManager {
                 String gender_str = rs.getString("gender");
                 Gender gender = Gender.valueOf(gender_str);
                 int age = rs.getInt("age");
+                int weight = rs.getInt("weight");
 
-                patient = new Patient(patient_id, name, age, gender);
+                patient = new Patient(patient_id, name, age, gender, weight);
             }
             rs.close();
             pr.close();
@@ -92,8 +94,9 @@ public class JDBCPatientManager implements PatientManager {
                 String gender_str = rs.getString("gender");
                 Gender gender = Gender.valueOf(gender_str);
                 int age = rs.getInt("age");
+                int weight = rs.getInt("weight");
 
-                p = new Patient(patient_id, name, age, gender);
+                p = new Patient(patient_id, name, age, gender, weight);
                 patients.add(p);
             }
             rs.close();

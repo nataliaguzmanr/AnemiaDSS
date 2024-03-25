@@ -1,8 +1,8 @@
 package utilities;
 
-import diagnosis.Anemia;
-import diagnosis.Condition;
-import diagnosis.Symptom;
+import POJOS.Anemia;
+import POJOS.Condition;
+import POJOS.Symptom;
 
 
 import java.util.LinkedList;

@@ -1,12 +1,11 @@
 package jdbc;
 
-import diagnosis.Symptom;
+import POJOS.Symptom;
 import ifaces.SymptomManager;
-import java.sql.Date;
+
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.time.LocalDate;
 
 public class JDBCSymptomManager implements SymptomManager {
 
@@ -18,15 +17,15 @@ public class JDBCSymptomManager implements SymptomManager {
 
     //this method works
     @Override
-    public void addSymptom(Symptom s, int patient_id) throws SQLException {
+    public void addSymptom(Symptom symp, int clinicalHistory_id) throws SQLException {
         try {
             String sql = "INSERT INTO Symptom (value, name, patient_id) VALUES (?, ?, ?)";
             PreparedStatement prep = symptomManager.getConnection().prepareStatement(sql);
-            prep.setFloat(1, s.getValue());
-            prep.setString(2, s.getName());
+            prep.setFloat(1, symp.getValue());
+            prep.setString(2, symp.getName());
             //Date date = Date.valueOf(s.getDate());
             //prep.setDate(3, date);
-            prep.setObject(3, patient_id);
+            prep.setObject(3, clinicalHistory_id);
 
 
             prep.executeUpdate();

@@ -119,6 +119,21 @@ public class PatientHandlerMenu {
                 Symptom plaquets = new Symptom(valueF, "Plaquets");
                 jdbcSymptomManager.addSymptom(plaquets,clinicalHistory.getId());
 
+                valueF = getFloatSymptom("Anisocytosis coefficient");
+                Symptom anisoc_coeff = new Symptom(valueF, "Anisocytosis coefficient ");
+                jdbcSymptomManager.addSymptom(anisoc_coeff,clinicalHistory.getId());
+
+                valueF = getFloatSymptom("Reticulocytes");
+                Symptom ret = new Symptom(valueF, "Reticulocytes");
+                jdbcSymptomManager.addSymptom(ret,clinicalHistory.getId());
+
+                valueF = getFloatSymptom("Increased blood volume (YES/NO)");
+
+                ////////
+                Symptom incBloodVol = new Symptom(valueF, "Leukocytes");
+                jdbcSymptomManager.addSymptom(incBloodVol,clinicalHistory.getId());
+
+
 
 
 

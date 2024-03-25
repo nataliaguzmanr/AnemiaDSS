@@ -60,7 +60,7 @@ public class JPAUserManager implements UserManager {
             MessageDigest md = MessageDigest.getInstance("MD5");
             md.update(password.getBytes());
             byte[] hash = md.digest();
-            Query q = em.createNativeQuery("SELECT * FROM User WHERE id = ? AND password = ?", User.class);
+            Query q = em.createNativeQuery("SELECT * FROM User WHERE email = ? AND password = ?", User.class);
             q.setParameter(1, id);
             q.setParameter(2, hash);
             if (!q.getResultList().isEmpty()) {

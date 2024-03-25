@@ -1,5 +1,5 @@
 
-package diagnosis;
+package POJOS;
 
 unit PatientUnit;
 import diagnosis.*;

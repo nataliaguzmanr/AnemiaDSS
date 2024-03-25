@@ -37,7 +37,7 @@ public class JDBCPatientManager implements PatientManager {
             prep.setString(1, patient.getName());
             prep.setInt(2, patient.getAge());
             prep.setString(3, patient.getGender().toString());
-            prep.setInt(4, patient.getWeight());
+            prep.setFloat(4, patient.getWeight());
 
             prep.executeUpdate();
             prep.close();
@@ -66,7 +66,7 @@ public class JDBCPatientManager implements PatientManager {
                 String gender_str = rs.getString("gender");
                 Gender gender = Gender.valueOf(gender_str);
                 int age = rs.getInt("age");
-                int weight = rs.getInt("weight");
+                float weight = rs.getFloat("weight");
 
                 patient = new Patient(patient_id, name, age, gender, weight);
             }

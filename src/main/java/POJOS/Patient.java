@@ -16,12 +16,12 @@ public class Patient implements Serializable {
     private String name;
     private Integer age;
     private Gender gender;
-    private Integer weight;
+    private Float weight;
     private List<MedicalStaff> medicalStaff;
     private List<Symptom> symptomsList;
     private List<Anemia> anemiasList;
 
-    public Patient(Integer id, String name, Integer age, Gender gender, Integer weight ) {
+    public Patient(Integer id, String name, Integer age, Gender gender, Float weight ) {
         this.id = id;
         this.name = name;
         this.age = age;
@@ -70,11 +70,11 @@ public class Patient implements Serializable {
         this.gender = gender;
     }
 
-    public Integer getWeight() {
+        public Float getWeight() {
         return weight;
     }
 
-    public void setWeight(Integer weight) {
+    public void setWeight(Float weight) {
         this.weight = weight;
     }
 

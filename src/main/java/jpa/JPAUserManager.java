@@ -3,7 +3,6 @@ package jpa;
 import POJOS.User;
 import ifaces.UserManager;
 
-import javax.management.Query;
 import javax.persistence.*;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
@@ -77,7 +76,7 @@ public class JPAUserManager implements UserManager {
     @Override
     public boolean userNameTaken(String user) {
         Query q = em.createNativeQuery("SELECT * FROM User WHERE user = ?", User.class);
-        q.setParameter(1, username);
+        q.setParameter(1, user);
         List<User> userList = (List) q.getResultList();
         if(userList.isEmpty()) {
             return false;

@@ -79,7 +79,7 @@ public class JDBCManager {
                     + "	name TEXT NOT NULL,"
                     + "	gender TEXT NOT NULL,"
                     + "	age	INTEGER,"
-                    + " weight	INTEGER NOT NULL,"
+                    + " weight	FLOAT NOT NULL,"
                     + " medicalStaff_id	INTEGER REFERENCES MedicalStaff(medicalStaff_id),"
                     + " symptoms_id INTEGER REFERENCES Symptom(symptom_id),"
                     + " anemia_id INTEGER REFERENCES Anemia(anemiaTable_id)"

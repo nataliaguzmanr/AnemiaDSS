@@ -1,5 +1,6 @@
 package POJOS;
 
+import java.io.Serializable;
 import java.util.Arrays;
 import java.util.Objects;
 
@@ -7,7 +8,7 @@ import javax.persistence.*;
 
 @Entity
 @Table(name = "User")
-public class User {
+public class User implements Serializable {
 
     private static final long serialVersionUID = 2078397574496562875L;
 

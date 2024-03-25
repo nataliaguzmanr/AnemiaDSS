@@ -49,13 +49,12 @@ public class InputException {
 
 
     public static Float getFloat(String str) {
-        float f = 0;
+        Float f = null;
         while (true) {
             try {
                 System.out.println(str);
                 String read  = bufferReader.readLine();
                 if (read.equalsIgnoreCase( "\n")){
-                    f = Float.parseFloat(read);
                     return f;
                 }else{
                     f = Float.parseFloat(read);

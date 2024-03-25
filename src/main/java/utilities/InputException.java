@@ -70,5 +70,25 @@ public class InputException {
         }
     }
 
+    public static Float getFloatSymptom(String str) {
+        Float f = null;
+        while (true) {
+            try {
+                System.out.println(str);
+                String read  = bufferReader.readLine();
+                if (read.equalsIgnoreCase( "x")){
+                    return f;
+                }else{
+                    f = Float.parseFloat(read);
+                    return f;
+                }
+
+            }  catch (IOException ex) {
+                System.out.println(ex.getCause());
+            }
+
+        }
+    }
+
 
 }

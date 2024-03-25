@@ -17,6 +17,7 @@ import java.sql.SQLException;
 import java.time.LocalDate;
 
 import static utilities.InputException.getFloat;
+import static utilities.InputException.getFloatSymptom;
 
 public class PatientHandlerMenu {
 
@@ -102,15 +103,23 @@ public class PatientHandlerMenu {
                 System.out.println("------ Press intro to skip the field");
 
 
-                Float valueF = getFloat("Hemoglobin:");
+                Float valueF = getFloatSymptom("Hemoglobin:");
                 Symptom hb = new Symptom(valueF, "Hb");
-                jdbcSymptomManager.addSymptom(hb, );
+                jdbcSymptomManager.addSymptom(hb,clinicalHistory.getId());
 
-                valueF = getFloat("Erythropoietin");
+                valueF = getFloatSymptom("Erythropoietin");
                 Symptom epo = new Symptom(valueF, "EPO");
+                jdbcSymptomManager.addSymptom(epo,clinicalHistory.getId());
 
-                valueF = getFloat("Erythropoietin");
-                Symptom epo = new Symptom(valueF, "EPO");
+                valueF = getFloatSymptom("Hematocrit/PVM");
+                Symptom pvm = new Symptom(valueF, "PVM");
+                jdbcSymptomManager.addSymptom(pvm,clinicalHistory.getId());
+
+                valueF = getFloatSymptom("Plaquets");
+                Symptom plaquets = new Symptom(valueF, "Plaquets");
+                jdbcSymptomManager.addSymptom(plaquets,clinicalHistory.getId());
+
+
 
 
 

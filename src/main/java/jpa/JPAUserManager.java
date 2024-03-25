@@ -4,6 +4,7 @@ import POJOS.User;
 import ifaces.UserManager;
 
 import javax.management.Query;
+import javax.persistence.*;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.List;

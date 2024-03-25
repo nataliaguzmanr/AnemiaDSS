@@ -4,6 +4,8 @@ import utilities.*;
 
 import java.util.List;
 
+import static utilities.InputException.getFloat;
+
 public class Main {
 //.
     public static void main(String[] args) {
@@ -25,6 +27,8 @@ public class Main {
         //esto es solo un comentario
 
         List<Float> testWeights = ReadExcel.readWeights(AnemiaType.ANEMIC_SYNDROME);
+
+        Float floatExceotion = getFloat("Insert value");
 
 
         //-----------------------------------------------------------------------------------------

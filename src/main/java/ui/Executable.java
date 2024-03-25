@@ -10,13 +10,20 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.security.MessageDigest;
 
+import static ui.PatientHandlerMenu.patientHandlerMenu;
+import static utilities.InputException.getInt;
+import static utilities.InputException.getString;
+
 public class Executable{
     private static JDBCManager jdbcManager = new JDBCManager();
     private static BufferedReader bufferedReadereader = new BufferedReader(new InputStreamReader(System.in));
     private static JPAUserManager jpaUserManager = new JPAUserManager();
-    private EntityManager em;
     public static void main(String[] args) throws Exception{
 
+        welcomeMenu();
+    }
+
+    public static void welcomeMenu(){
         System.out.println("Choose an option:");
         System.out.println("1. Register");
         System.out.println("2. Login");
@@ -31,8 +38,8 @@ public class Executable{
 
         switch (choice) {
             case 1:
-               register();
-               break;
+                register();
+                break;
             case 2:
                 login();
                 break;
@@ -42,21 +49,19 @@ public class Executable{
                 jpaUserManager.disconnect();
                 System.exit(0);
                 break;
-                default:
-                    break;
+            default:
+                break;
         }
     }
 
-
     public static void register(){
         try {
-            System.out.println("Please, write your email address:");
-            String id_str = bufferedReadereader.readLine();
-            int id = Integer.parseInt(id_str);
-            System.out.println("Please write your password:");
-            String password = bufferedReadereader.readLine();
 
-            boolean userRepeated = jpaUserManager.userNameTaken(id);
+            String userName = getString("Please, write your USER NAME:");
+            String password = getString("Please write your password:");
+
+            boolean userRepeated = jpaUserManager.userNameTaken(userName);
+
             if(userRepeated == true) {
                 System.out.println("ERROR, exiting user");
             }else {
@@ -64,7 +69,7 @@ public class Executable{
                 MessageDigest md = MessageDigest.getInstance("MD5");
                 md.update(password.getBytes());
                 byte[] hash = md.digest();
-                User user = new User(id_str, hash);
+                User user = new User(userName, hash);
                 jpaUserManager.newUser(user);
             }
         }catch(Exception e) {
@@ -72,19 +77,16 @@ public class Executable{
         }
     }
 
-    public static void login() throws Exception {
+    public static void login() {
         try{
-            System.out.println("Please, write your id:");
-            String id_str = bufferedReadereader.readLine();
-            int id = Integer.parseInt(id_str);
-            // Ask the user for a password
-            System.out.println("Please write your password:");
-            String password = bufferedReadereader.readLine();
-            User user = jpaUserManager.checkPassword(id, password);
+            String userName = getString("Please, write your USER NAME:");
+            String password = getString("Please, write your password:");
+            User user = jpaUserManager.checkPassword(userName, password);
             if (user == null) {
                 System.out.println("Wrong email or password");
+                welcomeMenu();
             }else{
-                patientHandlerManu();
+                patientHandlerMenu();
             }
 
         } catch(Exception e) {

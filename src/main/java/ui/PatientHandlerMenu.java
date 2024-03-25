@@ -1,20 +1,31 @@
 package ui;
 
+import POJOS.ClinicalHistory;
 import POJOS.Gender;
 import POJOS.Patient;
+import POJOS.Symptom;
+import jdbc.JDBCClinicalHistoryManager;
 import jdbc.JDBCManager;
 import jdbc.JDBCPatientManager;
+import jdbc.JDBCSymptomManager;
 import jpa.JPAUserManager;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.sql.SQLException;
+import java.time.LocalDate;
+
+import static utilities.InputException.getFloat;
 
 public class PatientHandlerMenu {
 
     private static JDBCManager jdbcManager = new JDBCManager();
     private static JDBCPatientManager jdbcPatientManager = new JDBCPatientManager(jdbcManager);
+    private static JDBCSymptomManager jdbcSymptomManager = new JDBCSymptomManager(jdbcManager);
+    private static JDBCClinicalHistoryManager jdbcClinicalHistoryManager =
+            new JDBCClinicalHistoryManager(jdbcManager);
+
 
     private static BufferedReader bufferedReadereader = new BufferedReader(new InputStreamReader(System.in));
     private static JPAUserManager jpaUserManager = new JPAUserManager();
@@ -84,7 +95,28 @@ public class PatientHandlerMenu {
 
             }else{
 
+                ClinicalHistory clinicalHistory = new ClinicalHistory(LocalDate.now());
+                jdbcClinicalHistoryManager.addClinicalHistory(clinicalHistory, patient.getId());
+
                 System.out.println("\nIntroduce patient symptoms: ");
+                System.out.println("------ Press intro to skip the field");
+
+
+                Float valueF = getFloat("Hemoglobin:");
+                Symptom hb = new Symptom(valueF, "Hb");
+                jdbcSymptomManager.addSymptom(hb, );
+
+                valueF = getFloat("Erythropoietin");
+                Symptom epo = new Symptom(valueF, "EPO");
+
+                valueF = getFloat("Erythropoietin");
+                Symptom epo = new Symptom(valueF, "EPO");
+
+
+
+
+
+
 
 
 

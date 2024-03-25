@@ -94,7 +94,7 @@ public class JDBCPatientManager implements PatientManager {
                 String gender_str = rs.getString("gender");
                 Gender gender = Gender.valueOf(gender_str);
                 int age = rs.getInt("age");
-                int weight = rs.getInt("weight");
+                Float weight = rs.getFloat("weight");
 
                 p = new Patient(patient_id, name, age, gender, weight);
                 patients.add(p);

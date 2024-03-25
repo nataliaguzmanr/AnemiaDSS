@@ -74,7 +74,7 @@ public class JPAUserManager implements UserManager {
     }
 
     @Override
-    public boolean userNameTaken(Integer id) {
+    public boolean userNameTaken(String username) {
         Query q = em.createNativeQuery("SELECT * FROM users WHERE email = ?", User.class);
         q.setParameter(1, username);
         List<User> userList= (List) q.getResultList();

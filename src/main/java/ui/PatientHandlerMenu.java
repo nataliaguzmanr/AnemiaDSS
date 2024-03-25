@@ -120,18 +120,36 @@ public class PatientHandlerMenu {
                 jdbcSymptomManager.addSymptom(plaquets,clinicalHistory.getId());
 
                 valueF = getFloatSymptom("Anisocytosis coefficient");
-                Symptom anisoc_coeff = new Symptom(valueF, "Anisocytosis coefficient ");
+                Symptom anisoc_coeff = new Symptom(valueF, "Anisocytosis coefficient");
                 jdbcSymptomManager.addSymptom(anisoc_coeff,clinicalHistory.getId());
 
                 valueF = getFloatSymptom("Reticulocytes");
                 Symptom ret = new Symptom(valueF, "Reticulocytes");
                 jdbcSymptomManager.addSymptom(ret,clinicalHistory.getId());
 
-                valueF = getFloatSymptom("Increased blood volume (YES/NO)");
 
-                ////////
-                Symptom incBloodVol = new Symptom(valueF, "Leukocytes");
-                jdbcSymptomManager.addSymptom(incBloodVol,clinicalHistory.getId());
+                float normalBloodVol = patient.getWeight()*0.075F;
+                valueF = null;
+                if (normalBloodVol>6){
+                    Symptom incBloodVol = new Symptom(1.0F, "Increased blood volume");
+                    jdbcSymptomManager.addSymptom(incBloodVol,clinicalHistory.getId());
+                    Symptom decBloodVol = new Symptom(valueF, "Decreased blood volume");
+                    jdbcSymptomManager.addSymptom(decBloodVol,clinicalHistory.getId());
+                } else if (normalBloodVol<4) {
+                    Symptom incBloodVol = new Symptom(valueF, "Increased blood volume");
+                    jdbcSymptomManager.addSymptom(incBloodVol,clinicalHistory.getId());
+                    Symptom decBloodVol = new Symptom(1.0F, "Decreased blood volume");
+                    jdbcSymptomManager.addSymptom(decBloodVol,clinicalHistory.getId());
+                }
+
+                //valueF = getFloatSymptom("Reticulocytes");
+                //Symptom ret = new Symptom(valueF, "Reticulocytes");
+                //jdbcSymptomManager.addSymptom(ret,clinicalHistory.getId());
+
+
+                //if(bloodVol)
+                //Symptom incBloodVol = new Symptom(valueF, "Leukocytes");
+                //jdbcSymptomManager.addSymptom(incBloodVol,clinicalHistory.getId());
 
 
 

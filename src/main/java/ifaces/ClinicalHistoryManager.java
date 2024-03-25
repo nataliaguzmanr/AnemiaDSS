@@ -10,9 +10,11 @@ public interface ClinicalHistoryManager {
      * Adds a new patient to the database.
      *
      * @param clinicalHistory the Doctor object representing the doctor to be added
+     * @param patient_id the id of the patient which belongs the clinical history
      * @throws SQLException if a database access error occurs
      */
-    public void addClinicalHistory(ClinicalHistory clinicalHistory, int patient_Id);
+    public void addClinicalHistory(ClinicalHistory clinicalHistory, int patient_id) throws SQLException;
+
 
 
     /**

@@ -1,11 +1,10 @@
 package jdbcTests;
 
-import diagnosis.*;
+import POJOS.*;
 import jdbc.*;
 import org.junit.Test;
 
 import java.sql.SQLException;
-import java.time.LocalDate;
 import java.util.List;
 
 public class DatabaseTest {

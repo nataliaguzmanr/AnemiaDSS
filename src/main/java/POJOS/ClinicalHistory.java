@@ -1,4 +1,4 @@
-package diagnosis;
+package POJOS;
 
 import java.time.LocalDate;
 import java.util.List;
@@ -8,13 +8,18 @@ public class ClinicalHistory {
 
     private Integer id;
     private LocalDate symptomsDate;
-    private List<Symptom> symtompsHistory;
+    private List<Patient> patientsHistory;
 
 
-    public ClinicalHistory(Integer id, LocalDate symptomsDate, List<Symptom> symtompsHistory) {
+    public ClinicalHistory(Integer id, LocalDate symptomsDate, List<Patient> symtompsHistory) {
         this.id = id;
         this.symptomsDate = symptomsDate;
-        this.symtompsHistory = symtompsHistory;
+        this.patientsHistory = symtompsHistory;
+    }
+
+    public ClinicalHistory(LocalDate symptomsDate) {
+        this.symptomsDate = symptomsDate;
+
     }
 
     public Integer getId() {
@@ -33,12 +38,12 @@ public class ClinicalHistory {
         this.symptomsDate = symptomsDate;
     }
 
-    public List<Symptom> getSymtompsHistory() {
-        return symtompsHistory;
+    public List<Patient> getPatientsHistory() {
+        return patientsHistory;
     }
 
-    public void setSymtompsHistory(List<Symptom> symtompsHistory) {
-        this.symtompsHistory = symtompsHistory;
+    public void setPatientsHistory(List<Patient> patientsHistory) {
+        this.patientsHistory = patientsHistory;
     }
 
     @Override
@@ -46,12 +51,12 @@ public class ClinicalHistory {
         if (this == o) return true;
         if (!(o instanceof ClinicalHistory)) return false;
         ClinicalHistory that = (ClinicalHistory) o;
-        return Objects.equals(getId(), that.getId()) && Objects.equals(getSymptomsDate(), that.getSymptomsDate()) && Objects.equals(getSymtompsHistory(), that.getSymtompsHistory());
+        return Objects.equals(getId(), that.getId()) && Objects.equals(getSymptomsDate(), that.getSymptomsDate()) && Objects.equals(getPatientsHistory(), that.getPatientsHistory());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(getId(), getSymptomsDate(), getSymtompsHistory());
+        return Objects.hash(getId(), getSymptomsDate(), getPatientsHistory());
     }
 
     @Override
@@ -59,7 +64,7 @@ public class ClinicalHistory {
         return "\nClinicalHistory{" +
                 "id=" + id +
                 ", symptomsDate=" + symptomsDate +
-                ", symtompsHistory=" + symtompsHistory +
+                ", patientsHistory=" + patientsHistory +
                 '}';
     }
 }

@@ -1,4 +1,4 @@
-package diagnosis;
+package POJOS;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -16,20 +16,22 @@ public class Patient implements Serializable {
     private String name;
     private Integer age;
     private Gender gender;
+    private Integer weight;
     private List<MedicalStaff> medicalStaff;
     private List<Symptom> symptomsList;
     private List<Anemia> anemiasList;
 
-    public Patient(Integer id, String name, Integer age, Gender gender) {
+    public Patient(Integer id, String name, Integer age, Gender gender, Integer weight ) {
         this.id = id;
         this.name = name;
         this.age = age;
         this.gender = gender;
+        this.weight = weight;
         this.symptomsList = new ArrayList<>();
         this.anemiasList = new ArrayList<>();
     }
 
-    public Patient(String name, Integer age, Gender gender) {
+    public Patient(String name, Integer age, Gender gender, Integer weight) {
         this.name = name;
         this.age = age;
         this.gender = gender;
@@ -68,6 +70,13 @@ public class Patient implements Serializable {
         this.gender = gender;
     }
 
+    public Integer getWeight() {
+        return weight;
+    }
+
+    public void setWeight(Integer weight) {
+        this.weight = weight;
+    }
 
     @Override
     public boolean equals(Object o) {

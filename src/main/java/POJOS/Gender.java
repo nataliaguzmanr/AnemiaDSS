@@ -1,4 +1,4 @@
-package diagnosis;
+package POJOS;
 
 public enum Gender {
     MALE, FEMALE;

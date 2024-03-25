@@ -1,7 +1,5 @@
-import diagnosis.AnemiaType;
-import diagnosis.Gender;
-import diagnosis.Patient;
-import diagnosis.Symptom;
+import POJOS.AnemiaType;
+import POJOS.Gender;
 import utilities.*;
 
 import java.util.List;

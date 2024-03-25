@@ -90,7 +90,7 @@ public class JDBCManager {
             sql = "CREATE TABLE ClinicalHistory ("
                     + " clinicalHistory_id INTEGER PRIMARY KEY AUTOINCREMENT,"
                     + " symptoms_date DATE NOT NULL,"
-                    + " symptoms_id INTEGER REFERENCES Symptom(symptom_id)"
+                    + " patient_id INTEGER REFERENCES Patient(patient_id)"
                     + ");";
             stmt.executeUpdate(sql);
 
@@ -108,7 +108,7 @@ public class JDBCManager {
                     + " symptom_id	INTEGER PRIMARY KEY AUTOINCREMENT,"
                     + " value FLOAT NOT NULL,"
                     + " name TEXT NOT NULL,"
-                    + " patient_id INTEGER REFERENCES Patient(patient_id) "
+                    + " clinicalHistory_id INTEGER REFERENCES ClinicalHistory(clinicalHistory_id) "
                     +");";
             stmt.executeUpdate(sql);
 

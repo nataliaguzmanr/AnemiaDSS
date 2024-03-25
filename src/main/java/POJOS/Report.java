@@ -1,4 +1,4 @@
-package diagnosis;
+package POJOS;
 
 import java.io.Serializable;
 import java.util.Objects;

@@ -23,7 +23,7 @@ public class JPAUserManager implements UserManager {
      */
     @Override
     public void connect() {
-        em = Persistence.createEntityManagerFactory("ResidencialArea-provider").createEntityManager();
+        em = Persistence.createEntityManagerFactory("MedicalStaff_user").createEntityManager();
         em.getTransaction().begin();
         em.createNativeQuery("PRAGMA foreign_keys=ON").executeUpdate();
         em.getTransaction().commit();
@@ -50,18 +50,18 @@ public class JPAUserManager implements UserManager {
     /**
      * Deletes a user from the database based on the email and password.
      *
-     * @param id the email of the user to be deleted
+     * @param user the email of the user to be deleted
      * @param password the password of the user to be deleted
      */
     @Override
-    public void deleteUser(Integer id, String password) {
+    public void deleteUser(String user, String password) {
         try {
             System.out.println("The user");
             MessageDigest md = MessageDigest.getInstance("MD5");
             md.update(password.getBytes());
             byte[] hash = md.digest();
-            Query q = em.createNativeQuery("SELECT * FROM User WHERE email = ? AND password = ?", User.class);
-            q.setParameter(1, id);
+            Query q = em.createNativeQuery("SELECT * FROM User WHERE user = ? AND password = ?", User.class);
+            q.setParameter(1, user);
             q.setParameter(2, hash);
             if (!q.getResultList().isEmpty()) {
                 User u = (User) q.getSingleResult();
@@ -75,10 +75,10 @@ public class JPAUserManager implements UserManager {
     }
 
     @Override
-    public boolean userNameTaken(String username) {
-        Query q = em.createNativeQuery("SELECT * FROM users WHERE email = ?", User.class);
+    public boolean userNameTaken(String user) {
+        Query q = em.createNativeQuery("SELECT * FROM User WHERE user = ?", User.class);
         q.setParameter(1, username);
-        List<User> userList= (List) q.getResultList();
+        List<User> userList = (List) q.getResultList();
         if(userList.isEmpty()) {
             return false;
         }
@@ -89,15 +89,15 @@ public class JPAUserManager implements UserManager {
     }
 
     @Override
-    public User checkPassword(int id, String password) {
+    public User checkPassword(String user, String password) {
         Query q=null;
 
         try {
             MessageDigest md = MessageDigest.getInstance("MD5");
             md.update(password.getBytes());
             byte[] hash = md.digest();
-            q = em.createNativeQuery("SELECT * FROM users WHERE id = ? AND password = ?", User.class);
-            q.setParameter(1, id);
+            q = em.createNativeQuery("SELECT * FROM User WHERE id = ? AND password = ?", User.class);
+            q.setParameter(1, user);
             q.setParameter(2, hash);
 
             return (User) q.getSingleResult();

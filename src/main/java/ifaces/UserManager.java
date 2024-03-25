@@ -36,10 +36,18 @@ public interface UserManager {
     /**
      * Checks if the user is already being used
      *
-     * @param id the id of the user
+     * @param user the id of the user
      * @returns true or false statement
      */
-    public boolean userNameTaken(Integer id);
+    public boolean userNameTaken(String user);
 
-    public User checkPassword(String email, String password);
+
+    /**
+     * Checks the password of a user.
+     *
+     * @param user the username of the user
+     * @param password the password digest of the user
+     * @return the User object if the password is correct, otherwise null
+     */
+    public User checkPassword(String user, String password);
 }

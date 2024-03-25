@@ -13,9 +13,9 @@ public class User {
 
     @Id
     @GeneratedValue(generator = "User")
-    @TableGenerator(name = "User", table = "sqlite_sequence", pkColumnName = "name", valueColumnName = "seq", pkColumnValue = "User")
+    @TableGenerator(name = "User", table = "sqlite_sequence", pkColumnName = "user", valueColumnName = "seq", pkColumnValue = "User")
     private Integer id;
-    private String username;
+    private String user;
     @Lob
     private byte[] password;
 
@@ -33,7 +33,7 @@ public class User {
     public User(Integer id, String username, byte[] password) {
         super();
         this.id = id;
-        this.username = username;
+        this.user = username;
         this.password = password;
     }
     /**
@@ -44,20 +44,10 @@ public class User {
      */
     public User(String username, byte[] password) {
         super();
-        this.username = username;
+        this.user = username;
         this.password = password;
     }
-    /**
-     * Constructs a User object from the provided string representation.
-     *
-     * @param user_text the string representation of the User object
-     */
-    public User(String user_text) {
-        super();
-        this.id = Integer.parseInt(user_text.substring(user_text.indexOf("id=") + 3, user_text.indexOf(", username")));
-        this.username = user_text.substring(user_text.indexOf("username=") + 9, user_text.indexOf("]"));
 
-    }
     /**
      * Retrieves the ID of the user.
      *
@@ -79,16 +69,16 @@ public class User {
      *
      * @return the username of the user
      */
-    public String getUsername() {
-        return username;
+    public String getUser() {
+        return user;
     }
     /**
      * Sets the username of the user.
      *
      * @param username the username of the user
      */
-    public void setUsername(String username) {
-        this.username = username;
+    public void setUser(String username) {
+        this.user = username;
     }
     /**
      * Retrieves the password of the user.
@@ -131,7 +121,7 @@ public class User {
         final int prime = 31;
         int result = 1;
         result = prime * result + Arrays.hashCode(password);
-        result = prime * result + Objects.hash(username, id);
+        result = prime * result + Objects.hash(user, id);
         return result;
     }
     /**
@@ -147,7 +137,7 @@ public class User {
         if ((obj == null) || (getClass() != obj.getClass()))
             return false;
         User other = (User) obj;
-        return Objects.equals(username, other.username) && Objects.equals(id, other.id)
+        return Objects.equals(user, other.user) && Objects.equals(id, other.id)
                 && Arrays.equals(password, other.password);
     }
     /**
@@ -158,7 +148,7 @@ public class User {
     @Override
     public String toString() {
         return "User{" +
-                "username='" + username + '\'' +
+                "username='" + user + '\'' +
                 ", password=" + Arrays.toString(password) +
                 '}';
     }

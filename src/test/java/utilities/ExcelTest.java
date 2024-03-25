@@ -11,7 +11,7 @@ public class ExcelTest {
 
     @Test
     public void readExcel(){
-        List<Float> testWeights = ReadExcel.readWeights(AnemiaType.ANEMIC_SYNDROME);
+        List<Float> testWeights = ReadExcel.readWeights(AnemiaType.POLYCYTHEMIA);
     }
 
 

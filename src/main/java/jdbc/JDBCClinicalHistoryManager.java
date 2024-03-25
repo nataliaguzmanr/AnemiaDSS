@@ -31,7 +31,7 @@ public class JDBCClinicalHistoryManager implements ClinicalHistoryManager {
      * @throws SQLException if a database access error occurs
      */
     @Override
-    public void addClinicalHistory(ClinicalHistory clinicalHistory, int patient_Id) throws SQLException {
+    public void addClinicalHistory(ClinicalHistory clinicalHistory, int patient_Id) {
         try {
             String sql = "INSERT INTO ClinicalHistory(symptoms_date, patient_id) VALUES (?,?)";
             PreparedStatement prep = clinicalHistoryManager.getConnection().prepareStatement(sql);
@@ -42,11 +42,12 @@ public class JDBCClinicalHistoryManager implements ClinicalHistoryManager {
 
             prep.executeUpdate();
             prep.close();
-        } catch (Exception e) {
+        } catch (SQLException e) {
             e.printStackTrace();
         }
 
     }
+
 
 
     @Override

@@ -100,7 +100,7 @@ public class ConditionSymtomTest {
         weithtsList.add(0F);
         System.out.println("Weights list "+weithtsList.size());
 
-        Anemia a = new Anemia(1, AnemiaType.APLASTIC_ANEMIA, weithtsList, condListTest);
+        Anemia a = new Anemia(1, AnemiaType.APLASIC_ANEMIA, weithtsList, condListTest);
 
         float ap_score = u.getScore(a,bList);
         System.out.println("\nSCORE: "+ap_score);

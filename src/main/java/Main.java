@@ -9,6 +9,7 @@ import static utilities.InputException.getFloat;
 public class Main {
 //.
     public static void main(String[] args) {
+        System.out.println("Esto es el main");
 /*        Patient p1 = new Patient(1, "Paco", 58, Gender.MALE);
         Symptom s1 = new Symptom(1, 9, "Hb", p1);
         p1.addSymptom(s1);

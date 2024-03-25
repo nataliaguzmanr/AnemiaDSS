@@ -12,8 +12,7 @@ public interface ClinicalHistoryManager {
      * @param clinicalHistory the Doctor object representing the doctor to be added
      * @throws SQLException if a database access error occurs
      */
-    public void addClinicalHistory(ClinicalHistory clinicalHistory) throws SQLException;
-
+    public void addClinicalHistory(ClinicalHistory clinicalHistory, int patient_Id);
 
 
     /**

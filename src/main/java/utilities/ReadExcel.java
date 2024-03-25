@@ -23,7 +23,8 @@ public class ReadExcel {
 
         ///utilizar interfaces: devolver List, no LinkedList (para no centrarnos solo en esta implementación)
 
-        String filePath = "src/main/resources/files/Weights.xlsx";
+//        String filePath = "src/main/resources/files/Weights.xlsx";
+        String filePath = "C:\\Users\\maria\\Downloads\\Weights.xlsx";
         System.out.println(filePath);
         File excelFile = new File(filePath);
 
@@ -38,7 +39,7 @@ public class ReadExcel {
             // we get first sheet
             XSSFSheet sheet = workbook.getSheetAt(0);   //Get the HSSFSheet object at the given index
             int totalRows = sheet.getPhysicalNumberOfRows();
-            System.out.println("READING " + (totalRows - 1) + " types of anemia\n");
+//            System.out.println("READING " + (totalRows - 1) + " types of anemia\n");
 
             Iterator<Row> rowIt = sheet.iterator();
             // skip the header
@@ -57,19 +58,21 @@ public class ReadExcel {
 
                 //vamos leyendo cada columna y guardando los valores en una variable para luego crear los metabolitos
                 anemiaTypeRead = cellIterator.next().getStringCellValue();
-                System.out.println(anemiaTypeRead);
+//                System.out.println(anemiaTypeRead);
 
                 String anemiaTypeToString = anemiaType.toString();
-
+//                System.out.println(anemiaTypeToString);
                 if(anemiaTypeToString.equalsIgnoreCase(anemiaTypeRead)){
 
                     while(cellIterator.hasNext()){
                         cellWeight  = cellIterator.next().getNumericCellValue();
                         System.out.println(cellWeight);
+
                         Float cellWeightF = ((float) cellWeight);
                         weightsList.add(cellWeightF);
-                        System.out.println(weightsList);
+
                     }
+                    System.out.println(weightsList.size());
 
                 }
             }

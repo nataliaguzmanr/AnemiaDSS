@@ -38,6 +38,13 @@ public class Patient implements Serializable {
         this.symptomsList = new ArrayList<>();
         this.anemiasList = new ArrayList<>();
     }
+    public Patient(String name, Integer age, Gender gender) {
+        this.name = name;
+        this.age = age;
+        this.gender = gender;
+        this.symptomsList = new ArrayList<>();
+        this.anemiasList = new ArrayList<>();
+    }
     public Patient(Integer id) {
         this.id = id;
     }

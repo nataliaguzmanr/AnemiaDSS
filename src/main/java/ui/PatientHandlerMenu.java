@@ -8,7 +8,7 @@ import jdbc.JDBCClinicalHistoryManager;
 import jdbc.JDBCManager;
 import jdbc.JDBCPatientManager;
 import jdbc.JDBCSymptomManager;
-import jpa.JPAUserManager;
+//import jpa.JPAUserManager;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -29,7 +29,7 @@ public class PatientHandlerMenu {
 
 
     private static BufferedReader bufferedReadereader = new BufferedReader(new InputStreamReader(System.in));
-    private static JPAUserManager jpaUserManager = new JPAUserManager();
+    //private static JPAUserManager jpaUserManager = new JPAUserManager();
 
     public static void patientHandlerMenu(){
 

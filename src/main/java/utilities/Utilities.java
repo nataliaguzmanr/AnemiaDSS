@@ -90,24 +90,23 @@ public class Utilities {
 
         File file = null;
         try {
-            String path = "src/main/resources/Reports";
+            String path = "/src/main/resources/Reports/";
             String fileName = "Date_"+clinHist.getSymptomsDate().toString()+"_patientID_"
                     +patient.getId().toString()+".txt";
 
             file = new File(path, fileName);
-            file.createNewFile();
 
-            FileWriter fw = new FileWriter(file);
-            BufferedWriter bw = new BufferedWriter(fw);
+            FileWriter writer = new FileWriter(fileName);
+            PrintWriter pw = new PrintWriter(writer);
 
-            bw.write(medStaff.getName());
-            bw.write(clinHist.getSymptomsDate().toString());
-            bw.write(patient.toString());
-            bw.write("\n");
-            bw.write("\n");
+            pw.print(medStaff.getName());
+            pw.print(clinHist.getSymptomsDate().toString());
+            pw.print(patient.toString());
+            pw.print("\n");
+            pw.print("\n");
 
             for(int i=0; i<anemiaScores.size(); i++){
-                bw.write(anemiaScores.get(i)+" % " + anemias.get(i).getAnemiaType().toString());
+                pw.print(anemiaScores.get(i)+" % " + anemias.get(i).getAnemiaType().toString());
             }
 
         } catch (IOException ioe) {

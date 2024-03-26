@@ -30,7 +30,7 @@ public class UtilitiesTest {
         anemias.add(new Anemia(AnemiaType.POSTHEMORRHAGIC_ANEMIA));
 
         MedicalStaff ms = new MedicalStaff("Maria Martinez");
-        Patient p = new Patient(4, "Lola Cruz", 34, Gender.MALE, 67.4F);
+        Patient p = new Patient(7, "Lola Cruz", 34, Gender.MALE, 67.4F);
         ClinicalHistory ch = new ClinicalHistory(LocalDate.now());
 
         File testFile = Utilities.getReport(ms, ch, p, scores, anemias);

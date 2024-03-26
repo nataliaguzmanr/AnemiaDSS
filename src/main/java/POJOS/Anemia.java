@@ -9,7 +9,7 @@ public class Anemia implements Serializable {
 
     private static final long serialVersionUID = -9096161678878767301L;
 
-    private final Integer id;
+    private Integer id;
     private AnemiaType anemiaType;
     private List<Float> weights;
     private List<Condition> conditions;

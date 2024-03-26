@@ -1,6 +1,6 @@
 package ifaces;
 
-import POJOS.User;
+import diagnosis.User;
 
 public interface UserManager {
 

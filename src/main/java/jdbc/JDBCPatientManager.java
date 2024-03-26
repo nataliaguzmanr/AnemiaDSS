@@ -6,8 +6,8 @@ import java.sql.SQLException;
 import java.util.LinkedList;
 import java.util.List;
 
-import POJOS.Gender;
-import POJOS.Patient;
+import diagnosis.Gender;
+import diagnosis.Patient;
 import ifaces.PatientManager;
 
 public class JDBCPatientManager implements PatientManager {

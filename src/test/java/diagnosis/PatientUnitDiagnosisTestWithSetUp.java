@@ -1,10 +1,6 @@
-package diagnosisTest;
+package diagnosis;
 
 
-import POJOS.Gender;
-import POJOS.Patient;
-import POJOS.PatientUnit;
-import POJOS.Symptom;
 import org.drools.ruleunits.api.RuleUnitInstance;
 import org.drools.ruleunits.api.RuleUnitProvider;
 import org.junit.Before;
@@ -143,7 +139,7 @@ public class PatientUnitDiagnosisTestWithSetUp {
         //Symptom skin1 = new Symptom(1.0F, "Skin paleness");
         //Symptom plaquets2 = new Symptom(7.2F, "Plaquets");
         //Symptom Leukoc2 = new Symptom(4.3F, "Leukocytes");
-        Symptom rbc3 = new Symptom(4.7F, "RBC");
+        Symptom rbc3 = new Symptom(6.2F, "RBC");
         Symptom ferritin3 = new Symptom(350, "Ferritin");
         Symptom hb3 = new Symptom(18F, "Hb");
         Symptom pvm3 = new Symptom(60F, "PVM");
@@ -255,15 +251,16 @@ public class PatientUnitDiagnosisTestWithSetUp {
     }
 
     @Test
-    public void testIronDefAnemia_1Expected() {
-        System.out.println("\n---test Iron deficiency Anemia 2 Expected");
+    public void testIronDefAnemia_3Expected() {
+        System.out.println("\n---test Iron deficiency Anemia 3 Expected");
         try {
             LOG.info("Fire rules");
             instance.fire();
 
             Set<Patient> patientsWithIronDeficiencyAnemia = patientUnit.getPatientsWithIronDeficiencyAnemia();
-            assertEquals(2, patientUnit.getPatientsWithIronDeficiencyAnemia().size());
+            assertEquals(3, patientUnit.getPatientsWithIronDeficiencyAnemia().size());
             assertTrue(patientsWithIronDeficiencyAnemia.contains(p1));
+            assertTrue(patientsWithIronDeficiencyAnemia.contains(p2));
             assertTrue(patientsWithIronDeficiencyAnemia.contains(p3));
 
         } finally {

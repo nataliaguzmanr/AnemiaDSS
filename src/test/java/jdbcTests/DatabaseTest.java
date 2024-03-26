@@ -1,6 +1,6 @@
 package jdbcTests;
 
-import POJOS.*;
+import diagnosis.*;
 import jdbc.*;
 import org.junit.Test;
 

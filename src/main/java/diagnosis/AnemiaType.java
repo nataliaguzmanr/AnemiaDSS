@@ -1,4 +1,4 @@
-package POJOS;
+package diagnosis;
 
 public enum AnemiaType {
     ANEMIC_SYNDROME,

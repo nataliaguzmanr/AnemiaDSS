@@ -1,12 +1,12 @@
 /*
 
-package POJOS;
+package diagnosis;
 
 unit PatientUnit;
 
 import diagnosis.*
-import POJOS.AnemiaType
-import POJOS.Anemia;
+import diagnosis.AnemiaType
+import diagnosis.Anemia;
 
 
 rule "Return genderMALE"

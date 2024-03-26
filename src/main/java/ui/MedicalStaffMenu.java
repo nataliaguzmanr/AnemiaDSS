@@ -1,10 +1,10 @@
 package ui;
 
 
-import POJOS.Anemia;
-import POJOS.AnemiaType;
-import POJOS.Condition;
-import POJOS.User;
+import diagnosis.Anemia;
+import diagnosis.AnemiaType;
+import diagnosis.Condition;
+import diagnosis.User;
 import jdbc.JDBCManager;
 import jpa.JPAUserManager;
 import utilities.ReadExcel;

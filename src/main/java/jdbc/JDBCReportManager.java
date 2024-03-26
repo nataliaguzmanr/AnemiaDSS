@@ -1,7 +1,7 @@
 package jdbc;
 
-import POJOS.Patient;
-import POJOS.Report;
+import diagnosis.Patient;
+import diagnosis.Report;
 import ifaces.ReportManager;
 
 import java.sql.PreparedStatement;

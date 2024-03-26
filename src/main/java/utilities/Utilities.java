@@ -1,6 +1,6 @@
 package utilities;
 
-import POJOS.*;
+import diagnosis.*;
 
 
 import java.io.*;

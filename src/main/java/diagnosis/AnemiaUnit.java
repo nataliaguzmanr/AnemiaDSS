@@ -1,4 +1,4 @@
-package POJOS;
+package diagnosis;
 
 import org.drools.ruleunits.api.DataStore;
 

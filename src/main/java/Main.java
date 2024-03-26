@@ -1,10 +1,5 @@
-import POJOS.AnemiaType;
-import POJOS.Gender;
-import utilities.*;
+import diagnosis.Gender;
 
-import java.util.List;
-
-import static utilities.InputException.getFloat;
 import static utilities.InputException.getFloatSympTRUE;
 
 public class Main {

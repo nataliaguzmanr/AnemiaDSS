@@ -1,6 +1,6 @@
 package jpa;
 
-import POJOS.User;
+import diagnosis.User;
 import ifaces.UserManager;
 
 import javax.persistence.*;

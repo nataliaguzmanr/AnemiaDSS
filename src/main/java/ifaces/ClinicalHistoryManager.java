@@ -1,6 +1,6 @@
 package ifaces;
 
-import POJOS.ClinicalHistory;
+import diagnosis.ClinicalHistory;
 
 import java.sql.SQLException;
 

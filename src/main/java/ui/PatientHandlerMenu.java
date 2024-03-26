@@ -1,11 +1,10 @@
 package ui;
 
-import POJOS.*;
+import diagnosis.*;
 import jdbc.JDBCClinicalHistoryManager;
 import jdbc.JDBCManager;
 import jdbc.JDBCPatientManager;
 import jdbc.JDBCSymptomManager;
-import jpa.JPAUserManager;
 import org.drools.ruleunits.api.RuleUnitInstance;
 import org.drools.ruleunits.api.RuleUnitProvider;
 import org.slf4j.Logger;
@@ -22,7 +21,6 @@ import java.util.LinkedList;
 import java.util.List;
 
 import static utilities.InputException.*;
-import static utilities.Utilities.*;
 
 
 public class PatientHandlerMenu {

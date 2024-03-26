@@ -1,7 +1,6 @@
 package jdbc;
 
-import POJOS.ClinicalHistory;
-import POJOS.Symptom;
+import diagnosis.ClinicalHistory;
 import ifaces.ClinicalHistoryManager;
 
 import java.sql.Date;

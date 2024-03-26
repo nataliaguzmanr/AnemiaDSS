@@ -11,8 +11,8 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-import POJOS.AnemiaType;
-import POJOS.Condition;
+import diagnosis.AnemiaType;
+import diagnosis.Condition;
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.xssf.usermodel.XSSFSheet;

@@ -1,6 +1,6 @@
 package jdbc;
 
-import POJOS.Symptom;
+import diagnosis.Symptom;
 import ifaces.SymptomManager;
 
 import java.sql.PreparedStatement;

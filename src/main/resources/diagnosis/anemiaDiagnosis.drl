@@ -1,5 +1,5 @@
 
-package POJOS;
+package diagnosis;
 
 unit PatientUnit;
 import diagnosis.*;
@@ -8,7 +8,8 @@ import diagnosis.*;
 rule "1.1. FinalMale_AnemicSyndrome_Hb&Tachycardia"
 when
     $patient : /patients[(detectSymptomValue("Hb")<8) &&
-     (detectSymptomValue("RBC")<4.1) && (getGender().equals(gender.MALE))]
+     (detectSymptomValue("Tachycardia")==1) &&
+     (getGender().equals(gender.MALE))]
 then
     Anemia a = new Anemia (AnemiaType.ANEMIC_SYNDROME_MALE);
     $patient.addAnemia(a);
@@ -19,7 +20,8 @@ end
 rule "1.2. FinalFemale_AnemicSyndrome_Hb&Tachycardia"
 when
     $patient : /patients[(detectSymptomValue("Hb")<8) &&
-     (detectSymptomValue("RBC")<4.1) && (getGender().equals(gender.FEMALE))]
+     (detectSymptomValue("Tachycardia")==1)
+     && (getGender().equals(gender.FEMALE))]
 then
     Anemia a = new Anemia (AnemiaType.ANEMIC_SYNDROME_FEMALE);
     $patient.addAnemia(a);
@@ -81,28 +83,28 @@ end
 
 
 
-rule "4.1. FinalMale_HemolyticAnemia_Fe&Haptoglobine"
+rule "4.1. FinalMale_HemolyticAnemia_Fe&Haptoglobin"
 when
     $patient : /patients[(detectSymptomValue("Fe")<170)
-    && (detectSymptomValue("Haptoglobine")>41)
+    && (detectSymptomValue("Haptoglobin")>41)
     && (getGender().equals(gender.MALE))]
 then
     Anemia a = new Anemia (AnemiaType.HEMOLYTIC_ANEMIA_MALE);
     $patient.addAnemia(a);
     patientsWithHemolyticAnemia.add($patient);
-    System.out.println( $patient + " -> 4.1. FinalMale_HemolyticAnemia_Fe&Haptoglobine");
+    System.out.println( $patient + " -> 4.1. FinalMale_HemolyticAnemia_Fe&Haptoglobin");
 end
 
-rule "4.2. FinalFemale_HemolyticAnemia_Fe&Haptoglobine"
+rule "4.2. FinalFemale_HemolyticAnemia_Fe&Haptoglobin"
 when
     $patient : /patients[(detectSymptomValue("Fe")<170)
-    && (detectSymptomValue("Haptoglobine")>41)
+    && (detectSymptomValue("Haptoglobin")>41)
     && (getGender().equals(gender.FEMALE))]
 then
     Anemia a = new Anemia (AnemiaType.HEMOLYTIC_ANEMIA_FEMALE);
     $patient.addAnemia(a);
     patientsWithHemolyticAnemia.add($patient);
-    System.out.println( $patient + " -> 4.2. FinalFemale_HemolyticAnemia_Fe&Haptoglobine");
+    System.out.println( $patient + " -> 4.2. FinalFemale_HemolyticAnemia_Fe&Haptoglobin");
 end
 
 

@@ -1,8 +1,7 @@
 package utilities;
 
 
-import POJOS.Condition;
-import org.apache.poi.hssf.record.cont.ContinuableRecord;
+import diagnosis.Condition;
 
 import java.util.ArrayList;
 import java.util.List;

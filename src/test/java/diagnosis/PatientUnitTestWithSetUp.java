@@ -1,11 +1,10 @@
-/*
-package diagnosisTest;
+package diagnosis;
 
 
-import POJOS.Gender;
-import POJOS.Patient;
-import POJOS.PatientUnit;
-import POJOS.Symptom;
+import diagnosis.Gender;
+import diagnosis.Patient;
+import diagnosis.PatientUnit;
+import diagnosis.Symptom;
 import org.drools.ruleunits.api.RuleUnitInstance;
 import org.drools.ruleunits.api.RuleUnitProvider;
 import org.junit.Before;
@@ -46,13 +45,12 @@ public class PatientUnitTestWithSetUp {
 
 
 
-    */
 /**
      * This method will be run before EACH single test. If we want to have common code for all tests we can use @BeforeClass
      * In this case, the creations of the facts (operations) and the insertion in each instance will be common to each test, but they should be
      * run before each test, otherwise the instance will have already trigger/fire its rules so they will not be run apart from the first test if
-     * the facts do not change (refractoriness).
-     *//*
+     * the facts do not change (refractoriness).*/
+
 
     @Before
     public void setUp() {
@@ -995,4 +993,3 @@ public class PatientUnitTestWithSetUp {
 
 
 }
-*/

@@ -27,14 +27,14 @@ public class Anemia implements Serializable {
         this.conditions = conditions;
     }
 
-
     public Anemia(Integer id, AnemiaType anemiaType) {
         this.id = id;
         this.anemiaType = anemiaType;
     }
 
-    //getScore()
-
+    public Anemia(AnemiaType anemiaType) {
+        this.anemiaType = anemiaType;
+    }
 
     public Integer getId() {
         return id;

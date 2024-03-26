@@ -90,5 +90,26 @@ public class InputException {
         }
     }
 
+    public static Float getFloatSympTRUE(String str) {
+        Float f = null;
+        while (true) {
+            try {
+                System.out.println(str);
+                String read  = bufferReader.readLine();
+
+                if (read.equalsIgnoreCase( "0")){
+                    return f;
+                }else if (read.equalsIgnoreCase( "1")){
+                    f = Float.parseFloat(read);
+                    return f;
+                }
+
+            }  catch (IOException ex) {
+                System.out.println(ex.getCause());
+            }
+
+        }
+    }
+
 
 }

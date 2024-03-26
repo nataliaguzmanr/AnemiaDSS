@@ -5,6 +5,7 @@ import utilities.*;
 import java.util.List;
 
 import static utilities.InputException.getFloat;
+import static utilities.InputException.getFloatSympTRUE;
 
 public class Main {
 //.
@@ -27,9 +28,10 @@ public class Main {
         //JDBCManager jdbcMan = new JDBCManager();
         //esto es solo un comentario
 
-        List<Float> testWeights = ReadExcel.readWeights(AnemiaType.ANEMIC_SYNDROME);
+        //List<Float> testWeights = ReadExcel.readWeights(AnemiaType.ANEMIC_SYNDROME);
 
-        Float floatExceotion = getFloat("Insert value");
+        Float floatException = getFloatSympTRUE("Insert value TRUE/FALSE");
+        System.out.println(floatException);
 
 
         //-----------------------------------------------------------------------------------------

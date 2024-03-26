@@ -29,13 +29,11 @@ rule "2. Final_PosthemorragicAnemia_MHCH&Fatigue"
 when
     $patient : /patients[(detectSymptomValue("MHCH")<310) &&
     (detectSymptomValue("Fatigue")==1) ]
-
 then
     Anemia a = new Anemia (2, AnemiaType.POSTHEMORRHAGIC_ANEMIA);
     $patient.addAnemia(a);
     patientsWithPosthemorrhagicAnemia.add($patient);
     System.out.println( $patient + " -> 2. Final_PosthemorragicAnemia_MHCH&Fatigue");
-
 end
 
 rule "3. Final_HemolyticAnemia_Splenomegaly&Bilirrubine&Jaundice"
@@ -60,5 +58,50 @@ then
     patientsWithHemolyticAnemia.add($patient);
     System.out.println( $patient + " -> 4. Final_HemolyticAnemia_Fe&Haptoglobine");
 end
+
+rule "5. Final_InheritedSpherocytosis_Bilirrubine&Jaundice"
+when
+    $patient : /patients[(detectSymptomValue("Bilirrubine")>1)
+    && (detectSymptomValue("Jaundice")==1)]
+then
+    Anemia a = new Anemia (4, AnemiaType.INHERITED_SPHEROCYTOSIS);
+    $patient.addAnemia(a);
+    patientsWithInheritedSpherocythosis.add($patient);
+    System.out.println( $patient + " -> 5. Final_InheritedSpherocytosis_Bilirrubine&Jaundice");
+end
+
+rule "6. Final_InheritedSpherocytosis_CranealB|MaxilarBoneH"
+when
+    $patient : /patients[(detectSymptomValue("Craneal balloning")==1)
+    && (detectSymptomValue("Maxilar bone hyperplasia")==1)]
+then
+    Anemia a = new Anemia (4, AnemiaType.INHERITED_SPHEROCYTOSIS);
+    $patient.addAnemia(a);
+    patientsWithInheritedSpherocythosis.add($patient);
+    System.out.println( $patient + " -> 6. Final_InheritedSpherocytosis_CranealB|MaxilarBoneH");
+end
+
+rule "7. Final_Thalassemia_BoneDeformations"
+when
+    $patient : /patients[detectSymptomValue("Bone deformations")==1]
+then
+    Anemia a = new Anemia (5, AnemiaType.THALASSEMIA);
+    $patient.addAnemia(a);
+    patientsWithThalassemia.add($patient);
+    System.out.println( $patient + " -> 7. Final_Thalassemia_BoneDeformations");
+end
+
+/*rule "8. IronDefAnemia_Reticulocytes&MCH<"
+when
+    $patient : /patients[detectSymptomValue("MCH")<27]
+
+then
+    Anemia a = new Anemia (6, AnemiaType.IRON_DEFICIENCY_ANEMIA);
+    $patient.addAnemia(a);
+    patientsWithIronDeficiencyAnemia.add($patient);
+    System.out.println( $patient + " -> 28. IronDefAnemiaMCH<");
+
+end*/
+
 
 

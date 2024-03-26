@@ -24,8 +24,8 @@ public class ReadExcel {
 
         ///utilizar interfaces: devolver List, no LinkedList (para no centrarnos solo en esta implementación)
 
-//        String filePath = "src/main/resources/files/Weights.xlsx";
-        String filePath = "C:\\Users\\maria\\Downloads\\Weights.xlsx";
+        String filePath = "src/main/resources/files/Weights.xlsx";
+        //String filePath = "C:\\Users\\maria\\Downloads\\Weights.xlsx";
         System.out.println(filePath);
         File excelFile = new File(filePath);
 
@@ -89,8 +89,8 @@ public class ReadExcel {
 
     public static List<Condition> readConditions(AnemiaType anemiaType) {
 
-//        String filePath = "src/main/resources/files/Conditions.xlsx";
-        String filePath = "C:\\Users\\maria\\Downloads\\Conditions.xlsx";
+           String filePath = "src/main/resources/files/Conditions.xlsx";
+       // String filePath = "C:\\Users\\maria\\Downloads\\Conditions.xlsx";
         File excelFile = new File(filePath);
 
         List<Condition> conditions = new LinkedList<>();

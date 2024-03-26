@@ -326,7 +326,6 @@ public class PatientHandlerMenu {
 
 
 
-
         } catch (IOException e) {
             System.out.println(e.getCause());
         }catch (SQLException e) {

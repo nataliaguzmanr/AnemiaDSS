@@ -1,10 +1,11 @@
 package utilities;
 
-import POJOS.Anemia;
-import POJOS.Condition;
-import POJOS.Symptom;
+import POJOS.*;
 
 
+import java.io.File;
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -85,5 +86,36 @@ public class Utilities {
         }
 
         return score;
+    }
+
+
+    public File getReport(MedicalStaff medStaff, ClinicalHistory clinHist, Patient patient,
+                          List<Float> anemiaScores) {
+
+        File file = null;
+        try {
+            String path = "src/main/resources/Reports";
+            String fileName = "Date_"+clinHist.getSymptomsDate().toString()+"patientID_"+patient.getId().toString()+".txt";
+
+            file = new File(path, fileName);
+            file.createNewFile();
+
+            PrintWriter pw = new PrintWriter(file);
+
+            pw.println(medStaff.getName());
+            pw.println(clinHist.getSymptomsDate());
+            pw.println(patient);
+
+            for(int i=0; i<anemiaScores.size(); i++){
+
+            }
+
+
+        } catch (IOException ioe) {
+            System.out.println(ioe.getCause());
+        }
+
+        return file;
+
     }
 }

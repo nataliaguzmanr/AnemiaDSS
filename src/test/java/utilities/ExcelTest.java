@@ -12,10 +12,11 @@ public class ExcelTest {
 
     @Test
     public void readExcel(){
-//        List<Float> testWeights = ReadExcel.readWeights(AnemiaType.POLYCYTHEMIA);
-        List<Condition> testConditions = ReadExcel.readConditions(AnemiaType.ANEMIC_SYNDROME);
+        List<Float> testWeights = ReadExcel.readWeights(AnemiaType.POLYCYTHEMIA);
+        //List<Condition> testConditions = ReadExcel.readConditions(AnemiaType.ANEMIC_SYNDROME);
 
     }
+
 
 
 }

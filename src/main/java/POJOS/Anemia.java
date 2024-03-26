@@ -21,6 +21,13 @@ public class Anemia implements Serializable {
         this.conditions = conditions;
     }
 
+    public Anemia(AnemiaType anemia, List<Float> weights, List<Condition> conditions) {
+        this.anemiaType = anemia;
+        this.weights = weights;
+        this.conditions = conditions;
+    }
+
+
     public Anemia(Integer id, AnemiaType anemiaType) {
         this.id = id;
         this.anemiaType = anemiaType;

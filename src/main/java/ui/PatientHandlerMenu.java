@@ -25,12 +25,12 @@ import static utilities.InputException.*;
 
 public class PatientHandlerMenu {
 
-    private static JDBCManager jdbcManager = new JDBCManager();
-    private static JDBCPatientManager jdbcPatientManager = new JDBCPatientManager(jdbcManager);
-    private static JDBCSymptomManager jdbcSymptomManager = new JDBCSymptomManager(jdbcManager);
-    private static JDBCClinicalHistoryManager jdbcClinicalHistoryManager =
+    private final static JDBCManager jdbcManager = new JDBCManager();
+    private final static JDBCPatientManager jdbcPatientManager = new JDBCPatientManager(jdbcManager);
+    private final static JDBCSymptomManager jdbcSymptomManager = new JDBCSymptomManager(jdbcManager);
+    private final static JDBCClinicalHistoryManager jdbcClinicalHistoryManager =
             new JDBCClinicalHistoryManager(jdbcManager);
-    private static BufferedReader bufferedReadereader = new BufferedReader(new InputStreamReader(System.in));
+    private final static BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
 
 
 
@@ -39,11 +39,11 @@ public class PatientHandlerMenu {
         System.out.println("Choose an option:");
         System.out.println("1. Research for anemia information");
         System.out.println("2. Diagnose a patient");
-        System.out.println("0. Back");
+        System.out.println("0. Exit application");
 
         int choice = 0;
         try {
-            choice = Integer.parseInt(bufferedReadereader.readLine());
+            choice = Integer.parseInt(bufferedReader.readLine());
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
@@ -51,24 +51,29 @@ public class PatientHandlerMenu {
         switch (choice) {
             case 1:
                 //
-                //break;
+                break;
 
             case 2:
                 patientDiagnosis();
                 break;
+
+            case 0:
+                System.exit(0);
+                break;
+
 
         }
     }
 
     public static void patientDiagnosis(){
 
-        System.out.println("Introduce the id of the patient to diagnose:\n");
         try {
-            String id_str = bufferedReadereader.readLine();
-            int id = Integer.parseInt(id_str);
-            Patient patient = jdbcPatientManager.getPatient(id);
 
-            if (patient==null){
+            int id = InputException.getInt("Introduce the id of the patient to diagnose:\n");
+            Patient patient = jdbcPatientManager.getPatient(id);
+            System.out.println(patient);
+
+            if (patient == null){
 
                 System.out.println("Patient not found in database, please, insert it");
                 String name = InputException.getString("\nName: ");
@@ -89,6 +94,7 @@ public class PatientHandlerMenu {
                 float weight = InputException.getFloat("\nWeight: ");
 
                 patient = new Patient(name, age, gender, weight);
+                System.out.println(patient);
                 jdbcPatientManager.addPatient(patient);
 
             }
@@ -311,8 +317,8 @@ public class PatientHandlerMenu {
             patient.addSymptom(sple);
             jdbcSymptomManager.addSymptom(sple,clinicalHistory.getId());
 
-            valueF = getFloatSympTRUE("Craneal balloning:");
-            Symptom cran = new Symptom(valueF, "Craneal balloning");
+            valueF = getFloatSympTRUE("Craneal ballooning:");
+            Symptom cran = new Symptom(valueF, "Craneal ballooning");
             patient.addSymptom(cran);
             jdbcSymptomManager.addSymptom(cran,clinicalHistory.getId());
 
@@ -390,22 +396,27 @@ public class PatientHandlerMenu {
             LOG.info("Insert data");
 
             List<Anemia> anemiasList = patient.getAnemiasList();
+            System.out.println(anemiasList);
             List<Symptom> symptomsList = patient.getSymptomsList();
+            System.out.println(symptomsList);
             List<Float> scoresList = new LinkedList<>();
 
             for(int i=0; i<anemiasList.size(); i++){
 
                 List<Condition> conditionList = anemiasList.get(i).getConditions();
+                System.out.println(conditionList);
                 List<Boolean> booleanList = Utilities.equalsSymptomCondition(symptomsList, conditionList);
                 float score = Utilities.getScore(anemiasList.get(i),booleanList);
                 scoresList.add(score);
 
             }
 
+            System.out.println(scoresList);
 
-        } catch (IOException e) {
-            System.out.println(e.getCause());
-        }catch (SQLException e) {
+            //GENERATE REPORT
+            Utilities.getReport(MedicalStaffMenu.getMedicalStaff(), clinicalHistory, patient, scoresList,anemiasList);
+
+        } catch (SQLException e) {
             System.out.println(e.getCause());
         }
 

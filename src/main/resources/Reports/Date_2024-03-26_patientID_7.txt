@@ -1,0 +1,7 @@
+Maria Martinez
+2024-03-26
+
+Patient{name='Lola Cruz, age=34, gender=MALE}
+
+13.56 % MEGALOBLASTIC_ANEMIA
+55.32 % POSTHEMORRHAGIC_ANEMIA

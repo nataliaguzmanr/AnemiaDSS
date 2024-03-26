@@ -107,7 +107,7 @@ public class Utilities {
                     pw.println(anemiaScores.get(i)+" % " + anemias.get(i).getAnemiaType().toString());
                 }
 
-                System.out.println("Report writen successfully");
+                System.out.println("Report written successfully");
             } catch (IOException ioe) {
                 System.out.println("Error" + ioe);
             } finally {

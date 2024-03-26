@@ -85,35 +85,37 @@ public class Utilities {
     }
 
 
-    public static File getReport(MedicalStaff medStaff, ClinicalHistory clinHist, Patient patient,
-                          List<Float> anemiaScores, List<Anemia> anemias) {
 
-        File file = null;
-        try {
-            String path = "/src/main/resources/Reports/";
-            String fileName = "Date_"+clinHist.getSymptomsDate().toString()+"_patientID_"
-                    +patient.getId().toString()+".txt";
+    public static String getReport(MedicalStaff medStaff, ClinicalHistory clinHist, Patient patient,
+                                   List<Float> anemiaScores, List<Anemia> anemias) {
+        String path = "src/main/resources/reports/";
+        String fileName = "Date_"+clinHist.getSymptomsDate().toString()+"_patientID_"
+                +patient.getId().toString()+".txt";
 
-            file = new File(path, fileName);
+        String file = path + fileName;
+        File archivo = new File(file);
 
-            FileWriter writer = new FileWriter(fileName);
-            PrintWriter pw = new PrintWriter(writer);
+        PrintWriter pw = null;
+            try {
+                pw = new PrintWriter(archivo);
+                pw.println(medStaff.getName());
+                pw.println(clinHist.getSymptomsDate().toString());
+                pw.println(patient.toString());
+                pw.print("\n");
 
-            pw.print(medStaff.getName());
-            pw.print(clinHist.getSymptomsDate().toString());
-            pw.print(patient.toString());
-            pw.print("\n");
-            pw.print("\n");
+                for(int i=0; i<anemiaScores.size(); i++){
+                    pw.println(anemiaScores.get(i)+" % " + anemias.get(i).getAnemiaType().toString());
+                }
 
-            for(int i=0; i<anemiaScores.size(); i++){
-                pw.print(anemiaScores.get(i)+" % " + anemias.get(i).getAnemiaType().toString());
+                System.out.println("Report writen successfully");
+            } catch (IOException ioe) {
+                System.out.println("Error" + ioe);
+            } finally {
+                if (pw != null) {
+                    pw.close();
+                }
+
             }
-
-        } catch (IOException ioe) {
-            System.out.println(ioe.getCause());
-        }
-
-        return file;
-
+            return file;
     }
 }

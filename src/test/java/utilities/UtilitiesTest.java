@@ -33,7 +33,7 @@ public class UtilitiesTest {
         Patient p = new Patient(7, "Lola Cruz", 34, Gender.MALE, 67.4F);
         ClinicalHistory ch = new ClinicalHistory(LocalDate.now());
 
-        File testFile = Utilities.getReport(ms, ch, p, scores, anemias);
+        String testFile = Utilities.getReport(ms, ch, p, scores, anemias);
         System.out.println(testFile);
 
 

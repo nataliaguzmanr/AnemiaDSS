@@ -13,3 +13,52 @@ then
    //patientsMALE.add($patient);
 
 end
+
+rule "1. Final_AnemicSyndrome_Hb&Tachycardia"
+when
+    $patient : /patients[(detectSymptomValue("Hb")<8) &&
+     (detectSymptomValue("RBC")<4.1)]
+then
+    Anemia a = new Anemia (1, AnemiaType.ANEMIC_SYNDROME);
+    $patient.addAnemia(a);
+    patientsWithAnemicSyndrome.add($patient);
+    System.out.println( $patient + " -> 1. Final_AnemicSyndrome_Hb&Tachycardia");
+end
+
+rule "2. Final_PosthemorragicAnemia_MHCH&Fatigue"
+when
+    $patient : /patients[(detectSymptomValue("MHCH")<310) &&
+    (detectSymptomValue("Fatigue")==1) ]
+
+then
+    Anemia a = new Anemia (2, AnemiaType.POSTHEMORRHAGIC_ANEMIA);
+    $patient.addAnemia(a);
+    patientsWithPosthemorrhagicAnemia.add($patient);
+    System.out.println( $patient + " -> 2. Final_PosthemorragicAnemia_MHCH&Fatigue");
+
+end
+
+rule "3. Final_HemolyticAnemia_Splenomegaly&Bilirrubine&Jaundice"
+when
+    $patient : /patients[(detectSymptomValue("Splenomegaly")==1)
+    && (detectSymptomValue("Bilirrubine")>1)
+    && (detectSymptomValue("Jaundice")==1)]
+then
+    Anemia a = new Anemia (3, AnemiaType.HEMOLYTIC_ANEMIA);
+    $patient.addAnemia(a);
+    patientsWithHemolyticAnemia.add($patient);
+    System.out.println( $patient + " -> 3. Final_HemolyticAnemia_Splenomegalia&Bilirubine&Jaundice");
+end
+
+rule "4. Final_HemolyticAnemia_Fe&Haptoglobine"
+when
+    $patient : /patients[(detectSymptomValue("Fe")<170)
+    && (detectSymptomValue("Haptoglobine")>41)]
+then
+    Anemia a = new Anemia (3, AnemiaType.HEMOLYTIC_ANEMIA);
+    $patient.addAnemia(a);
+    patientsWithHemolyticAnemia.add($patient);
+    System.out.println( $patient + " -> 4. Final_HemolyticAnemia_Fe&Haptoglobine");
+end
+
+

@@ -3,7 +3,7 @@ package ui;
 
 import POJOS.User;
 import jdbc.JDBCManager;
-//import jpa.JPAUserManager;
+import jpa.JPAUserManager;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -14,11 +14,10 @@ import static ui.PatientHandlerMenu.patientHandlerMenu;
 import static utilities.InputException.getInt;
 import static utilities.InputException.getString;
 
-/*
 public class Executable{
     private static JDBCManager jdbcManager = new JDBCManager();
     private static BufferedReader bufferedReadereader = new BufferedReader(new InputStreamReader(System.in));
-    //private static JPAUserManager jpaUserManager = new JPAUserManager();
+    private static JPAUserManager jpaUserManager = new JPAUserManager();
     public static void main(String[] args) throws Exception{
 
         welcomeMenu();
@@ -42,12 +41,12 @@ public class Executable{
                 register();
                 break;
             case 2:
-                //login();
+                login();
                 break;
             case 0:
                 System.out.println("Data base closed");
                 jdbcManager.disconnect();
-                //jpaUserManager.disconnect();
+                jpaUserManager.disconnect();
                 System.exit(0);
                 break;
             default:
@@ -55,14 +54,13 @@ public class Executable{
         }
     }
 
-    */
-/*public static void register(){
+public static void register(){
         try {
 
             String userName = getString("Please, write your USER NAME:");
             String password = getString("Please write your password:");
 
-            //boolean userRepeated = jpaUserManager.userNameTaken(userName);
+            boolean userRepeated = jpaUserManager.userNameTaken(userName);
 
             if(userRepeated == true) {
                 System.out.println("ERROR, exiting user");
@@ -78,10 +76,9 @@ public class Executable{
             System.out.println(e.getCause());
         }
     }
-*//*
 
-    */
-/*public static void login() {
+
+public static void login() {
         try{
             String userName = getString("Please, write your USER NAME:");
             String password = getString("Please, write your password:");
@@ -97,11 +94,10 @@ public class Executable{
         System.out.println(e.getCause());
         }
 
-    }*//*
+    }
 
 
 }
 
 
-*/
 

@@ -24,7 +24,7 @@ public class JPAUserManager implements UserManager {
 
     @Override
     public void connect() {
-        em = Persistence.createEntityManagerFactory("MedicalStaff_user").createEntityManager();
+        em = Persistence.createEntityManagerFactory("AnemiaDSS-provider").createEntityManager();
         em.getTransaction().begin();
         em.createNativeQuery("PRAGMA foreign_keys=ON").executeUpdate();
         em.getTransaction().commit();

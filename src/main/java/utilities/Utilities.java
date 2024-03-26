@@ -3,15 +3,13 @@ package utilities;
 import POJOS.*;
 
 
-import java.io.File;
-import java.io.IOException;
-import java.io.PrintWriter;
+import java.io.*;
 import java.util.LinkedList;
 import java.util.List;
 
 public class Utilities {
 
-    public List<Boolean> equalsSymptomCondition(List<Symptom> symtomsList, List<Condition> conditionsList){
+    public static List<Boolean> equalsSymptomCondition(List<Symptom> symtomsList, List<Condition> conditionsList){
 
         List<Boolean> booleanList = new LinkedList<Boolean>();
         //inizialize list w/false same length as conditions
@@ -62,12 +60,11 @@ public class Utilities {
 
             }
         }
-
         return booleanList;
     }
 
 
-    public float getScore(Anemia anemia, List<Boolean> booleanList){
+    public static float getScore(Anemia anemia, List<Boolean> booleanList){
 
         float score=0;
 
@@ -84,32 +81,34 @@ public class Utilities {
 
             }
         }
-
         return score;
     }
 
 
-    public File getReport(MedicalStaff medStaff, ClinicalHistory clinHist, Patient patient,
-                          List<Float> anemiaScores) {
+    public static File getReport(MedicalStaff medStaff, ClinicalHistory clinHist, Patient patient,
+                          List<Float> anemiaScores, List<Anemia> anemias) {
 
         File file = null;
         try {
             String path = "src/main/resources/Reports";
-            String fileName = "Date_"+clinHist.getSymptomsDate().toString()+"patientID_"+patient.getId().toString()+".txt";
+            String fileName = "Date_"+clinHist.getSymptomsDate().toString()+"_patientID_"
+                    +patient.getId().toString()+".txt";
 
             file = new File(path, fileName);
             file.createNewFile();
 
-            PrintWriter pw = new PrintWriter(file);
+            FileWriter fw = new FileWriter(file);
+            BufferedWriter bw = new BufferedWriter(fw);
 
-            pw.println(medStaff.getName());
-            pw.println(clinHist.getSymptomsDate());
-            pw.println(patient);
+            bw.write(medStaff.getName());
+            bw.write(clinHist.getSymptomsDate().toString());
+            bw.write(patient.toString());
+            bw.write("\n");
+            bw.write("\n");
 
             for(int i=0; i<anemiaScores.size(); i++){
-
+                bw.write(anemiaScores.get(i)+" % " + anemias.get(i).getAnemiaType().toString());
             }
-
 
         } catch (IOException ioe) {
             System.out.println(ioe.getCause());

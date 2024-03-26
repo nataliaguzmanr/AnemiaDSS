@@ -31,7 +31,7 @@ public class Patient implements Serializable {
         this.anemiasList = new ArrayList<>();
     }
 
-    public Patient(String name, Integer age, Gender gender, Integer weight) {
+    public Patient(String name, Integer age, Gender gender, Float weight) {
         this.name = name;
         this.age = age;
         this.gender = gender;
@@ -77,12 +77,20 @@ public class Patient implements Serializable {
         this.gender = gender;
     }
 
-        public Float getWeight() {
+    public Float getWeight() {
         return weight;
     }
 
     public void setWeight(Float weight) {
         this.weight = weight;
+    }
+
+    public List<Anemia> getAnemiasList() {
+        return anemiasList;
+    }
+
+    public List<Symptom> getSymptomsList() {
+        return symptomsList;
     }
 
     @Override

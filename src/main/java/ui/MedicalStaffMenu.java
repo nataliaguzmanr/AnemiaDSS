@@ -1,26 +1,46 @@
 package ui;
 
 
+import POJOS.Anemia;
+import POJOS.AnemiaType;
+import POJOS.Condition;
 import POJOS.User;
 import jdbc.JDBCManager;
 import jpa.JPAUserManager;
+import utilities.ReadExcel;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.security.MessageDigest;
+import java.util.List;
 
 import static ui.PatientHandlerMenu.patientHandlerMenu;
-import static utilities.InputException.getInt;
 import static utilities.InputException.getString;
 
-public class Executable{
+public class MedicalStaffMenu {
     private static JDBCManager jdbcManager = new JDBCManager();
     private static BufferedReader bufferedReadereader = new BufferedReader(new InputStreamReader(System.in));
     private static JPAUserManager jpaUserManager = new JPAUserManager();
+
+
+
     public static void main(String[] args) throws Exception{
 
+
+        Anemia A = initializeAnemia(AnemiaType.ANEMIC_SYNDROME);
+        //ETCCCCC
+
         welcomeMenu();
+    }
+
+    public static Anemia initializeAnemia(AnemiaType anemiaType){
+
+        List<Float> weightsList = ReadExcel.readWeights(anemiaType);
+        List<Condition> conditionList = ReadExcel.readConditions(anemiaType);
+        Anemia anemia = new Anemia(anemiaType,weightsList,conditionList);
+
+        return anemia;
     }
 
     public static void welcomeMenu(){

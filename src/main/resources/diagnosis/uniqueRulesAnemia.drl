@@ -432,7 +432,7 @@ when
     $patient : /patients[detectSymptomValue("EPO")<2.6]
 
 then
-    Anemia a = new Anemia (9, AnemiaType.APLASIC_ANEMIA);
+    Anemia a = new Anemia (9, AnemiaType.CHRONIC_DISEASE_ANEMIA);
     $patient.addAnemia(a);
     patientsWithChronicDiseaseAnemia.add($patient);
     System.out.println( $patient + " -> 37. ChronicDiseaseAnemiaEPO");
@@ -444,7 +444,7 @@ when
     $patient : /patients[detectSymptomValue("Ferritine")>300 && getGender().equals(gender.MALE)]
 
 then
-    Anemia a = new Anemia (9, AnemiaType.APLASIC_ANEMIA);
+    Anemia a = new Anemia (9, AnemiaType.CHRONIC_DISEASE_ANEMIA);
     $patient.addAnemia(a);
     patientsWithChronicDiseaseAnemia.add($patient);
     System.out.println( $patient + " -> 38. ChronicDiseaseAnemiaFerritineMALE");

@@ -1,3 +1,4 @@
+/*
 
 package POJOS;
 
@@ -556,4 +557,4 @@ then
     patientsWithPolycythemia.add($patient);
     System.out.println( $patient + " -> 47. PolycythemiaThrombosis");
 
-end
+end*/

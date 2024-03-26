@@ -14,7 +14,8 @@
  * limitations under the License.
  *
  * Author: Alberto Gil de la Fuente
- */
+ *//*
+
 package atm;
 
 unit OperationUnit;
@@ -55,3 +56,4 @@ end
 query FindAuthorizedOperations
     $operations : /operations[ authorized == true]
 end
+*/

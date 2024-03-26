@@ -18,7 +18,7 @@ import static org.junit.Assert.assertTrue;
 
 public class PatientUnitAllSympTestWithSetUp {
 
-    static final Logger LOG = LoggerFactory.getLogger(PatientUnitTestWithSetUp.class);
+    static final Logger LOG = LoggerFactory.getLogger(PatientUnitAllSympTestWithSetUp.class);
 
     PatientUnit patientUnit;
     RuleUnitInstance<PatientUnit> instance;

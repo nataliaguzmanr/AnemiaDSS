@@ -5,14 +5,6 @@ unit PatientUnit;
 import diagnosis.*;
 
 
-/*rule "Return genderMALE"
-when
-    $patient : /patients[getGender().equals(gender.MALE)]
-then
-   patientsMALE.add($patient);
-end*/
-
-
 rule "1.1. FinalMale_AnemicSyndrome_Hb&Tachycardia"
 when
     $patient : /patients[(detectSymptomValue("Hb")<8) &&

@@ -12,6 +12,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import POJOS.AnemiaType;
+import POJOS.Condition;
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
@@ -83,6 +84,83 @@ public class ReadExcel {
             Logger.getLogger(ReadExcel.class.getName()).log(Level.SEVERE, null, ex);
         }
         return weightList;
+    }
+
+
+    public static List<Condition> readConditions(AnemiaType anemiaType) {
+
+//        String filePath = "src/main/resources/files/Conditions.xlsx";
+        String filePath = "C:\\Users\\maria\\Downloads\\Conditions.xlsx";
+        File excelFile = new File(filePath);
+
+        List<Condition> conditions = new LinkedList<>();
+
+        try (FileInputStream fis = new FileInputStream(excelFile);
+             XSSFWorkbook workbook = new XSSFWorkbook(fis)) {
+
+            XSSFSheet sheet = workbook.getSheetAt(0);
+            int totalRows = sheet.getPhysicalNumberOfRows();
+
+            Iterator<Row> rowIt = sheet.iterator();
+
+            //leemos la linea del nombre de los symptoms
+            Row row = rowIt.next();
+            Iterator<Cell> cellIterator = row.cellIterator();
+            //hay que saltarse la primera columna
+            cellIterator.next();
+
+            String symptom_name;
+            List<String> names = new LinkedList<>();
+
+            while(cellIterator.hasNext()){
+                symptom_name  = cellIterator.next().getStringCellValue();
+//                System.out.println(symptom_name);
+                names.add(symptom_name);
+            }
+
+            System.out.println(names);
+
+            String anemiaTypeRead;
+            String cell;
+            int contador;
+
+            while (rowIt.hasNext()) {
+                contador = 0;
+                row = rowIt.next();
+                cellIterator = row.cellIterator();
+                anemiaTypeRead = cellIterator.next().getStringCellValue();
+//                System.out.println(anemiaTypeRead);
+                String anemiaTypeToString = anemiaType.toString();
+//                System.out.println(anemiaTypeToString);
+                if(anemiaTypeToString.equalsIgnoreCase(anemiaTypeRead)){
+                    Condition c;
+                    while(cellIterator.hasNext()){
+                        cell  = cellIterator.next().getStringCellValue();
+                        System.out.println(cell);
+                        if(cell.equalsIgnoreCase("true")){
+                            c = new Condition (1.F, null, "=");
+                        }
+                        else{
+                        //llamamos al método que devuelve la Condition
+                        c = Regex.getConditionFromCell(cell);
+                        }
+
+                        String name = names.get(contador);
+                        c.setName(name);
+                        conditions.add(c);
+                        contador++;
+
+                    }
+                }
+            }
+
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(ReadExcel.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IOException ex) {
+            Logger.getLogger(ReadExcel.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        System.out.println(conditions);
+        return conditions;
     }
 
 }

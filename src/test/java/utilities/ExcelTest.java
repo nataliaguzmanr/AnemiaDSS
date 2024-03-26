@@ -1,6 +1,7 @@
 package utilities;
 
 import POJOS.AnemiaType;
+import POJOS.Condition;
 import org.junit.Test;
 
 import java.util.List;
@@ -11,7 +12,9 @@ public class ExcelTest {
 
     @Test
     public void readExcel(){
-        List<Float> testWeights = ReadExcel.readWeights(AnemiaType.POLYCYTHEMIA);
+//        List<Float> testWeights = ReadExcel.readWeights(AnemiaType.POLYCYTHEMIA);
+        List<Condition> testConditions = ReadExcel.readConditions(AnemiaType.ANEMIC_SYNDROME);
+
     }
 
 

@@ -14,7 +14,6 @@ public class Condition {
         this.sign = sign;
     }
     public Condition(Float value1, Float value2, String sign) {
-        this.name = name;
         this.value1 = value1;
         this.value2 = value2;
         this.sign = sign;

@@ -4,49 +4,38 @@ import java.io.Serializable;
 import java.util.Arrays;
 import java.util.Objects;
 
-import javax.persistence.*;
 
-@Entity
-@Table(name = "User")
 public class User implements Serializable {
+
+
 
     private static final long serialVersionUID = 2078397574496562875L;
 
-    @Id
-    @GeneratedValue(generator = "User")
-    @TableGenerator(name = "User", table = "sqlite_sequence", pkColumnName = "user", valueColumnName = "seq", pkColumnValue = "User")
     private Integer id;
     private String user;
-    @Lob
-    private byte[] password;
+
+    private String password;
 
 
-    public User() {
-        super();
-    }
-    /**
-     * Constructs a User object with the specified ID, username, password, and role.
-     * @param id the unique identifier for the user
-     * @param username the username of the user
-     * @param password the password of the user
-     */
-    public User(Integer id, String username, byte[] password) {
-        super();
+    public User(Integer id, String username, String password) {
         this.id = id;
         this.user = username;
         this.password = password;
     }
+
 
     /**
      * Constructs a User object with the specified username and password.
      * @param username the username of the user
      * @param password the password of the user
      */
-    public User(String username, byte[] password) {
+    public User(String username, String password) {
         super();
         this.user = username;
         this.password = password;
     }
+
+
 
     /**
      * Retrieves the ID of the user.
@@ -85,7 +74,7 @@ public class User implements Serializable {
      * Retrieves the password of the user.
      * @return the password of the user
      */
-    public byte[] getPassword() {
+    public String getPassword() {
         return password;
     }
 
@@ -93,7 +82,7 @@ public class User implements Serializable {
      * Sets the password of the user.
      * @param password the password of the user
      */
-    public void setPassword(byte[] password) {
+    public void setPassword(String password) {
         this.password = password;
     }
 
@@ -106,42 +95,25 @@ public class User implements Serializable {
         return serialVersionUID;
     }
 
-    /**
-     * Returns a hash code value for the User object.
-     * @return a hash code value for the User object
-     */
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        User user1 = (User) o;
+        return Objects.equals(id, user1.id) && Objects.equals(user, user1.user) && Objects.equals(password, user1.password);
+    }
+
     @Override
     public int hashCode() {
-        final int prime = 31;
-        int result = 1;
-        result = prime * result + Arrays.hashCode(password);
-        result = prime * result + Objects.hash(user, id);
-        return result;
+        return Objects.hash(id, user, password);
     }
-    /**
-     * Indicates whether some other object is "equal to" this one.
-     * @param obj the reference object with which to compare
-     * @return true if this object is the same as the obj argument; false otherwise
-     */
-    @Override
-    public boolean equals(Object obj) {
-        if (this == obj)
-            return true;
-        if ((obj == null) || (getClass() != obj.getClass()))
-            return false;
-        User other = (User) obj;
-        return Objects.equals(user, other.user) && Objects.equals(id, other.id)
-                && Arrays.equals(password, other.password);
-    }
-    /**
-     * Returns a string representation of the User object.
-     * @return a string representation of the User object
-     */
+
     @Override
     public String toString() {
         return "User{" +
-                "username='" + user + '\'' +
-                ", password=" + Arrays.toString(password) +
+                "id=" + id +
+                ", user='" + user + '\'' +
+                ", password='" + password + '\'' +
                 '}';
     }
 }

@@ -26,7 +26,7 @@ public class ReadExcel {
 
         String filePath = "src/main/resources/files/Weights.xlsx";
         //String filePath = "C:\\Users\\maria\\Downloads\\Weights.xlsx";
-        System.out.println(filePath);
+        //System.out.println(filePath);
         File excelFile = new File(filePath);
 
         List<Float> weightList = new LinkedList<Float>();
@@ -67,13 +67,13 @@ public class ReadExcel {
 
                     while(cellIterator.hasNext()){
                         cellWeight  = cellIterator.next().getNumericCellValue();
-                        System.out.println(cellWeight);
+                        //System.out.println(cellWeight);
 
                         Float cellWeightF = ((float) cellWeight);
                         weightsList.add(cellWeightF);
 
                     }
-                    System.out.println(weightsList.size());
+                    //System.out.println(weightsList.size());
 
                 }
             }
@@ -118,7 +118,7 @@ public class ReadExcel {
                 names.add(symptom_name);
             }
 
-            System.out.println(names);
+            //System.out.println(names);
 
             String anemiaTypeRead;
             String cell;
@@ -136,7 +136,7 @@ public class ReadExcel {
                     Condition c;
                     while(cellIterator.hasNext()){
                         cell  = cellIterator.next().getStringCellValue();
-                        System.out.println(cell);
+                        //System.out.println(cell);
                         if(cell.equalsIgnoreCase("true")){
                             c = new Condition (1.F, null, "=");
                         }
@@ -159,7 +159,7 @@ public class ReadExcel {
         } catch (IOException ex) {
             Logger.getLogger(ReadExcel.class.getName()).log(Level.SEVERE, null, ex);
         }
-        System.out.println(conditions);
+        //System.out.println(conditions);
         return conditions;
     }
 

@@ -72,9 +72,16 @@ public class JDBCManager {
         try {
             Statement stmt = c.createStatement();
 
+            // TABLE USER
+            String sql = "CREATE TABLE User ("
+                    + "	user_id INTEGER PRIMARY KEY AUTOINCREMENT,"
+                    + "	user_name TEXT NOT NULL,"
+                    + "	encr_password TEXT NOT NULL"
+                    +");";
+            stmt.executeUpdate(sql);
 
             // TABLE PATIENT
-            String sql = "CREATE TABLE Patient ("
+            sql = "CREATE TABLE Patient ("
                     + "	patient_id INTEGER PRIMARY KEY AUTOINCREMENT,"
                     + "	name TEXT NOT NULL,"
                     + "	gender TEXT NOT NULL,"
@@ -115,7 +122,7 @@ public class JDBCManager {
 
             // TABLE MEDICAL STAFF
             sql = "CREATE TABLE MedicalStaff ("
-                    + " medicalStaff_id	INTEGER PRIMARY KEY AUTOINCREMENT,"
+                    + " medicalStaff_id	INTEGER PRIMARY KEY,"
                     + " name TEXT NOT NULL,"
                     + " patient_id INTEGER REFERENCES Patient(patient_id) "
                     +");";

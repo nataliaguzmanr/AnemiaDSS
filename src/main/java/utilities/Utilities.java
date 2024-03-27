@@ -118,4 +118,55 @@ public class Utilities {
             }
             return file;
     }
+
+
+    public static String xor_encrypt_decrypt(String inputString, char xorKey) {
+
+        // Define String to store encrypted/decrypted String
+        StringBuilder outputString = new StringBuilder();
+
+        // calculate length of input string
+        int len = inputString.length();
+
+        // perform XOR operation of key
+        // with every character in string
+        for (int i = 0; i < len; i++)
+        {
+            outputString.append((char) (inputString.charAt(i) ^ xorKey));
+        }
+
+        return outputString.toString();
+    }
+
+
+    // Read Integer in range
+    public static Integer readIntFromKeyboardInRange(String question, int begin, int end) {
+        System.out.println(question);
+        Integer num;
+        if (begin > end) {
+            Integer temp = begin;
+            begin = end;
+            end = begin;
+        }
+        while (true) {
+            try {
+                String s = null;
+                BufferedReader bf = new BufferedReader(new InputStreamReader(System.in));
+                s = bf.readLine();
+                num = Integer.parseInt(s);
+                if (num >= begin && num <= end) {
+                    return num;
+                } else {
+                    System.out.println("The number must be between " + begin + " and " + end + ".");
+                }
+            } catch (IOException ioe) {
+                System.out.println("Error. Re-enter a number");
+            } catch (NumberFormatException nfe) {
+                System.out.println("You have not entered a number. Enter an integer number.");
+            }
+        }
+    }
+
+
+
 }

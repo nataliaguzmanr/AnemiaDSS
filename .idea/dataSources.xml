@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="DataSourceManagerImpl" format="xml" multifile-model="true">
-    <data-source source="LOCAL" name="AnemiaDSSdb" uuid="ea07f61d-c8df-43e6-a66e-fe43d993577f">
+    <data-source source="LOCAL" name="AnemiaDSSdb" uuid="ed14ba1e-2459-41cf-9611-b88e3f904788">
       <driver-ref>sqlite.xerial</driver-ref>
       <synchronize>true</synchronize>
       <jdbc-driver>org.sqlite.JDBC</jdbc-driver>
-      <jdbc-url>jdbc:sqlite:C:\Users\maria\IdeaProjects\AnemiaDSS\db\AnemiaDSSdb.db</jdbc-url>
+      <jdbc-url>jdbc:sqlite:$PROJECT_DIR$/db/AnemiaDSSdb.db</jdbc-url>
       <jdbc-additional-properties>
         <property name="com.intellij.clouds.kubernetes.db.enabled" value="false" />
       </jdbc-additional-properties>

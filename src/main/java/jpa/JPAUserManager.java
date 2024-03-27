@@ -12,6 +12,8 @@ public class JPAUserManager implements UserManager {
 
     private EntityManager em;
 
+    EntityManagerFactory entityManagerFactory = null;
+
     /**
      * Constructs a new JPAUserManager and initializes the database connection.
      */
@@ -24,9 +26,11 @@ public class JPAUserManager implements UserManager {
      */
     @Override
     public void connect() {
-        em = Persistence.createEntityManagerFactory("AnemiaDSS-provider").createEntityManager();
+        //em = Persistence.createEntityManagerFactory("AnemiaDSS-provider").createEntityManager();
+        entityManagerFactory = Persistence.createEntityManagerFactory("AnemiaDSS-provider");
+        em = entityManagerFactory.createEntityManager();
         em.getTransaction().begin();
-        em.createNativeQuery("PRAGMA foreign_keys=ON").executeUpdate();
+        //em.createNativeQuery("PRAGMA foreign_keys=ON").executeUpdate();
         em.getTransaction().commit();
 
     }

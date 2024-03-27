@@ -5,7 +5,9 @@ import jdbc.*;
 import org.junit.Test;
 
 import java.sql.SQLException;
+import java.time.LocalDate;
 import java.util.List;
+
 
 public class DatabaseTest {
 
@@ -23,7 +25,7 @@ public class DatabaseTest {
         JDBCPatientManager jdbcPatientManager = new JDBCPatientManager(jdbcManager);
 
         //Patient p1 = new Patient("Rafael Gomez",55, Gender.MALE);
-        Patient p1 = new Patient("Juana Lopez",35, Gender.FEMALE);
+        Patient p1 = new Patient("Juana Lopez",35, Gender.FEMALE, 67.45F);
         try {
             jdbcPatientManager.addPatient(p1);
         } catch (SQLException e) {
@@ -148,17 +150,51 @@ public class DatabaseTest {
     }
 
     @Test
+    public void addClinicalHistoryTest(){
+
+        JDBCManager jdbcManager = new JDBCManager();
+        JDBCClinicalHistoryManager jdbcClinicalHistoryManager = new JDBCClinicalHistoryManager(jdbcManager);
+
+        try{
+            ClinicalHistory ch = new ClinicalHistory(LocalDate.now());
+            int patientID =1;
+            jdbcClinicalHistoryManager.addClinicalHistory(ch, patientID);
+        }catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    @Test
+    public void getClinicalHistoryTest(){
+
+        JDBCManager jdbcManager = new JDBCManager();
+        JDBCClinicalHistoryManager jdbcClinicalHistoryManager = new JDBCClinicalHistoryManager(jdbcManager);
+
+
+        try{
+            int id1patient =1;
+            ClinicalHistory ch = jdbcClinicalHistoryManager.getClinicalHistory(id1patient);
+            System.out.println(ch);
+        }catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+
+    @Test
     public void addSymptomTest(){
 
         JDBCManager jdbcManager = new JDBCManager();
         JDBCSymptomManager jdbcSymptomManager = new JDBCSymptomManager(jdbcManager);
         JDBCPatientManager jdbcPatientManager = new JDBCPatientManager(jdbcManager);
+        JDBCClinicalHistoryManager jdbcClinicalHistoryManager = new JDBCClinicalHistoryManager(jdbcManager);
 
 
         try{
             int id=1;
-            Patient p = jdbcPatientManager.getPatient(id);
-            Symptom s = new Symptom(1.0F, "Vomit",  p);
+            //Patient p = jdbcPatientManager.getPatient(id);
+            ClinicalHistory ch = jdbcClinicalHistoryManager.getClinicalHistory(id);
+            Symptom s = new Symptom(1.0F, "Vomit", ch);
             jdbcSymptomManager.addSymptom(s,id);
             System.out.println("\nSymptom: " +s);
         }catch (Exception e) {
@@ -174,7 +210,7 @@ public class DatabaseTest {
 
         try{
 
-            int id1 =6;
+            int id1 =1;
             Symptom s = jdbcSymptomManager.getSymptom(id1);
             System.out.println(s);
         }catch (Exception e) {

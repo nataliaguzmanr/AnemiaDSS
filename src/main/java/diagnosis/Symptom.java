@@ -2,6 +2,7 @@ package diagnosis;
 
 
 import java.io.Serializable;
+import java.util.List;
 import java.util.Objects;
 
 import static java.util.Objects.hash;
@@ -13,6 +14,8 @@ public class Symptom implements Serializable {
     private Integer id;
     private Float value;
     private String name;
+    private ClinicalHistory clinicalHistory;
+
     private Patient patient;
 
 
@@ -21,7 +24,13 @@ public class Symptom implements Serializable {
         this.name = name;
     }
 
-    public Symptom(float value, String name,  Patient patient) {
+    public Symptom(float value, String name, ClinicalHistory clinicalHistory) {
+        this.value = value;
+        this.name = name;
+        this.clinicalHistory = clinicalHistory;
+    }
+
+    public Symptom(float value, String name, Patient patient) {
         this.value = value;
         this.name = name;
         this.patient = patient;
@@ -34,11 +43,11 @@ public class Symptom implements Serializable {
     }
 
 
-    public Symptom(Integer id, float value, String name, Patient patient) {
+    public Symptom(Integer id, float value, String name, ClinicalHistory clinicalHistory) {
         this.id = id;
         this.value = value;
         this.name = name;
-        this.patient = patient;
+        this.clinicalHistory = clinicalHistory;
     }
 
     public Integer getId() {
@@ -53,36 +62,34 @@ public class Symptom implements Serializable {
         return name;
     }
 
-
-    public Patient getPatient() {
-        return patient;
+    public ClinicalHistory getClinicalHistory() {
+        return clinicalHistory;
     }
 
-    public void setPatient(Patient patient) {
-        this.patient = patient;
+    public void setClinicalHistory(ClinicalHistory clinicalHistory) {
+        this.clinicalHistory = clinicalHistory;
     }
-
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (!(o instanceof Symptom)) return false;
         Symptom symptom = (Symptom) o;
-        return Objects.equals(id, symptom.id)  && Objects.equals(patient, symptom.patient);
+        return Objects.equals(getId(), symptom.getId()) && Objects.equals(getValue(), symptom.getValue()) && Objects.equals(getName(), symptom.getName()) && Objects.equals(getClinicalHistory(), symptom.getClinicalHistory());
     }
 
     @Override
     public int hashCode() {
-        return hash(getId(), getValue(), getName(), getPatient());
+        return hash(getId(), getValue(), getName(), getClinicalHistory());
     }
 
     @Override
     public String toString() {
-        return "\nSymptom{" +
+        return "Symptom{" +
                 "id=" + id +
                 ", value=" + value +
                 ", name='" + name + '\'' +
-                ", patient=" + patient +
+                //", clinicalHistoryList=" + clinicalHistory +
                 '}';
     }
 }

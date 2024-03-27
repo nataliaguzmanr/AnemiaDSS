@@ -19,7 +19,7 @@ public class JDBCSymptomManager implements SymptomManager {
     @Override
     public void addSymptom(Symptom symp, int clinicalHistory_id) throws SQLException {
         try {
-            String sql = "INSERT INTO Symptom (value, name, patient_id) VALUES (?, ?, ?)";
+            String sql = "INSERT INTO Symptom (value, name, clinicalHistory_id) VALUES (?, ?, ?)";
             PreparedStatement prep = symptomManager.getConnection().prepareStatement(sql);
             prep.setFloat(1, symp.getValue());
             prep.setString(2, symp.getName());

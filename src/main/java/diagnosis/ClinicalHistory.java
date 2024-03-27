@@ -17,6 +17,11 @@ public class ClinicalHistory {
         this.patientsHistory = symtompsHistory;
     }
 
+    public ClinicalHistory(Integer id, LocalDate symptomsDate) {
+        this.id = id;
+        this.symptomsDate = symptomsDate;
+    }
+
     public ClinicalHistory(LocalDate symptomsDate) {
         this.symptomsDate = symptomsDate;
 
@@ -64,7 +69,7 @@ public class ClinicalHistory {
         return "\nClinicalHistory{" +
                 "id=" + id +
                 ", symptomsDate=" + symptomsDate +
-                ", patientsHistory=" + patientsHistory +
+                //", patientsHistory=" + patientsHistory +
                 '}';
     }
 }

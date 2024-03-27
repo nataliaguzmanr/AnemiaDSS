@@ -35,6 +35,7 @@ public class Patient implements Serializable {
         this.name = name;
         this.age = age;
         this.gender = gender;
+        this.weight = weight;
         this.symptomsList = new ArrayList<>();
         this.anemiasList = new ArrayList<>();
     }

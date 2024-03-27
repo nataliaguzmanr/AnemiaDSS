@@ -30,14 +30,13 @@ public class JDBCClinicalHistoryManager implements ClinicalHistoryManager {
      * @throws SQLException if a database access error occurs
      */
     @Override
-    public void addClinicalHistory(ClinicalHistory clinicalHistory, int patient_Id) {
+    public void addClinicalHistory(ClinicalHistory clinicalHistory, int patient_Id) throws SQLException{
         try {
             String sql = "INSERT INTO ClinicalHistory(symptoms_date, patient_id) VALUES (?,?)";
             PreparedStatement prep = clinicalHistoryManager.getConnection().prepareStatement(sql);
             Date date = Date.valueOf(clinicalHistory.getSymptomsDate());
             prep.setDate(1, date);
             prep.setInt(2, patient_Id);
-
 
             prep.executeUpdate();
             prep.close();
@@ -60,10 +59,11 @@ public class JDBCClinicalHistoryManager implements ClinicalHistoryManager {
             ResultSet rs = pr.executeQuery();
             if (rs.next()) {
 
+                int id = rs.getInt("clinicalHistory_id");
                 Date sqlDate = rs.getDate("symptoms_date");
                 LocalDate symp_localDate = sqlDate.toLocalDate();
 
-                clinicalHistory = new ClinicalHistory(symp_localDate);
+                clinicalHistory = new ClinicalHistory(id,symp_localDate);
             }
             rs.close();
             pr.close();

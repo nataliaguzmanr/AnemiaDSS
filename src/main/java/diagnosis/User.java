@@ -26,7 +26,6 @@ public class User implements Serializable {
     }
     /**
      * Constructs a User object with the specified ID, username, password, and role.
-     *
      * @param id the unique identifier for the user
      * @param username the username of the user
      * @param password the password of the user
@@ -37,9 +36,9 @@ public class User implements Serializable {
         this.user = username;
         this.password = password;
     }
+
     /**
      * Constructs a User object with the specified username and password.
-     *
      * @param username the username of the user
      * @param password the password of the user
      */
@@ -51,70 +50,64 @@ public class User implements Serializable {
 
     /**
      * Retrieves the ID of the user.
-     *
      * @return the ID of the user
      */
     public Integer getId() {
         return id;
     }
+
+
     /**
      * Sets the ID of the user.
-     *
      * @param id the ID of the user
      */
     public void setId(Integer id) {
         this.id = id;
     }
+
     /**
      * Retrieves the username of the user.
-     *
      * @return the username of the user
      */
     public String getUser() {
         return user;
     }
+
     /**
      * Sets the username of the user.
-     *
      * @param username the username of the user
      */
     public void setUser(String username) {
         this.user = username;
     }
+
     /**
      * Retrieves the password of the user.
-     *
      * @return the password of the user
      */
     public byte[] getPassword() {
         return password;
     }
+
     /**
      * Sets the password of the user.
-     *
      * @param password the password of the user
      */
     public void setPassword(byte[] password) {
         this.password = password;
     }
-    /**
-     * Retrieves the role of the user.
-     *
-     * @return the role of the user
-     */
 
 
     /**
      * Retrieves the serial version UID for serialization.
-     *
      * @return the serial version UID
      */
     public static long getSerialversionuid() {
         return serialVersionUID;
     }
+
     /**
      * Returns a hash code value for the User object.
-     *
      * @return a hash code value for the User object
      */
     @Override
@@ -127,7 +120,6 @@ public class User implements Serializable {
     }
     /**
      * Indicates whether some other object is "equal to" this one.
-     *
      * @param obj the reference object with which to compare
      * @return true if this object is the same as the obj argument; false otherwise
      */
@@ -143,7 +135,6 @@ public class User implements Serializable {
     }
     /**
      * Returns a string representation of the User object.
-     *
      * @return a string representation of the User object
      */
     @Override

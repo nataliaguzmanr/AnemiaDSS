@@ -414,7 +414,7 @@ public class PatientHandlerMenu {
             System.out.println(scoresList);
 
             //GENERATE REPORT
-            Utilities.getReport(MedicalStaffMenu.getMedicalStaff(), clinicalHistory, patient, scoresList,anemiasList);
+            //Utilities.getReport(MedicalStaffMenu.getMedicalStaff(), clinicalHistory, patient, scoresList,anemiasList);
 
         } catch (SQLException e) {
             System.out.println(e.getCause());

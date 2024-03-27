@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+
+<persistence xmlns="http://xmlns.jcp.org/xml/ns/persistence"
+             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence
+         http://xmlns.jcp.org/xml/ns/persistence/persistence_2_1.xsd"
+             version="2.1">
+
+
+  <persistence-unit name="AnemiaDSS-provider" transaction-type="RESOURCE_LOCAL">
+    <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
+
+    <!-- Entity Class -->
+    <class>diagnosis.User</class>
+
+
+    <properties>
+      <!-- Connection properties -->
+      <property name="javax.persistence.jdbc.driver" value="org.sqlite.JDBC" />
+      <property name="javax.persistence.jdbc.url" value="jdbc:sqlite:./db/AnemiaDSSdb.db" />
+      <!-- Fill if we need user and password -->
+      <property name="javax.persistence.jdbc.user" value="" />
+      <property name="javax.persistence.jdbc.password" value="" />
+
+      <!-- Controls logging level -->
+      <property name="hibernate.show_sql" value="true" />
+      <property name="hibernate.format_sql" value="true" />
+
+      <!-- Hibernate specific settings -->
+      <property name="hibernate.dialect" value="org.hibernate.dialect.SQLiteDialect" />
+<!--      <property name="dialect" value="org.hibernate.dialect.SQLiteDialect" />-->
+      <property name="hibernate.hbm2ddl.auto" value="create" />
+    </properties>
+  </persistence-unit>
+</persistence>
+
+<!--  <persistence-unit name="AnemiaDSS-provider" transaction-type="RESOURCE_LOCAL">-->
+
+<!--    <class>diagnosis.User</class>-->
+<!--    <exclude-unlisted-classes>true</exclude-unlisted-classes>-->
+<!--    <properties>-->
+<!--      <property name="hibernate.connection.driver_class" value="com.mysql.jdbc.Driver"/>-->
+<!--      <property name="hibernate.dialect" value="org.hibernate.dialect.MySQLDialect"/>-->
+<!--      <property name="hibernate.connection.url" value="jdbc:mysql://localhost:3306/hibernate_project"/>-->
+<!--      <property name="hibernate.connection.username" value="root"/>-->
+<!--      <property name="hibernate.connection.password" value="root"/>-->
+<!--      <property name="hibernate.hbm2ddl.auto" value="create-drop"/>-->
+<!--      <property name="hibernate.show_sql" value="true"/>-->
+<!--      <property name="hibernate.format_sql" value="false"/>-->
+
+<!--      <property name="hibernate.cache.use_second_level_cache" value="false"/>-->
+
+<!--      <property name="hibernate.archive.autodetection" value="true"/>-->
+<!--    </properties>-->
+<!--    </persistence-unit>-->
+<!--</persistence>-->
+
+
+
+
+<!--<persistence xmlns="http://java.sun.com/xml/ns/persistence"-->
+<!--             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"-->
+<!--             xsi:schemaLocation="http://java.sun.com/xml/ns/persistence http://java.sun.com/xml/ns/persistence/persistence_2_0.xsd"-->
+<!--             version="2.0">-->
+
+<!--<persistence-unit name="AnemiaDSS-provider">-->
+<!--  <provider>org.hibernate.ejb.HibernatePersistence</provider>-->
+<!--  <class>diagnosis.User</class>-->
+
+<!--  <properties>-->
+<!--    <property name="dialect" value="org.hibernate.dialect.SQLiteDialect" />-->
+<!--    <property name="javax.persistence.jdbc.driver" value="org.sqlite.JDBC" />-->
+<!--    <property name="javax.persistence.jdbc.url" value="jdbc:sqlite:./db/AnemiaDSSdb.db" />-->
+<!--    <property name="javax.persistence.jdbc.user" value="" />-->
+<!--    <property name="javax.persistence.jdbc.password" value="" />-->
+<!--    <property name="hibernate.show_sql" value="true" />-->
+<!--    <property name="format_sql" value="true" />-->
+<!--    <property name="hibernate.connection.charSet" value="UTF-8" />-->
+<!--    <property name="hibernate.hbm2ddl.auto" value="create" />-->
+<!--  </properties>-->
+<!--</persistence-unit>-->
+<!--</persistence>-->

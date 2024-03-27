@@ -11,17 +11,17 @@ import java.util.List;
 public class JPAUserManager implements UserManager {
 
     private EntityManager em;
-/**
+
+    /**
      * Constructs a new JPAUserManager and initializes the database connection.
      */
-
     public JPAUserManager() {
         this.connect();
     }
-/**
+
+    /**
      * Establishes a connection to the JPA entity manager and initializes the database with default roles if necessary.
      */
-
     @Override
     public void connect() {
         em = Persistence.createEntityManagerFactory("AnemiaDSS-provider").createEntityManager();
@@ -30,33 +30,32 @@ public class JPAUserManager implements UserManager {
         em.getTransaction().commit();
 
     }
-/**
+
+    /**
      * Closes the connection to the JPA entity manager.
      */
-
     @Override
     public void disconnect() {
         em.close();
     }
-/**
+
+    /**
      * Adds a new user to the database.
-     *
      * @param u the User object representing the user to be added
      */
-
     @Override
     public void newUser(User u) {
         em.getTransaction().begin();
         em.persist(u);
         em.getTransaction().commit();
     }
-/**
+
+    /**
      * Deletes a user from the database based on the email and password.
      *
      * @param user the email of the user to be deleted
      * @param password the password of the user to be deleted
      */
-
     @Override
     public void deleteUser(String user, String password) {
         try {

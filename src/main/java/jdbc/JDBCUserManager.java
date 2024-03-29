@@ -88,7 +88,7 @@ public class JDBCUserManager implements UserManager {
                 if (encr_password != null &&
                         Utilities.xor_encrypt_decrypt(encr_password, XOR_KEY).equals(password)) {
                     u = new User(user_id, userName, password);
-                    System.out.println("Login successful!");
+                    //System.out.println("Login successful!");
                 }
             }
             rs.close();

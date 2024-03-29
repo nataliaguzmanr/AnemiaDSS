@@ -9,9 +9,10 @@ public interface MedicalStaffManager {
      * Adds a new medical staff member to the database.
      *
      * @param medicalStaff the MedicalStaff object representing the heath proffesional to be added
+     * @param user_id id of the user which corresponds to the MedicalStaff
      * @throws SQLException if a database access error occurs
      */
-    public void addMedicalStaff(MedicalStaff medicalStaff) throws SQLException;
+    public void addMedicalStaff(MedicalStaff medicalStaff, int user_id) throws SQLException;
 
 
     /**

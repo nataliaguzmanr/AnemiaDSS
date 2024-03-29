@@ -27,11 +27,12 @@ public class JDBCMedicalStaffManager implements MedicalStaffManager {
      * @throws SQLException if a database access error occurs
      */
     @Override
-    public void addMedicalStaff(MedicalStaff medicalStaff) throws SQLException {
+    public void addMedicalStaff(MedicalStaff medicalStaff, int user_id) throws SQLException {
         try {
-            String sql = "INSERT INTO MedicalStaff(name) VALUES (?)";
+            String sql = "INSERT INTO MedicalStaff(medicalStaff_id, name) VALUES (?,?)";
             PreparedStatement prep = medicalStaffManager.getConnection().prepareStatement(sql);
-            prep.setString(1, medicalStaff.getName());
+            prep.setInt(1, user_id);
+            prep.setString(2, medicalStaff.getName());
 
             prep.executeUpdate();
             prep.close();

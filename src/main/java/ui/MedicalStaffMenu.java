@@ -2,6 +2,7 @@ package ui;
 
 
 import diagnosis.*;
+import ifaces.MedicalStaffManager;
 import jdbc.*;
 import org.drools.ruleunits.api.RuleUnitInstance;
 import org.drools.ruleunits.api.RuleUnitProvider;
@@ -29,6 +30,7 @@ public class MedicalStaffMenu {
     private static JDBCUserManager userManager = new JDBCUserManager(jdbcManager);
 
     private final static JDBCPatientManager jdbcPatientManager = new JDBCPatientManager(jdbcManager);
+    private final static JDBCMedicalStaffManager jdbcMedicalStaffManager = new JDBCMedicalStaffManager(jdbcManager);
     private final static JDBCSymptomManager jdbcSymptomManager = new JDBCSymptomManager(jdbcManager);
     private final static JDBCClinicalHistoryManager jdbcClinicalHistoryManager =
             new JDBCClinicalHistoryManager(jdbcManager);
@@ -129,6 +131,11 @@ public static void register(){
             }else {
                 User user = new User(userName, password);
                 userManager.newUser(user);
+                int user_id = user.getId();
+
+                String name = InputException.getString("Write your name:");
+                medStaff = new MedicalStaff(name);
+                jdbcMedicalStaffManager.addMedicalStaff(medStaff, user_id);
 
                 //TODO
                 //crear tambien el mdical staff
@@ -144,13 +151,15 @@ public static void login() {
             String userName = getString("Please, write your USER NAME:");
             String password = getString("Please, write your password:");
             User user = userManager.checkPassword(userName, password);
+            int user_id = user.getId();
+
             if (user == null) {
                 System.out.println("Wrong email or password");
                 welcomeMenu();
             }else{
                 medStaff.setId(user.getId());
                 //TODO
-                // completar la info del paciente. ver si es necesario
+                // completar la info del DOCTOR. ver si es necesario
 
                 patientHandlerMenu();
                 System.out.println("Has entrado correctamente");

@@ -98,5 +98,29 @@ public class JDBCUserManager implements UserManager {
         }
         return u;
     }
+    public Integer getUserId(User user) {
+        Integer userID = null;
+        try {
+            String sql = "SELECT * FROM User WHERE user_name = ? AND encr_password = ?";
+            PreparedStatement prep = userManager.getConnection().prepareStatement(sql);
+            prep.setString(1, user.getUser());
+            prep.setString(2, Utilities.xor_encrypt_decrypt(user.getPassword(), XOR_KEY));
 
+
+            ResultSet rs = prep.executeQuery();
+
+            while(rs.next()) {
+                Integer user_id = rs.getInt(1);
+                String userName = rs.getString(2);
+                String encr_password = rs.getString(3);
+                userID = user_id;
+            }
+            rs.close();
+            prep.close();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return userID;
+    }
 }

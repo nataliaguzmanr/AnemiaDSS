@@ -30,7 +30,7 @@ public class JDBCPatientManager implements PatientManager {
      * @throws SQLException if a database access error occurs
      */
     @Override
-    public void addPatient(Patient patient) throws SQLException {
+    public void addPatient(Patient patient)  {
         try {
             String sql = "INSERT INTO Patient(name, age, gender, weight) VALUES (?,?,?,?)";
             PreparedStatement prep = patientManager.getConnection().prepareStatement(sql);
@@ -55,7 +55,7 @@ public class JDBCPatientManager implements PatientManager {
      * @return the Patient object
      */
     @Override
-    public Patient getPatient(int patient_id) throws SQLException {
+    public Patient getPatient(int patient_id){
         Patient patient = null;
         try {
             String sql = "SELECT * FROM Patient WHERE patient_id = " + patient_id;
@@ -80,7 +80,7 @@ public class JDBCPatientManager implements PatientManager {
     }
 
     @Override
-    public List<Patient> getAllPatients() throws SQLException {
+    public List<Patient> getAllPatients() {
 
         List<Patient> patients = new LinkedList<>();
         Patient p = null;

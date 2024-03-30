@@ -251,7 +251,9 @@ public static void patientHandlerMenu(){
             System.out.println("1) Introduce the symptoms");
             System.out.println("2) Read last report");
             System.out.println("3) Read previous report");
-            System.out.println("4) See historial");
+            System.out.println("4) See clinical histories");
+            //TODO
+            // add more options to the menu
             System.out.println("0) Back");
 
             choice = Utilities.readIntFromKeyboardInRange("Option: ", 0, 3);
@@ -271,7 +273,7 @@ public static void patientHandlerMenu(){
                     break;
 
                 case 4:
-                    //TODO
+                    seeClinicalHistories();
                     break;
 
                 case 0:
@@ -676,6 +678,31 @@ public static void patientHandlerMenu(){
             System.out.println(r.getFile_name());
         }
     }
+
+
+    public static void seeClinicalHistories(){
+        List<ClinicalHistory> histories = jdbcClinicalHistoryManager.getHistoriesList(patient);
+        List<Integer> available_ids = new LinkedList<>();
+        for (ClinicalHistory h : histories){
+            System.out.println("Id: " + h.getId() + " Date: " + h.getSymptomsDate().toString());
+            available_ids.add(h.getId());
+        }
+
+        int id = InputException.getInt("Introduce the id of the history so you can see the symptoms: ");
+        if(available_ids.contains(id)) {
+            List<Symptom> symptoms = jdbcSymptomManager.getSymptomsList(id);
+            for (Symptom s : symptoms) {
+                System.out.println(s);
+            }
+        }else{
+            System.out.println("There is no history with that Id");
+            return;
+        }
+    }
+
+
+
+
 
 }
 

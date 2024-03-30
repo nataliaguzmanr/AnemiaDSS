@@ -1,11 +1,15 @@
 package jdbc;
 
+import diagnosis.Patient;
+import diagnosis.Report;
 import diagnosis.Symptom;
 import ifaces.SymptomManager;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.LinkedList;
+import java.util.List;
 
 public class JDBCSymptomManager implements SymptomManager {
 
@@ -60,7 +64,30 @@ public class JDBCSymptomManager implements SymptomManager {
 
         return symptom;
     }
+    public List<Symptom> getSymptomsList(Integer clinicalHistoryId) {
 
+        List<Symptom> symptoms = new LinkedList<>();
+        Symptom s = null;
+        try {
+            String sql = "SELECT * FROM Symptom WHERE clinicalHistory_id=?";
+            PreparedStatement prep = symptomManager.getConnection().prepareStatement(sql);
+            prep.setInt(1, clinicalHistoryId);
+            ResultSet rs = prep.executeQuery();
+
+            while(rs.next()) {
+                Integer symptom_id = rs.getInt(1);
+                Float value = rs.getFloat("value");
+                String name = rs.getString("name");
+                s = new Symptom (symptom_id, value, name);
+                symptoms.add(s);
+            }
+            rs.close();
+            prep.close();
+        }catch(SQLException e) {
+            e.printStackTrace();
+        }
+        return symptoms;
+    }
 
 
 }

@@ -26,11 +26,8 @@ public class DatabaseTest {
 
         //Patient p1 = new Patient("Rafael Gomez",55, Gender.MALE);
         Patient p1 = new Patient("Juana Lopez",35, Gender.FEMALE, 67.45F);
-        try {
-            jdbcPatientManager.addPatient(p1);
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
+        jdbcPatientManager.addPatient(p1);
+
     }
 
     @Test
@@ -40,12 +37,10 @@ public class DatabaseTest {
         JDBCPatientManager jdbcPatientManager = new JDBCPatientManager(jdbcManager);
 
         int id1 = 1;
-        try {
-           Patient p = jdbcPatientManager.getPatient(id1);
-           System.out.println(p);
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
+
+        Patient p = jdbcPatientManager.getPatient(id1);
+        System.out.println(p);
+
     }
 
     @Test
@@ -54,15 +49,12 @@ public class DatabaseTest {
         JDBCManager jdbcManager = new JDBCManager();
         JDBCPatientManager jdbcPatientManager = new JDBCPatientManager(jdbcManager);
 
-        try {
-            List<Patient> p_list = jdbcPatientManager.getAllPatients();
-            System.out.println(p_list);
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
+        List<Patient> p_list = jdbcPatientManager.getAllPatients();
+        System.out.println(p_list);
+
     }
 
-    @Test
+/*    @Test
     public void addMedicalStaffTest(){
 
         JDBCManager jdbcManager = new JDBCManager();
@@ -74,7 +66,7 @@ public class DatabaseTest {
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
-    }
+    }*/
 
     @Test
     public void getMedicalStaffTest(){

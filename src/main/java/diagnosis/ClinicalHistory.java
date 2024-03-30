@@ -66,10 +66,9 @@ public class ClinicalHistory {
 
     @Override
     public String toString() {
-        return "\nClinicalHistory{" +
+        return "ClinicalHistory{" +
                 "id=" + id +
                 ", symptomsDate=" + symptomsDate +
-                //", patientsHistory=" + patientsHistory +
                 '}';
     }
 }

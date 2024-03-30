@@ -67,7 +67,6 @@ public class Report implements Serializable {
         return "Report{" +
                 "id=" + id +
                 ", file_name='" + file_name + '\'' +
-                ", patient=" + patient +
                 '}';
     }
 }

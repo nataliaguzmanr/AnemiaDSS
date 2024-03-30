@@ -197,7 +197,7 @@ public static void patientHandlerMenu(){
 
             switch (choice) {
                 case 1:
-                    //TODO
+                    //TODO añadir los enlaces para sacar info de las anemias
                     break;
 
                 case 2:
@@ -317,6 +317,12 @@ public static void patientHandlerMenu(){
     public static Patient selectPatient() {
         // can select all the patients of the database.
         List<Patient> patients = jdbcPatientManager.getAllPatients();
+
+        if(patients == null){
+            System.out.println("There are no patients in our database");
+            Patient p = addNewPatient();
+            return p;
+        }
 
         for (Patient p: patients){
             System.out.println("Id: " + p.getId() + ", Name: " + p.getName());

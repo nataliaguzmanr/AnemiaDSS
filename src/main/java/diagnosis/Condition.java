@@ -1,5 +1,7 @@
 package diagnosis;
 
+import java.util.Objects;
+
 public class Condition {
 
     private String name;
@@ -65,5 +67,18 @@ public class Condition {
                 ", value2=" + value2 +
                 ", sign='" + sign + '\'' +
                 '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Condition condition = (Condition) o;
+        return Objects.equals(name, condition.name) && Objects.equals(value1, condition.value1) && Objects.equals(value2, condition.value2) && Objects.equals(sign, condition.sign);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(name, value1, value2, sign);
     }
 }

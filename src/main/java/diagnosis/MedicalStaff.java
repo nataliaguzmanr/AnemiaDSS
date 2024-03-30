@@ -69,8 +69,7 @@ public class MedicalStaff implements Serializable{
     public String toString() {
         return "MedicalStaff{" +
                 "id=" + id +
-                ", user='" + name + '\'' +
-                ", patients=" + patients +
+                ", name='" + name + '\'' +
                 '}';
     }
 }

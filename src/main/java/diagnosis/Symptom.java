@@ -89,7 +89,6 @@ public class Symptom implements Serializable {
                 "id=" + id +
                 ", value=" + value +
                 ", name='" + name + '\'' +
-                //", clinicalHistoryList=" + clinicalHistory +
                 '}';
     }
 }

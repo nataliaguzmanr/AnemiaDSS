@@ -16,6 +16,7 @@ public class JDBCAnemiaManager implements AnemiaManager {
         this.anemiaManager = m;
     }
 
+    @Override
     public Anemia getAnemia(Integer anemia_id){
         Anemia anemia = null;
 

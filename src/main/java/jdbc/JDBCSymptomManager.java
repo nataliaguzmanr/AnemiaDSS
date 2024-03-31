@@ -64,6 +64,7 @@ public class JDBCSymptomManager implements SymptomManager {
 
         return symptom;
     }
+    @Override
     public List<Symptom> getSymptomsList(Integer clinicalHistoryId) {
 
         List<Symptom> symptoms = new LinkedList<>();

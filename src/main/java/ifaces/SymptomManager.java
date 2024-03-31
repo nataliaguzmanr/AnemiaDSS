@@ -3,6 +3,7 @@ package ifaces;
 import diagnosis.Symptom;
 
 import java.sql.SQLException;
+import java.util.List;
 
 public interface SymptomManager {
 
@@ -22,4 +23,5 @@ public interface SymptomManager {
      * @return the Symptom object
      */
     public Symptom getSymptom(int symptom_id) throws SQLException;
+    public List<Symptom> getSymptomsList(Integer clinicalHistoryId);
 }

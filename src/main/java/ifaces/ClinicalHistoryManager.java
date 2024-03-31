@@ -1,8 +1,10 @@
 package ifaces;
 
 import diagnosis.ClinicalHistory;
+import diagnosis.Patient;
 
 import java.sql.SQLException;
+import java.util.List;
 
 public interface ClinicalHistoryManager {
 
@@ -24,4 +26,6 @@ public interface ClinicalHistoryManager {
      * @return the ClinicalHistory object
      */
     public ClinicalHistory getClinicalHistory(int patient_id) throws SQLException;
+
+    public List<ClinicalHistory> getHistoriesList(Patient p);
 }

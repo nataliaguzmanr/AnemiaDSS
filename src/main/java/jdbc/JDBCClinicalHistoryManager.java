@@ -79,7 +79,7 @@ public class JDBCClinicalHistoryManager implements ClinicalHistoryManager {
     }
 
 
-
+    @Override
     public List<ClinicalHistory> getHistoriesList(Patient p) {
 
         int patient_id = p.getId();

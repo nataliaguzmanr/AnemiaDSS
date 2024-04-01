@@ -12,6 +12,7 @@ import utilities.ReadExcel;
 import utilities.Utilities;
 
 import java.io.BufferedReader;
+import java.io.IOException;
 import java.io.InputStreamReader;
 import java.sql.SQLException;
 import java.time.LocalDate;
@@ -251,7 +252,7 @@ public static void patientHandlerMenu(){
             System.out.println("4) See clinical histories");
             System.out.println("0) Back");
 
-            choice = Utilities.readIntFromKeyboardInRange("Option: ", 0, 3);
+            choice = Utilities.readIntFromKeyboardInRange("Option: ", 0, 4);
 
             switch (choice) {
                 case 1:
@@ -658,15 +659,14 @@ public static void patientHandlerMenu(){
 
             instance = RuleUnitProvider.get().createRuleUnitInstance(patientUnit);
 
+
             LOG.info("Insert data");
             patientUnit.getPatients().add(patient);
 
             LOG.info("Fire rules");
             instance.fire();
 
-
             instance.close();
-
 
             List<Anemia> anemiasList = patient.getAnemiasList();
             List<Symptom> symptomsList = patient.getSymptomsList();
@@ -769,13 +769,12 @@ public static void patientHandlerMenu(){
                 //System.out.println(booleanList);
                 //System.out.println(symptomsList);
                 Float score = Utilities.getScore(a,booleanList);
-                System.out.println(score);
+                //System.out.println(score);
                 scoresList.add(score);
             }
 
             //write the report
             String r = Utilities.getReport(medStaff, clinicalHistory, patient, scoresList, anemiasList);
-            //TODO añadir el report a la base de datos
             Report report = new Report(r, patient);
             jdbcReportManager.addReport(report);
 
@@ -786,6 +785,10 @@ public static void patientHandlerMenu(){
 
     public static void readLastReport(){
         Report r = jdbcReportManager.getReport(patient);
+        if(r.equals(null)){
+            System.out.println("This patient has no reports");
+            return;
+        }
         System.out.println("This is the file you need to open");
         System.out.println(r.getFile_name());
 
@@ -794,6 +797,9 @@ public static void patientHandlerMenu(){
 
     public static void readPreviousReport(){
         List<Report> reports = jdbcReportManager.getReportsList(patient);
+        if (reports.isEmpty()){
+            System.out.println("This patient has no reports");
+        }
         System.out.println("These are the reports that this patient has:");
         for (Report r : reports){
             System.out.println(r.getFile_name());
@@ -803,6 +809,10 @@ public static void patientHandlerMenu(){
 
     public static void seeClinicalHistories(){
         List<ClinicalHistory> histories = jdbcClinicalHistoryManager.getHistoriesList(patient);
+        if(histories.isEmpty()){
+            System.out.println("This patient has no clinicalHistories");
+            return;
+        }
         List<Integer> available_ids = new LinkedList<>();
         for (ClinicalHistory h : histories){
             System.out.println("Id: " + h.getId() + " Date: " + h.getSymptomsDate().toString());

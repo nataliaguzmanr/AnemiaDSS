@@ -74,13 +74,13 @@ public class Utilities {
         float score=0;
 
         List<Float> weightsList = anemia.getWeights();
-        System.out.println(weightsList);
+        //System.out.println(weightsList);
 
         for (int j=0; j<booleanList.size();j++){
             if((booleanList.get(j).equals(true))){
                 score = score + weightsList.get(j);
                 //System.out.println(score);
-                System.out.println("Weight: " +weightsList.get(j));
+                //System.out.println("Weight: " +weightsList.get(j));
                 }
 
             }

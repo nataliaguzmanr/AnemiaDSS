@@ -53,13 +53,13 @@ public class PatientUnitDiagnosisTestWithSetUp {
         p1 = new Patient("Juan", 18, Gender.MALE);
         Symptom hb1 = new Symptom(7.5F, "Hb");
         Symptom tach1 = new Symptom(1.0F, "Tachycardia");
-        Symptom mhch1 = new Symptom(300F, "MHCH");
+        Symptom mhch1 = new Symptom(300F, "MCHC");
         Symptom fat1 = new Symptom(1.0F, "Fatigue");
         Symptom splen1 = new Symptom(1.0F, "Splenomegaly");
-        Symptom bili1 = new Symptom(3F, "Bilirrubine");
+        Symptom bili1 = new Symptom(3F, "Bilirubin");
         Symptom jaun1 = new Symptom(1.0F, "Jaundice");
         Symptom bonedef1 = new Symptom(1.0F, "Bone deformations");
-        Symptom tongue1 = new Symptom(1.0F, "Tongue inflamation");
+        Symptom tongue1 = new Symptom(1.0F, "Tongue inflammation");
         Symptom ferr1 = new Symptom(10F, "Ferritin");
         Symptom skin1 = new Symptom(1.0F, "Skin paleness");
         Symptom internh1 = new Symptom(1.0F, "Intern hemorrhage");
@@ -98,11 +98,11 @@ public class PatientUnitDiagnosisTestWithSetUp {
         Symptom hb2 = new Symptom(8.1F, "Hb");
         //Symptom tach1 = new Symptom(1.0F, "Tachycardia");
         //Symptom fat1 = new Symptom(1.0F, "Fatigue");
-        Symptom mhch2 = new Symptom(378F, "MHCH");
+        Symptom mhch2 = new Symptom(378F, "MCHC");
         Symptom b12_2 = new Symptom(140F, "B12");
         Symptom reticu2 = new Symptom(2.7F, "Reticulocytes");
         Symptom mch2 = new Symptom(26F, "MCH");
-        Symptom plaquets2 = new Symptom(7.2F, "Plaquets");
+        Symptom plaquets2 = new Symptom(7.2F, "Platelets");
         Symptom Leukoc2 = new Symptom(4.3F, "Leukocytes");
         Symptom rbc2 = new Symptom(3.9F, "RBC");
         Symptom epo2 = new Symptom(2.3F, "EPO");
@@ -131,7 +131,7 @@ public class PatientUnitDiagnosisTestWithSetUp {
         * Chronic anemia
         * Polycytemia*/
         p3 = new Patient("Pepe", 58, Gender.MALE);
-        Symptom bili3 = new Symptom(0.2F, "Bilirrubine");
+        Symptom bili3 = new Symptom(0.2F, "Bilirubin");
         //Symptom jaun1 = new Symptom(1.0F, "Jaundice");
         Symptom folic3 = new Symptom(3F, "Folic acid");
         //Symptom fat1 = new Symptom(1.0F, "Fatigue");
@@ -142,7 +142,7 @@ public class PatientUnitDiagnosisTestWithSetUp {
         Symptom rbc3 = new Symptom(6.2F, "RBC");
         Symptom ferritin3 = new Symptom(350F, "Ferritin");
         Symptom hb3 = new Symptom(18F, "Hb");
-        Symptom pvm3 = new Symptom(60F, "PVM");
+        Symptom pvm3 = new Symptom(60F, "Hematocrit/PVM");
 
         p3.addSymptom(bili3);
         p3.addSymptom(jaun1);

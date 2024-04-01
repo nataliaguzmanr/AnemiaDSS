@@ -32,54 +32,54 @@ end
 
 
 
-rule "2.1. FinalMale_PosthemorragicAnemia_MHCH&Fatigue"
+rule "2.1. FinalMale_PosthemorragicAnemia_MCHC&Fatigue"
 when
-    $patient : /patients[(detectSymptomValue("MHCH")<310) &&
+    $patient : /patients[(detectSymptomValue("MCHC")<310) &&
     (detectSymptomValue("Fatigue")==1) && (getGender().equals(gender.MALE)) ]
 then
     Anemia a = new Anemia (AnemiaType.POSTHEMORRHAGIC_ANEMIA_MALE);
     $patient.addAnemia(a);
     patientsWithPosthemorrhagicAnemia.add($patient);
-    System.out.println( $patient + " -> 2.1. FinalMale_PosthemorragicAnemia_MHCH&Fatigue");
+    System.out.println( $patient + " -> 2.1. FinalMale_PosthemorragicAnemia_MCHC&Fatigue");
 end
 
-rule "2.2. FinalFemale_PosthemorragicAnemia_MHCH&Fatigue"
+rule "2.2. FinalFemale_PosthemorragicAnemia_MCHC&Fatigue"
 when
-    $patient : /patients[(detectSymptomValue("MHCH")<310) &&
+    $patient : /patients[(detectSymptomValue("MCHC")<310) &&
     (detectSymptomValue("Fatigue")==1) && (getGender().equals(gender.FEMALE)) ]
 then
     Anemia a = new Anemia (AnemiaType.POSTHEMORRHAGIC_ANEMIA_FEMALE);
     $patient.addAnemia(a);
     patientsWithPosthemorrhagicAnemia.add($patient);
-    System.out.println( $patient + " -> 2.2. FinalFemale_PosthemorragicAnemia_MHCH&Fatigue");
+    System.out.println( $patient + " -> 2.2. FinalFemale_PosthemorragicAnemia_MCHC&Fatigue");
 end
 
 
 
-rule "3.1. FinalMale_HemolyticAnemia_Splenomegaly&Bilirrubine&Jaundice"
+rule "3.1. FinalMale_HemolyticAnemia_Splenomegaly&Bilirubin&Jaundice"
 when
     $patient : /patients[(detectSymptomValue("Splenomegaly")==1)
-    && (detectSymptomValue("Bilirrubine")>1)
+    && (detectSymptomValue("Bilirubin")>1)
     && (detectSymptomValue("Jaundice")==1)
     && (getGender().equals(gender.MALE))]
 then
     Anemia a = new Anemia (AnemiaType.HEMOLYTIC_ANEMIA_MALE);
     $patient.addAnemia(a);
     patientsWithHemolyticAnemia.add($patient);
-    System.out.println( $patient + " -> 3.1. FinalMale_HemolyticAnemia_Splenomegaly&Bilirrubine&Jaundice");
+    System.out.println( $patient + " -> 3.1. FinalMale_HemolyticAnemia_Splenomegaly&Bilirubin&Jaundice");
 end
 
-rule "3.2. FinalFemale_HemolyticAnemia_Splenomegaly&Bilirrubine&Jaundice"
+rule "3.2. FinalFemale_HemolyticAnemia_Splenomegaly&Bilirubin&Jaundice"
 when
     $patient : /patients[(detectSymptomValue("Splenomegaly")==1)
-    && (detectSymptomValue("Bilirrubine")>1)
+    && (detectSymptomValue("Bilirubin")>1)
     && (detectSymptomValue("Jaundice")==1)
     && (getGender().equals(gender.FEMALE))]
 then
     Anemia a = new Anemia (AnemiaType.HEMOLYTIC_ANEMIA_FEMALE);
     $patient.addAnemia(a);
     patientsWithHemolyticAnemia.add($patient);
-    System.out.println( $patient + " -> 3.2. FinalFemale_HemolyticAnemia_Splenomegaly&Bilirrubine&Jaundice");
+    System.out.println( $patient + " -> 3.2. FinalFemale_HemolyticAnemia_Splenomegaly&Bilirubin&Jaundice");
 end
 
 
@@ -112,7 +112,7 @@ end
 
 rule "5.1. FinalMale_InheritedSpherocytosis_Bilirrubine&Jaundice"
 when
-    $patient : /patients[(detectSymptomValue("Bilirrubine")>1)
+    $patient : /patients[(detectSymptomValue("Bilirubin")>1)
     && (detectSymptomValue("Jaundice")==1)
     && (getGender().equals(gender.MALE))]
 then
@@ -124,7 +124,7 @@ end
 
 rule "5.2. FinalFemale_InheritedSpherocytosis_Bilirrubine&Jaundice"
 when
-    $patient : /patients[(detectSymptomValue("Bilirrubine")>1)
+    $patient : /patients[(detectSymptomValue("Bilirubin")>1)
     && (detectSymptomValue("Jaundice")==1)
     && (getGender().equals(gender.FEMALE))]
 then
@@ -138,8 +138,8 @@ end
 
 rule "6.1. FinalMale_InheritedSpherocytosis_CranealB|MaxilarBoneH"
 when
-    $patient : /patients[(detectSymptomValue("Craneal balloning")==1)
-    && (detectSymptomValue("Maxilar bone hyperplasia")==1)
+    $patient : /patients[(detectSymptomValue("Cranial ballooning")==1)
+    && (detectSymptomValue("Maxila bone hyperplasia")==1)
     && (getGender().equals(gender.MALE))]
 then
     Anemia a = new Anemia (AnemiaType.INHERITED_SPHEROCYTOSIS_MALE);
@@ -150,8 +150,8 @@ end
 
 rule "6.2. FinalFemale_InheritedSpherocytosis_CranealB|MaxilarBoneH"
 when
-    $patient : /patients[(detectSymptomValue("Craneal balloning")==1)
-    && (detectSymptomValue("Maxilar bone hyperplasia")==1)
+    $patient : /patients[(detectSymptomValue("Cranial ballooning")==1)
+    && (detectSymptomValue("Maxila bone hyperplasia")==1)
     && (getGender().equals(gender.FEMALE))]
 then
     Anemia a = new Anemia (AnemiaType.INHERITED_SPHEROCYTOSIS_FEMALE);
@@ -262,7 +262,7 @@ end
 
 rule "11.1. FinalMale_MegaloblasticAnemia_TongueInflm"
 when
-    $patient : /patients[(detectSymptomValue("Tongue Inflamation")==1)
+    $patient : /patients[(detectSymptomValue("Tongue Inflammation")==1)
     && (getGender().equals(gender.MALE))]
 
 then
@@ -274,14 +274,14 @@ end
 
 rule "11.2. FinalFemale_MegaloblasticAnemia_TongueInflm"
 when
-    $patient : /patients[(detectSymptomValue("Tongue Inflamation")==1)
+    $patient : /patients[(detectSymptomValue("Tongue Inflammation")==1)
     && (getGender().equals(gender.FEMALE))]
 
 then
     Anemia a = new Anemia (AnemiaType.MEGALOBLASTIC_ANEMIA_FEMALE);
     $patient.addAnemia(a);
     patientsWithMegaloblasticAnemia.add($patient);
-    System.out.println( $patient + " -> 11.2. FinalFeale_MegaloblasticAnemia_TongueInflm");
+    System.out.println( $patient + " -> 11.2. FinalFemale_MegaloblasticAnemia_TongueInflm");
 end
 
 
@@ -314,12 +314,12 @@ end
 
 rule "13.1. FinalMale_AplasicAnemia_Plaquets&Leukocytes&RBC"
 when
-    $patient : /patients[(detectSymptomValue("Plaquets")<7.4)
+    $patient : /patients[(detectSymptomValue("Platelets")<7.4)
     && (detectSymptomValue("Leukocytes")<4.5)
     && (detectSymptomValue("RBC")<4.5)
     && (getGender().equals(gender.MALE))]
 then
-    Anemia a = new Anemia (AnemiaType.APLASIC_ANEMIA_MALE);
+    Anemia a = new Anemia (AnemiaType.APLASTIC_ANEMIA_MALE);
     $patient.addAnemia(a);
     patientsWithAplasticAnemia.add($patient);
     System.out.println( $patient + " -> 13.1. FinalMale_AplasicAnemia_Plaquets&Leukocytes&RBC");
@@ -327,12 +327,12 @@ end
 
 rule "13.2. FinalFemale_AplasicAnemia_Plaquets&Leukocytes&RBC"
 when
-    $patient : /patients[(detectSymptomValue("Plaquets")<7.4)
+    $patient : /patients[(detectSymptomValue("Platelets")<7.4)
     && (detectSymptomValue("Leukocytes")<4.5)
     && (detectSymptomValue("RBC")<4.1)
     && (getGender().equals(gender.FEMALE))]
 then
-    Anemia a = new Anemia (AnemiaType.APLASIC_ANEMIA_FEMALE);
+    Anemia a = new Anemia (AnemiaType.APLASTIC_ANEMIA_FEMALE);
     $patient.addAnemia(a);
     patientsWithAplasticAnemia.add($patient);
     System.out.println( $patient + " -> 13.2. FinalFemale_AplasicAnemia_Plaquets&Leukocytes&RBC");
@@ -344,7 +344,7 @@ when
     || (detectSymptomValue("Extern Hemorrhage")==1))
     && (getGender().equals(gender.MALE))]
 then
-    Anemia a = new Anemia (AnemiaType.APLASIC_ANEMIA_MALE);
+    Anemia a = new Anemia (AnemiaType.APLASTIC_ANEMIA_MALE);
     $patient.addAnemia(a);
     patientsWithAplasticAnemia.add($patient);
     System.out.println( $patient + " -> 14.1. FinalMale_AplasicAnemia_Intern|ExternHemorrhage");
@@ -356,7 +356,7 @@ when
     || (detectSymptomValue("Extern Hemorrhage")==1))
     && (getGender().equals(gender.FEMALE))]
 then
-    Anemia a = new Anemia (AnemiaType.APLASIC_ANEMIA_FEMALE);
+    Anemia a = new Anemia (AnemiaType.APLASTIC_ANEMIA_FEMALE);
     $patient.addAnemia(a);
     patientsWithAplasticAnemia.add($patient);
     System.out.println( $patient + " -> 14.2. FinalFemale_AplasicAnemia_Intern|ExternHemorrhage");
@@ -414,7 +414,7 @@ end
 rule "17.1. FinalMale_Polycythemia_Hb&PVM&RBC"
 when
     $patient : /patients[(detectSymptomValue("Hb")>17.5)
-    && (detectSymptomValue("PVM")>53)
+    && (detectSymptomValue("Hematocrit/PVM")>53)
     && (detectSymptomValue("RBC")>5.9)
     && (getGender().equals(gender.MALE))]
 then
@@ -427,7 +427,7 @@ end
 rule "17.2. FinalFemale_Polycythemia_Hb&PVM&RBC"
 when
     $patient : /patients[(detectSymptomValue("Hb")>15.3)
-    && (detectSymptomValue("PVM")>47)
+    && (detectSymptomValue("Hematocrit/PVM")>47)
     && (detectSymptomValue("RBC")>5.3)
     && (getGender().equals(gender.FEMALE))]
 then

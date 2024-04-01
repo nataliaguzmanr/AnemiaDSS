@@ -29,4 +29,5 @@ public interface PatientManager {
      * @return a list of Patients object
      */
     public List<Patient> getAllPatients() throws SQLException;
+    public Integer getPatientId(String name);
 }

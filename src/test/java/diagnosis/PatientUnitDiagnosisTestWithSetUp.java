@@ -140,7 +140,7 @@ public class PatientUnitDiagnosisTestWithSetUp {
         //Symptom plaquets2 = new Symptom(7.2F, "Plaquets");
         //Symptom Leukoc2 = new Symptom(4.3F, "Leukocytes");
         Symptom rbc3 = new Symptom(6.2F, "RBC");
-        Symptom ferritin3 = new Symptom(350, "Ferritin");
+        Symptom ferritin3 = new Symptom(350F, "Ferritin");
         Symptom hb3 = new Symptom(18F, "Hb");
         Symptom pvm3 = new Symptom(60F, "PVM");
 

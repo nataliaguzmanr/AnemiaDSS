@@ -74,11 +74,11 @@ public class PatientUnitAllSympTestWithSetUp {
         pat_AllPosthemorrhagic.addSymptom(ret);
         Symptom rbc1 = new Symptom(4.4F, "RBC", pat_AllPosthemorrhagic);
         pat_AllPosthemorrhagic.addSymptom(rbc1);
-        Symptom vcm = new Symptom(95, "VCM", pat_AllPosthemorrhagic);
+        Symptom vcm = new Symptom(95F, "VCM", pat_AllPosthemorrhagic);
         pat_AllPosthemorrhagic.addSymptom(vcm);
-        Symptom mchc = new Symptom(295, "MCHC", pat_AllPosthemorrhagic);
+        Symptom mchc = new Symptom(295F, "MCHC", pat_AllPosthemorrhagic);
         pat_AllPosthemorrhagic.addSymptom(mchc);
-        Symptom fe = new Symptom(58, "Fe", pat_AllPosthemorrhagic);
+        Symptom fe = new Symptom(58F, "Fe", pat_AllPosthemorrhagic);
         pat_AllPosthemorrhagic.addSymptom(fe);
         Symptom sp1 = new Symptom(1.0F, "Skin paleness", pat_AllPosthemorrhagic);
         pat_AllPosthemorrhagic.addSymptom(sp1);

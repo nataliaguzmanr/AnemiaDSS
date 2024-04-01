@@ -28,14 +28,19 @@ public class Utilities {
 
                 String condSign =  conditionsList.get(j).getSign();
 
-                float condValue1 = conditionsList.get(j).getValue1();
-                float condValue2 = conditionsList.get(j).getValue1();
-                float sympValue = symtomsList.get(i).getValue();
+                Float condValue1 = conditionsList.get(j).getValue1();
+                Float condValue2 = conditionsList.get(j).getValue1();
+                Float sympValue = symtomsList.get(i).getValue();
 
 
                 if(sympName.equalsIgnoreCase(condName)){
+                    //System.out.println(sympName);
 
-                    if(condSign.equalsIgnoreCase(">")){
+                    if(sympValue == null){
+                        booleanList.set(j,false);
+                        continue;
+                    }
+                    else if(condSign.equalsIgnoreCase(">")){
                         if (sympValue>condValue1){
                             booleanList.set(j,true);
                         }
@@ -64,23 +69,21 @@ public class Utilities {
     }
 
 
-    public static float getScore(Anemia anemia, List<Boolean> booleanList){
+    public static Float getScore(Anemia anemia, List<Boolean> booleanList){
 
         float score=0;
 
         List<Float> weightsList = anemia.getWeights();
+        System.out.println(weightsList);
 
-        for (int i=0; i<weightsList.size();i++){
-            for (int j=0; j<booleanList.size();j++){
-
-                if( (i==j) && (booleanList.get(j).equals(true))){
-                    score = score + weightsList.get(i);
-                    //System.out.println(score);
-                    //System.out.println("Weight: " +weightsList.get(i));
+        for (int j=0; j<booleanList.size();j++){
+            if((booleanList.get(j).equals(true))){
+                score = score + weightsList.get(j);
+                //System.out.println(score);
+                System.out.println("Weight: " +weightsList.get(j));
                 }
 
             }
-        }
         return score;
     }
 

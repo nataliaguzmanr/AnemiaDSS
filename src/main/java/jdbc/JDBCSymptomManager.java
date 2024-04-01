@@ -8,6 +8,7 @@ import ifaces.SymptomManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Types;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -25,7 +26,11 @@ public class JDBCSymptomManager implements SymptomManager {
         try {
             String sql = "INSERT INTO Symptom (value, name, clinicalHistory_id) VALUES (?, ?, ?)";
             PreparedStatement prep = symptomManager.getConnection().prepareStatement(sql);
-            prep.setFloat(1, symp.getValue());
+            if (symp.getValue() == null){
+                prep.setNull(1, Types.FLOAT);
+            }else {
+                prep.setFloat(1, symp.getValue());
+            }
             prep.setString(2, symp.getName());
             //Date date = Date.valueOf(s.getDate());
             //prep.setDate(3, date);

@@ -2,7 +2,6 @@ package ui;
 
 
 import diagnosis.*;
-import ifaces.MedicalStaffManager;
 import jdbc.*;
 import org.drools.ruleunits.api.RuleUnitInstance;
 import org.drools.ruleunits.api.RuleUnitProvider;
@@ -13,13 +12,12 @@ import utilities.ReadExcel;
 import utilities.Utilities;
 
 import java.io.BufferedReader;
-import java.io.IOException;
 import java.io.InputStreamReader;
-import java.security.MessageDigest;
 import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Set;
 
 import static utilities.InputException.*;
 import static utilities.InputException.getFloatSympTRUE;
@@ -42,44 +40,38 @@ public class MedicalStaffMenu {
     private static Patient patient = null;
 
 
+    private static Anemia anemicSyndromeMALE = initializeAnemia(AnemiaType.ANEMIC_SYNDROME_MALE);
+    private static Anemia anemicSyndromeFEMALE = initializeAnemia(AnemiaType.ANEMIC_SYNDROME_FEMALE);
 
+    private static Anemia posthemorrhagicMALE = initializeAnemia(AnemiaType.POSTHEMORRHAGIC_ANEMIA_MALE);
+    private static Anemia posthemorrhagicFEMALE = initializeAnemia(AnemiaType.POSTHEMORRHAGIC_ANEMIA_FEMALE);
+
+    private static Anemia hemolyticMALE = initializeAnemia(AnemiaType.HEMOLYTIC_ANEMIA_MALE);
+    private static Anemia hemolyticFEMALE = initializeAnemia(AnemiaType.HEMOLYTIC_ANEMIA_FEMALE);
+
+    private static Anemia inheritedSpherocytMALE = initializeAnemia(AnemiaType.INHERITED_SPHEROCYTOSIS_MALE);
+    private static Anemia inheritedSpherocytFEMALE = initializeAnemia(AnemiaType.INHERITED_SPHEROCYTOSIS_FEMALE);
+
+    private static Anemia thalassemiaMALE = initializeAnemia(AnemiaType.THALASSEMIA_MALE);
+    private static Anemia thalassemiaFEMALE = initializeAnemia(AnemiaType.THALASSEMIA_FEMALE);
+
+    private static Anemia ironDeficiencyMALE = initializeAnemia(AnemiaType.IRON_DEFICIENCY_ANEMIA_MALE);
+    private static Anemia ironDeficiencyFEMALE = initializeAnemia(AnemiaType.IRON_DEFICIENCY_ANEMIA_FEMALE);
+
+    private static Anemia megaloblasticMALE = initializeAnemia(AnemiaType.MEGALOBLASTIC_ANEMIA_MALE);
+    private static Anemia megaloblasticFEMALE = initializeAnemia(AnemiaType.MEGALOBLASTIC_ANEMIA_FEMALE);
+
+    private static Anemia aplasticMALE = initializeAnemia(AnemiaType.APLASTIC_ANEMIA_MALE);
+    private static Anemia aplasticFEMALE = initializeAnemia(AnemiaType.APLASTIC_ANEMIA_FEMALE);
+
+    private static Anemia chronicDiseaseMALE = initializeAnemia(AnemiaType.CHRONIC_DISEASE_ANEMIA_MALE);
+    private static Anemia chronicDiseaseFEMALE = initializeAnemia(AnemiaType.CHRONIC_DISEASE_ANEMIA_FEMALE);
+
+    private static Anemia polycythemiaMALE = initializeAnemia(AnemiaType.POLYCYTHEMIA_MALE);
+    private static Anemia polycythemiaFEMALE = initializeAnemia(AnemiaType.POLYCYTHEMIA_FEMALE);
 
 
     public static void main(String[] args) throws Exception{
-
-        //first of all we need to initialize all the types of anemias that we have in the database
-        //read the excels
-
-        Anemia anemicSyndromeMALE = initializeAnemia(AnemiaType.ANEMIC_SYNDROME_MALE);
-        Anemia anemicSyndromeFEMALE = initializeAnemia(AnemiaType.ANEMIC_SYNDROME_FEMALE);
-
-        Anemia posthemorrhagicMALE = initializeAnemia(AnemiaType.POSTHEMORRHAGIC_ANEMIA_MALE);
-        Anemia posthemorrhagicFEMALE = initializeAnemia(AnemiaType.POSTHEMORRHAGIC_ANEMIA_FEMALE);
-
-        Anemia hemolyticMALE = initializeAnemia(AnemiaType.HEMOLYTIC_ANEMIA_MALE);
-        Anemia hemolyticFEMALE = initializeAnemia(AnemiaType.HEMOLYTIC_ANEMIA_FEMALE);
-
-        Anemia inheritedSpherocytMALE = initializeAnemia(AnemiaType.INHERITED_SPHEROCYTOSIS_MALE);
-        Anemia inheritedSpherocytFEMALE = initializeAnemia(AnemiaType.INHERITED_SPHEROCYTOSIS_FEMALE);
-
-        Anemia thalassemiaMALE = initializeAnemia(AnemiaType.THALASSEMIA_MALE);
-        Anemia thalassemiaFEMALE = initializeAnemia(AnemiaType.THALASSEMIA_FEMALE);
-
-        Anemia ironDeficiencyMALE = initializeAnemia(AnemiaType.IRON_DEFICIENCY_ANEMIA_MALE);
-        Anemia ironDeficiencyFEMALE = initializeAnemia(AnemiaType.IRON_DEFICIENCY_ANEMIA_FEMALE);
-
-        Anemia megaloblasticMALE = initializeAnemia(AnemiaType.MEGALOBLASTIC_ANEMIA_MALE);
-        Anemia megaloblasticFEMALE = initializeAnemia(AnemiaType.MEGALOBLASTIC_ANEMIA_FEMALE);
-
-        Anemia aplasicMALE = initializeAnemia(AnemiaType.APLASIC_ANEMIA_MALE);
-        Anemia aplasicFEMALE = initializeAnemia(AnemiaType.APLASIC_ANEMIA_FEMALE);
-
-        Anemia chronicDiseaseMALE = initializeAnemia(AnemiaType.CHRONIC_DISEASE_ANEMIA_MALE);
-        Anemia chronicDiseaseFEMALE = initializeAnemia(AnemiaType.CHRONIC_DISEASE_ANEMIA_FEMALE);
-
-        Anemia polycythemiaMALE = initializeAnemia(AnemiaType.POLYCYTHEMIA_MALE);
-        Anemia polycythemiaFEMALE = initializeAnemia(AnemiaType.POLYCYTHEMIA_FEMALE);
-
         welcomeMenu();
     }
 
@@ -170,8 +162,9 @@ public static void login() {
                 int user_id = user.getId();
                 //hacer un get de la informacion del medical staff
                 medStaff = jdbcMedicalStaffManager.getMedicalStaff(user_id);
-                patientHandlerMenu();
+                System.out.println(medStaff);
                 System.out.println("Has entrado correctamente");
+                patientHandlerMenu();
             }
 
 
@@ -197,7 +190,7 @@ public static void patientHandlerMenu(){
 
             switch (choice) {
                 case 1:
-                    //TODO añadir los enlaces para sacar info de las anemias
+                    getInfoAnemias();
                     break;
 
                 case 2:
@@ -235,9 +228,13 @@ public static void patientHandlerMenu(){
         switch (choice) {
             case 1: //introduce a new patient to the database
                 patient = addNewPatient();
+                //no tiene id asignado
+                patient.setId(jdbcPatientManager.getPatientId(patient.getName()));
                 break;
             case 2: //select one of the already inserted patients
                 patient = selectPatient();
+                //no tiene id asignado
+                patient.setId(jdbcPatientManager.getPatientId(patient.getName()));
                 break;
             default:
                 break;
@@ -252,8 +249,6 @@ public static void patientHandlerMenu(){
             System.out.println("2) Read last report");
             System.out.println("3) Read previous report");
             System.out.println("4) See clinical histories");
-            //TODO
-            // add more options to the menu
             System.out.println("0) Back");
 
             choice = Utilities.readIntFromKeyboardInRange("Option: ", 0, 3);
@@ -318,7 +313,7 @@ public static void patientHandlerMenu(){
         // can select all the patients of the database.
         List<Patient> patients = jdbcPatientManager.getAllPatients();
 
-        if(patients == null){
+        if(patients.isEmpty()){
             System.out.println("There are no patients in our database");
             Patient p = addNewPatient();
             return p;
@@ -348,6 +343,10 @@ public static void patientHandlerMenu(){
             ClinicalHistory clinicalHistory = new ClinicalHistory(LocalDate.now());
             jdbcClinicalHistoryManager.addClinicalHistory(clinicalHistory, patient.getId());
 
+            //get Id of the clinical history
+            ClinicalHistory ch = jdbcClinicalHistoryManager.getClinicalHistory(patient.getId());
+
+            clinicalHistory.setId(ch.getId());
             System.out.println("\nIntroduce patient symptoms: ");
             System.out.println("------ Press X to skip the field");
 
@@ -363,12 +362,12 @@ public static void patientHandlerMenu(){
             jdbcSymptomManager.addSymptom(epo, clinicalHistory.getId());
 
             valueF = getFloatSymptom("Hematocrit/PVM:");
-            Symptom pvm = new Symptom(valueF, "PVM");
+            Symptom pvm = new Symptom(valueF, "Hematocrit/PVM");
             patient.addSymptom(pvm);
             jdbcSymptomManager.addSymptom(pvm, clinicalHistory.getId());
 
-            valueF = getFloatSymptom("Plaquets:");
-            Symptom plaq = new Symptom(valueF, "Plaquets");
+            valueF = getFloatSymptom("Platelets:");
+            Symptom plaq = new Symptom(valueF, "Platelets");
             patient.addSymptom(plaq);
             jdbcSymptomManager.addSymptom(plaq, clinicalHistory.getId());
 
@@ -382,7 +381,13 @@ public static void patientHandlerMenu(){
             patient.addSymptom(ret);
             jdbcSymptomManager.addSymptom(ret, clinicalHistory.getId());
 
-            float normalBloodVol = patient.getWeight() * 0.075F;
+            valueF = getFloatSymptom("Leukocytes:");
+            Symptom leuk = new Symptom(valueF, "Leukocytes");
+            patient.addSymptom(leuk);
+            jdbcSymptomManager.addSymptom(leuk, clinicalHistory.getId());
+
+
+            Float normalBloodVol = patient.getWeight() * 0.075F;
             valueF = null;
             if (normalBloodVol > 6) {
                 Symptom incBloodVol = new Symptom(1.0F, "Increased blood volume");
@@ -401,6 +406,15 @@ public static void patientHandlerMenu(){
                 Symptom decBloodVol = new Symptom(1.0F, "Decreased blood volume");
                 patient.addSymptom(decBloodVol);
                 jdbcSymptomManager.addSymptom(decBloodVol, clinicalHistory.getId());
+            }else{
+                Symptom incBloodVol = new Symptom(null, "Increased blood volume");
+                patient.addSymptom(incBloodVol);
+                jdbcSymptomManager.addSymptom(incBloodVol, clinicalHistory.getId());
+
+                Symptom decBloodVol = new Symptom(null, "Decreased blood volume");
+                patient.addSymptom(decBloodVol);
+                jdbcSymptomManager.addSymptom(decBloodVol, clinicalHistory.getId());
+
             }
 
             valueF = getFloatSymptom("RBC:");
@@ -408,8 +422,8 @@ public static void patientHandlerMenu(){
             patient.addSymptom(rbc);
             jdbcSymptomManager.addSymptom(rbc, clinicalHistory.getId());
 
-            valueF = getFloatSymptom("VCH:");
-            Symptom vch = new Symptom(valueF, "VCH");
+            valueF = getFloatSymptom("VCM:");
+            Symptom vch = new Symptom(valueF, "VCM");
             patient.addSymptom(vch);
             jdbcSymptomManager.addSymptom(vch, clinicalHistory.getId());
 
@@ -418,8 +432,8 @@ public static void patientHandlerMenu(){
             patient.addSymptom(mch);
             jdbcSymptomManager.addSymptom(mch, clinicalHistory.getId());
 
-            valueF = getFloatSymptom("MHCH:");
-            Symptom mhch = new Symptom(valueF, "MHCH");
+            valueF = getFloatSymptom("MCHC:");
+            Symptom mhch = new Symptom(valueF, "MCHC");
             patient.addSymptom(mhch);
             jdbcSymptomManager.addSymptom(mhch, clinicalHistory.getId());
 
@@ -438,8 +452,8 @@ public static void patientHandlerMenu(){
             patient.addSymptom(fe);
             jdbcSymptomManager.addSymptom(fe, clinicalHistory.getId());
 
-            valueF = getFloatSymptom("Bilirrubine:");
-            Symptom bill = new Symptom(valueF, "Bilirrubine");
+            valueF = getFloatSymptom("Bilirubin:");
+            Symptom bill = new Symptom(valueF, "Bilirubin");
             patient.addSymptom(bill);
             jdbcSymptomManager.addSymptom(bill, clinicalHistory.getId());
 
@@ -533,23 +547,23 @@ public static void patientHandlerMenu(){
             patient.addSymptom(tachp);
             jdbcSymptomManager.addSymptom(tachp, clinicalHistory.getId());
 
-            valueF = getFloatSympTRUE("Cold hands or feet:");
-            Symptom coldHF = new Symptom(valueF, "Cold hands or feet");
+            valueF = getFloatSympTRUE("Cold hands/feet:");
+            Symptom coldHF = new Symptom(valueF, "Cold hands/feet");
             patient.addSymptom(coldHF);
             jdbcSymptomManager.addSymptom(coldHF, clinicalHistory.getId());
 
             valueF = getFloatSympTRUE("Intern hemorrhage:");
-            Symptom intHem = new Symptom(valueF, "Intern hemorrhaget");
+            Symptom intHem = new Symptom(valueF, "Intern hemorrhage");
             patient.addSymptom(intHem);
             jdbcSymptomManager.addSymptom(intHem, clinicalHistory.getId());
 
             valueF = getFloatSympTRUE("Extern hemorrhage:");
-            Symptom extHem = new Symptom(valueF, "Intern hemorrhaget");
+            Symptom extHem = new Symptom(valueF, "Extern hemorrhage");
             patient.addSymptom(extHem);
             jdbcSymptomManager.addSymptom(extHem, clinicalHistory.getId());
 
-            valueF = getFloatSympTRUE("Naussea or poor apetite:");
-            Symptom nau = new Symptom(valueF, "Naussea or poor apetite");
+            valueF = getFloatSympTRUE("Nausea, poor apetite:");
+            Symptom nau = new Symptom(valueF, "Nausea, poor apetite");
             patient.addSymptom(nau);
             jdbcSymptomManager.addSymptom(nau, clinicalHistory.getId());
 
@@ -563,18 +577,18 @@ public static void patientHandlerMenu(){
             patient.addSymptom(sple);
             jdbcSymptomManager.addSymptom(sple, clinicalHistory.getId());
 
-            valueF = getFloatSympTRUE("Craneal ballooning:");
-            Symptom cran = new Symptom(valueF, "Craneal ballooning");
+            valueF = getFloatSympTRUE("Cranial ballooning:");
+            Symptom cran = new Symptom(valueF, "Cranial ballooning");
             patient.addSymptom(cran);
             jdbcSymptomManager.addSymptom(cran, clinicalHistory.getId());
 
-            valueF = getFloatSympTRUE("Aplasic crisis:");
-            Symptom aplC = new Symptom(valueF, "Aplasic crisis");
+            valueF = getFloatSympTRUE("Aplastic crisis:");
+            Symptom aplC = new Symptom(valueF, "Aplastic crisis");
             patient.addSymptom(aplC);
             jdbcSymptomManager.addSymptom(aplC, clinicalHistory.getId());
 
-            valueF = getFloatSympTRUE("Bacterial infection:");
-            Symptom bactInf = new Symptom(valueF, "Bacterial infection");
+            valueF = getFloatSympTRUE("Bacterial infections:");
+            Symptom bactInf = new Symptom(valueF, "Bacterial infections");
             patient.addSymptom(bactInf);
             jdbcSymptomManager.addSymptom(bactInf, clinicalHistory.getId());
 
@@ -588,8 +602,8 @@ public static void patientHandlerMenu(){
             patient.addSymptom(boneDef);
             jdbcSymptomManager.addSymptom(boneDef, clinicalHistory.getId());
 
-            valueF = getFloatSympTRUE("Maxilar bone hyperplasia:");
-            Symptom maxHyp = new Symptom(valueF, "Maxilar bone hyperplasia");
+            valueF = getFloatSympTRUE("Maxila bone hyperplasia:");
+            Symptom maxHyp = new Symptom(valueF, "Maxila bone hyperplasia");
             patient.addSymptom(maxHyp);
             jdbcSymptomManager.addSymptom(maxHyp, clinicalHistory.getId());
 
@@ -598,8 +612,8 @@ public static void patientHandlerMenu(){
             patient.addSymptom(britN);
             jdbcSymptomManager.addSymptom(britN, clinicalHistory.getId());
 
-            valueF = getFloatSympTRUE("Tongue inflamation:");
-            Symptom tong = new Symptom(valueF, "Tongue inflamation");
+            valueF = getFloatSympTRUE("Tongue inflammation:");
+            Symptom tong = new Symptom(valueF, "Tongue inflammation");
             patient.addSymptom(tong);
             jdbcSymptomManager.addSymptom(tong, clinicalHistory.getId());
 
@@ -634,36 +648,137 @@ public static void patientHandlerMenu(){
             jdbcSymptomManager.addSymptom(pet, clinicalHistory.getId());
 
 
+            PatientUnit patientUnit;
+            RuleUnitInstance<PatientUnit> instance;
 
-
-            //FIRE RULES
             final Logger LOG = LoggerFactory.getLogger(MedicalStaffMenu.class);
-            PatientUnit patientUnit = new PatientUnit();
-            LOG.info("Creating RuleUnit");
 
-            RuleUnitInstance<PatientUnit> instance = RuleUnitProvider.get().createRuleUnitInstance(patientUnit);
+            LOG.info("Creating RuleUnit");
+            patientUnit = new PatientUnit();
+
+            instance = RuleUnitProvider.get().createRuleUnitInstance(patientUnit);
+
             LOG.info("Insert data");
+            patientUnit.getPatients().add(patient);
+
+            LOG.info("Fire rules");
+            instance.fire();
+
+
+            instance.close();
+
 
             List<Anemia> anemiasList = patient.getAnemiasList();
-            System.out.println(anemiasList);
             List<Symptom> symptomsList = patient.getSymptomsList();
-            System.out.println(symptomsList);
+
             List<Float> scoresList = new LinkedList<>();
 
-            for(int i=0; i<anemiasList.size(); i++){
+            for(Anemia a : anemiasList) {
 
-                List<Condition> conditionList = anemiasList.get(i).getConditions();
-                System.out.println(conditionList);
-                List<Boolean> booleanList = Utilities.equalsSymptomCondition(symptomsList, conditionList);
-                float score = Utilities.getScore(anemiasList.get(i),booleanList);
-                scoresList.add(score);
-
+                //tenemos que inicializar las conditions y weights
+                AnemiaType type = a.getAnemiaType();
+                switch (type) {
+                    case ANEMIC_SYNDROME_MALE:
+                        a.setWeights(anemicSyndromeMALE.getWeights());
+                        a.setConditions(anemicSyndromeMALE.getConditions());
+                        break;
+                    case ANEMIC_SYNDROME_FEMALE:
+                        a.setWeights(anemicSyndromeFEMALE.getWeights());
+                        a.setConditions(anemicSyndromeFEMALE.getConditions());
+                        break;
+                    case POSTHEMORRHAGIC_ANEMIA_MALE:
+                        a.setWeights(posthemorrhagicMALE.getWeights());
+                        a.setConditions(posthemorrhagicMALE.getConditions());
+                        break;
+                    case POSTHEMORRHAGIC_ANEMIA_FEMALE:
+                        a.setWeights(posthemorrhagicFEMALE.getWeights());
+                        a.setConditions(posthemorrhagicFEMALE.getConditions());
+                        break;
+                    case HEMOLYTIC_ANEMIA_MALE:
+                        a.setWeights(hemolyticMALE.getWeights());
+                        a.setConditions(hemolyticMALE.getConditions());
+                        break;
+                    case HEMOLYTIC_ANEMIA_FEMALE:
+                        a.setWeights(hemolyticFEMALE.getWeights());
+                        a.setConditions(hemolyticFEMALE.getConditions());
+                        break;
+                    case INHERITED_SPHEROCYTOSIS_MALE:
+                        a.setWeights(inheritedSpherocytMALE.getWeights());
+                        a.setConditions(inheritedSpherocytMALE.getConditions());
+                        break;
+                    case INHERITED_SPHEROCYTOSIS_FEMALE:
+                        a.setWeights(inheritedSpherocytFEMALE.getWeights());
+                        a.setConditions(inheritedSpherocytFEMALE.getConditions());
+                        break;
+                    case THALASSEMIA_MALE:
+                        a.setWeights(thalassemiaMALE.getWeights());
+                        a.setConditions(thalassemiaMALE.getConditions());
+                        break;
+                    case THALASSEMIA_FEMALE:
+                        a.setWeights(thalassemiaFEMALE.getWeights());
+                        a.setConditions(thalassemiaFEMALE.getConditions());
+                        break;
+                    case IRON_DEFICIENCY_ANEMIA_MALE:
+                        a.setWeights(ironDeficiencyMALE.getWeights());
+                        a.setConditions(ironDeficiencyMALE.getConditions());
+                        break;
+                    case IRON_DEFICIENCY_ANEMIA_FEMALE:
+                        a.setWeights(ironDeficiencyFEMALE.getWeights());
+                        a.setConditions(ironDeficiencyFEMALE.getConditions());
+                        break;
+                    case MEGALOBLASTIC_ANEMIA_MALE:
+                        a.setWeights(megaloblasticMALE.getWeights());
+                        a.setConditions(megaloblasticMALE.getConditions());
+                        break;
+                    case MEGALOBLASTIC_ANEMIA_FEMALE:
+                        a.setWeights(megaloblasticFEMALE.getWeights());
+                        a.setConditions(megaloblasticFEMALE.getConditions());
+                        break;
+                    case APLASTIC_ANEMIA_MALE:
+                        a.setWeights(aplasticMALE.getWeights());
+                        a.setConditions(aplasticMALE.getConditions());
+                        break;
+                    case APLASTIC_ANEMIA_FEMALE:
+                        a.setWeights(aplasticFEMALE.getWeights());
+                        a.setConditions(aplasticFEMALE.getConditions());
+                        break;
+                    case CHRONIC_DISEASE_ANEMIA_MALE:
+                        a.setWeights(chronicDiseaseMALE.getWeights());
+                        a.setConditions(chronicDiseaseMALE.getConditions());
+                        break;
+                    case CHRONIC_DISEASE_ANEMIA_FEMALE:
+                        a.setWeights(chronicDiseaseFEMALE.getWeights());
+                        a.setConditions(chronicDiseaseFEMALE.getConditions());
+                        break;
+                    case POLYCYTHEMIA_MALE:
+                        a.setWeights(polycythemiaMALE.getWeights());
+                        a.setConditions(polycythemiaMALE.getConditions());
+                        break;
+                    case POLYCYTHEMIA_FEMALE:
+                        a.setWeights(polycythemiaFEMALE.getWeights());
+                        a.setConditions(polycythemiaFEMALE.getConditions());
+                        break;
+                }
             }
 
-            System.out.println(scoresList);
+            //calculamos los scores para cada anemia
+            for(Anemia a : anemiasList) {
+                List<Condition> conditionList = a.getConditions();
+                //System.out.println(conditionList);
+                List<Boolean> booleanList = Utilities.equalsSymptomCondition(symptomsList, conditionList);
+                //System.out.println(booleanList);
+                //System.out.println(symptomsList);
+                Float score = Utilities.getScore(a,booleanList);
+                System.out.println(score);
+                scoresList.add(score);
+            }
 
-            //GENERATE REPORT
-            Utilities.getReport(medStaff, clinicalHistory, patient, scoresList, anemiasList);
+            //write the report
+            String r = Utilities.getReport(medStaff, clinicalHistory, patient, scoresList, anemiasList);
+            //TODO añadir el report a la base de datos
+            Report report = new Report(r, patient);
+            jdbcReportManager.addReport(report);
+
         }catch(SQLException e){
             System.out.println(e.getCause());
         }
@@ -707,7 +822,64 @@ public static void patientHandlerMenu(){
     }
 
 
+    public static void getInfoAnemias(){
+        System.out.println("Below there are several resources you can visit to gain knowledge about anemias: ");
 
+        System.out.println("GENERAL PATHOLOGY: ");
+        System.out.println("Pérez Arellano JL. Manual de patología general. 7ª edición, pp 404-405 (ISBN: 978-8445822166)");
+        System.out.println("Pastrana Delgado J, García de Casasola Sánchez. Fisiopatología y patología general básicas para ciencias de la salud, pp 65-68. (ISBN: 9788480869461).");
+        System.out.println("Laso Guzmán FJ. Introducción a la medicina clínica. 3ª edición, pp 279-235. (ISBN: 9788445826065).");
+        System.out.println();
+
+        System.out.println("ANEMIC SYNDROME:");
+        System.out.println("Borrego Gutiérrez MJ (2020), Fisiopatología de los eritrocitos.  Fisiopatología. Universidad CEU San Pablo.");
+        System.out.println();
+
+        System.out.println("POSTHEMORRHAGIC ANEMIA:");
+        System.out.println("McGrath JP. Assessment of Hemolytic and Hemorrhagic Anemias in Preclinical Safety Assessment Studies. Department of Clinical Pathology, Toxicology Research Laboratories, Greenfield Indiana, 1993");
+        System.out.println("Acute anemia. National Library of Medicine. (NIH)  https://www.ncbi.nlm.nih.gov/books/NBK537232/ ");
+        System.out.println();
+
+        System.out.println("HEMOLYTIC ANEMIA:");
+        System.out.println("Anemia hemolítica. National Heart, Lung and Blood Institute (NIH) https://www.ncbi.nlm.nih.gov/books/NBK537232/ ");
+        System.out.println();
+
+        System.out.println("INHERITED SPHEROCYTOSIS:");
+        System.out.println("Martín-Consuegra S, Sebastián E, Salinas JA. Guía esferocitosis hereditaria. Diagnóstico y manejo en población pedriátrica. Sociedad Española de Hematología y Oncología pediátricas SEHOP https://www.sehop.org/wp-content/uploads/2022/04/GUIA-ESFEROCITOSIS-HEREDITARIA-SEHOP.pdf ");
+        System.out.println();
+
+        System.out.println("THALASSEMIA:");
+        System.out.println("¿Qué es la talasemia? Centros para el Control y la Prevención de Enfermedades CDC. https://www.cdc.gov/ncbddd/spanish/thalassemia/facts.html ");
+        System.out.println();
+
+        System.out.println("IRON-DEFICIENCY ANEMIA:");
+        System.out.println("Iron-Deficiency anemia. National Heart, Lung and Blood Institute (NIH) https://www.nhlbi.nih.gov/health/anemia/iron-deficiency-anemia#How-is-iron-deficiency-anemia-diagnosed ");
+        System.out.println("Iron deficiency anemia. https://www.mayoclinic.org/diseases-conditions/iron-deficiency-anemia/symptoms-causes/syc-20355034  ");
+        System.out.println("Iron-deficiency anemia. Cleveland Clinic.  https://my.clevelandclinic.org/health/diseases/22824-iron-deficiency-anemia");
+        System.out.println();
+
+        System.out.println("MEGALOBLASTIC ANEMIA:");
+        System.out.println("Borrego Gutiérrez MJ (2020), Fisiopatología de los eritrocitos.  Fisiopatología. Universidad CEU San Pablo.");
+        System.out.println();
+
+        System.out.println("APLASTIC ANEMIA:");
+        System.out.println("Borrego Gutiérrez MJ (2020), Fisiopatología de los eritrocitos.  Fisiopatología. Universidad CEU San Pablo.");
+        System.out.println();
+
+        System.out.println("CHRONIC DISEASE ANEMIA");
+        System.out.println("Anemia por enfermedad crónica. MedlinePlus. https://medlineplus.gov/spanish/ency/article/000565.htm ");
+        System.out.println();
+
+        System.out.println("POLYCYTHEMIA");
+        System.out.println("Borrego Gutiérrez MJ (2020), Fisiopatología de los eritrocitos.  Fisiopatología. Universidad CEU San Pablo.");
+        System.out.println("Pérez Arellano JL. Manual de patología general. 7ª edición, pp 404-405 (ISBN: 978-8445822166).");
+
+        System.out.println();
+        String read  = InputException.getString("Insert x to go back:");
+        if (read.equalsIgnoreCase( "x")){
+            return;
+        }
+    }
 
 
 }

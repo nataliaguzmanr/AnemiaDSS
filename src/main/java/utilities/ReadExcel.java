@@ -26,10 +26,10 @@ public class ReadExcel {
 
         String filePath = "src/main/resources/files/Weights.xlsx";
         //String filePath = "C:\\Users\\maria\\Downloads\\Weights.xlsx";
-        //System.out.println(filePath);
+//        System.out.println(filePath);
         File excelFile = new File(filePath);
 
-        List<Float> weightList = new LinkedList<Float>();
+        List<Float> weightsList = new LinkedList<Float>();
 
         // we create an XSSF Workbook object for our XLSX Excel File
         //It is a class that is used to represent both high and low level Excel file formats.
@@ -40,14 +40,14 @@ public class ReadExcel {
             // we get first sheet
             XSSFSheet sheet = workbook.getSheetAt(0);   //Get the HSSFSheet object at the given index
             int totalRows = sheet.getPhysicalNumberOfRows();
-//            System.out.println("READING " + (totalRows - 1) + " types of anemia\n");
+            //System.out.println("READING " + (totalRows - 1) + " types of anemia\n");
 
             Iterator<Row> rowIt = sheet.iterator();
             // skip the header
             rowIt.next();   //lee la linea en la que pone "ANEMIA/SYMTOMS"
 
             String anemiaTypeRead;
-            List<Float> weightsList = new LinkedList<>();
+
             double cellWeight;
 
             while (rowIt.hasNext()) {   //este bucle va avanzando linea a linea
@@ -70,6 +70,7 @@ public class ReadExcel {
                         //System.out.println(cellWeight);
 
                         Float cellWeightF = ((float) cellWeight);
+                        //System.out.println(cellWeightF);
                         weightsList.add(cellWeightF);
 
                     }
@@ -83,7 +84,7 @@ public class ReadExcel {
         } catch (IOException ex) {
             Logger.getLogger(ReadExcel.class.getName()).log(Level.SEVERE, null, ex);
         }
-        return weightList;
+        return weightsList;
     }
 
 
@@ -139,6 +140,8 @@ public class ReadExcel {
                         //System.out.println(cell);
                         if(cell.equalsIgnoreCase("true")){
                             c = new Condition (1.F, null, "=");
+                        }else if(cell.equals(null) || cell.equals("")){
+                            c = new Condition (0.F, null, "=");
                         }
                         else{
                         //llamamos al método que devuelve la Condition

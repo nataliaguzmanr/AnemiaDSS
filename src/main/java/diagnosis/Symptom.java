@@ -19,31 +19,31 @@ public class Symptom implements Serializable {
     private Patient patient;
 
 
-    public Symptom(float value, String name) {
+    public Symptom(Float value, String name) {
         this.value = value;
         this.name = name;
     }
 
-    public Symptom(float value, String name, ClinicalHistory clinicalHistory) {
+    public Symptom(Float value, String name, ClinicalHistory clinicalHistory) {
         this.value = value;
         this.name = name;
         this.clinicalHistory = clinicalHistory;
     }
 
-    public Symptom(float value, String name, Patient patient) {
+    public Symptom(Float value, String name, Patient patient) {
         this.value = value;
         this.name = name;
         this.patient = patient;
     }
 
-    public Symptom(Integer id, float value, String name) {
+    public Symptom(Integer id, Float value, String name) {
         this.id = id;
         this.value = value;
         this.name = name;
     }
 
 
-    public Symptom(Integer id, float value, String name, ClinicalHistory clinicalHistory) {
+    public Symptom(Integer id, Float value, String name, ClinicalHistory clinicalHistory) {
         this.id = id;
         this.value = value;
         this.name = name;

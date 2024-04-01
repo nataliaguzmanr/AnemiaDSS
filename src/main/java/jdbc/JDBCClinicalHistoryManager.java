@@ -58,8 +58,9 @@ public class JDBCClinicalHistoryManager implements ClinicalHistoryManager {
 
         try {
             //Date sqlDATE = ((Date) date.getClass()));
-            String sql = " SELECT * FROM ClinicalHistory WHERE patient_id = ? + patient_id ORDER BY clinicalHistory_id DESC LIMIT 1";
+            String sql = " SELECT * FROM ClinicalHistory WHERE patient_id = ? ORDER BY clinicalHistory_id DESC LIMIT 1";
             PreparedStatement pr = clinicalHistoryManager.getConnection().prepareStatement(sql);
+            pr.setInt(1, patient_id);
             ResultSet rs = pr.executeQuery();
             if (rs.next()) {
 
@@ -68,6 +69,7 @@ public class JDBCClinicalHistoryManager implements ClinicalHistoryManager {
                 LocalDate symp_localDate = sqlDate.toLocalDate();
 
                 clinicalHistory = new ClinicalHistory(id,symp_localDate);
+                System.out.println(clinicalHistory);
             }
             rs.close();
             pr.close();

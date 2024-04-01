@@ -113,7 +113,7 @@ public class JDBCManager {
             // TABLE SYMPTOMS
             sql = "CREATE TABLE Symptom ("
                     + " symptom_id	INTEGER PRIMARY KEY AUTOINCREMENT,"
-                    + " value FLOAT NOT NULL,"
+                    + " value FLOAT,"
                     + " name TEXT NOT NULL,"
                     + " clinicalHistory_id INTEGER REFERENCES ClinicalHistory(clinicalHistory_id) "
                     +");";

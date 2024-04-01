@@ -56,6 +56,19 @@ public class Anemia implements Serializable {
         return conditions;
     }
 
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public void setWeights(List<Float> weights) {
+        this.weights = weights;
+    }
+
+    public void setConditions(List<Condition> conditions) {
+        this.conditions = conditions;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

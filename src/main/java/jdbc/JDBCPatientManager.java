@@ -108,6 +108,26 @@ public class JDBCPatientManager implements PatientManager {
         return patients;
     }
 
+    @Override
+    public Integer getPatientId(String name){
+        Integer patient_id = null;
+        try {
+            String sql = "SELECT * FROM Patient WHERE name = ? ";
+            PreparedStatement pr = patientManager.getConnection().prepareStatement(sql);
+            pr.setString(1, name);
+            ResultSet rs = pr.executeQuery();
+            if (rs.next()) {
+                patient_id = rs.getInt(1);
+            }
+            rs.close();
+            pr.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return patient_id;
+    }
+
 }
 
 

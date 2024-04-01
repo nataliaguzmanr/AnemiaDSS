@@ -23,6 +23,10 @@ public class Report implements Serializable {
         this.file_name = file_name;
         this.patient = new Patient(patient_id);
     }
+    public Report(String file_name, Patient patient) {
+        this.file_name = file_name;
+        this.patient = patient;
+    }
 
 
     public Integer getId() {

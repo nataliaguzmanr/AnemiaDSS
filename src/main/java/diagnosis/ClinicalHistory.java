@@ -8,13 +8,13 @@ public class ClinicalHistory {
 
     private Integer id;
     private LocalDate symptomsDate;
-    private List<Patient> patientsHistory;
+    private Patient patient;
 
 
-    public ClinicalHistory(Integer id, LocalDate symptomsDate, List<Patient> symtompsHistory) {
+    public ClinicalHistory(Integer id, LocalDate symptomsDate, Patient p) {
         this.id = id;
         this.symptomsDate = symptomsDate;
-        this.patientsHistory = symtompsHistory;
+        this.patient = p;
     }
 
     public ClinicalHistory(Integer id, LocalDate symptomsDate) {
@@ -24,7 +24,10 @@ public class ClinicalHistory {
 
     public ClinicalHistory(LocalDate symptomsDate) {
         this.symptomsDate = symptomsDate;
-
+    }
+    public ClinicalHistory(LocalDate symptomsDate, Patient p) {
+        this.symptomsDate = symptomsDate;
+        this.patient = p;
     }
 
     public Integer getId() {
@@ -43,25 +46,25 @@ public class ClinicalHistory {
         this.symptomsDate = symptomsDate;
     }
 
-    public List<Patient> getPatientsHistory() {
-        return patientsHistory;
+    public Patient getPatient() {
+        return patient;
     }
 
-    public void setPatientsHistory(List<Patient> patientsHistory) {
-        this.patientsHistory = patientsHistory;
+    public void setPatient(Patient patient) {
+        this.patient = patient;
     }
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (!(o instanceof ClinicalHistory)) return false;
+        if (o == null || getClass() != o.getClass()) return false;
         ClinicalHistory that = (ClinicalHistory) o;
-        return Objects.equals(getId(), that.getId()) && Objects.equals(getSymptomsDate(), that.getSymptomsDate()) && Objects.equals(getPatientsHistory(), that.getPatientsHistory());
+        return Objects.equals(id, that.id) && Objects.equals(symptomsDate, that.symptomsDate) && Objects.equals(patient, that.patient);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(getId(), getSymptomsDate(), getPatientsHistory());
+        return Objects.hash(id, symptomsDate, patient);
     }
 
     @Override

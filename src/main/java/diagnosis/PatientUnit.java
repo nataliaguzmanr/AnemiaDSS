@@ -30,6 +30,7 @@ public class PatientUnit implements RuleUnitData {
         this(DataSource.createStore());
     }
 
+
     public PatientUnit(DataStore<Patient> patients) {
         this.patients = patients;
         this.patientsWithAnemicSyndrome = new HashSet<>();

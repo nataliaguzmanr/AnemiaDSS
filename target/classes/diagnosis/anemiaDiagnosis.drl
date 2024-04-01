@@ -1,0 +1,463 @@
+
+package diagnosis;
+
+unit PatientUnit;
+
+import diagnosis.*;
+
+
+rule "1.1. FinalMale_AnemicSyndrome_Hb&Tachycardia"
+when
+    $patient : /patients[(detectSymptomValue("Hb")<8) &&
+     (detectSymptomValue("Tachycardia")==1) &&
+     (getGender().equals(gender.MALE))]
+then
+    Anemia a = new Anemia (AnemiaType.ANEMIC_SYNDROME_MALE);
+    $patient.addAnemia(a);
+    patientsWithAnemicSyndrome.add($patient);
+    System.out.println( $patient + " -> 1.1. FinalMale_AnemicSyndrome_Hb&Tachycardia");
+end
+
+rule "1.2. FinalFemale_AnemicSyndrome_Hb&Tachycardia"
+when
+    $patient : /patients[(detectSymptomValue("Hb")<8) &&
+     (detectSymptomValue("Tachycardia")==1)
+     && (getGender().equals(gender.FEMALE))]
+then
+    Anemia a = new Anemia (AnemiaType.ANEMIC_SYNDROME_FEMALE);
+    $patient.addAnemia(a);
+    patientsWithAnemicSyndrome.add($patient);
+    System.out.println( $patient + " -> 1.2. FinalFemale_AnemicSyndrome_Hb&Tachycardia");
+end
+
+
+
+rule "2.1. FinalMale_PosthemorragicAnemia_MCHC&Fatigue"
+when
+    $patient : /patients[(detectSymptomValue("MCHC")<310) &&
+    (detectSymptomValue("Fatigue")==1) && (getGender().equals(gender.MALE)) ]
+then
+    Anemia a = new Anemia (AnemiaType.POSTHEMORRHAGIC_ANEMIA_MALE);
+    $patient.addAnemia(a);
+    patientsWithPosthemorrhagicAnemia.add($patient);
+    System.out.println( $patient + " -> 2.1. FinalMale_PosthemorragicAnemia_MCHC&Fatigue");
+end
+
+rule "2.2. FinalFemale_PosthemorragicAnemia_MCHC&Fatigue"
+when
+    $patient : /patients[(detectSymptomValue("MCHC")<310) &&
+    (detectSymptomValue("Fatigue")==1) && (getGender().equals(gender.FEMALE)) ]
+then
+    Anemia a = new Anemia (AnemiaType.POSTHEMORRHAGIC_ANEMIA_FEMALE);
+    $patient.addAnemia(a);
+    patientsWithPosthemorrhagicAnemia.add($patient);
+    System.out.println( $patient + " -> 2.2. FinalFemale_PosthemorragicAnemia_MCHC&Fatigue");
+end
+
+
+
+rule "3.1. FinalMale_HemolyticAnemia_Splenomegaly&Bilirubin&Jaundice"
+when
+    $patient : /patients[(detectSymptomValue("Splenomegaly")==1)
+    && (detectSymptomValue("Bilirubin")>1)
+    && (detectSymptomValue("Jaundice")==1)
+    && (getGender().equals(gender.MALE))]
+then
+    Anemia a = new Anemia (AnemiaType.HEMOLYTIC_ANEMIA_MALE);
+    $patient.addAnemia(a);
+    patientsWithHemolyticAnemia.add($patient);
+    System.out.println( $patient + " -> 3.1. FinalMale_HemolyticAnemia_Splenomegaly&Bilirubin&Jaundice");
+end
+
+rule "3.2. FinalFemale_HemolyticAnemia_Splenomegaly&Bilirubin&Jaundice"
+when
+    $patient : /patients[(detectSymptomValue("Splenomegaly")==1)
+    && (detectSymptomValue("Bilirubin")>1)
+    && (detectSymptomValue("Jaundice")==1)
+    && (getGender().equals(gender.FEMALE))]
+then
+    Anemia a = new Anemia (AnemiaType.HEMOLYTIC_ANEMIA_FEMALE);
+    $patient.addAnemia(a);
+    patientsWithHemolyticAnemia.add($patient);
+    System.out.println( $patient + " -> 3.2. FinalFemale_HemolyticAnemia_Splenomegaly&Bilirubin&Jaundice");
+end
+
+
+
+rule "4.1. FinalMale_HemolyticAnemia_Fe&Haptoglobin"
+when
+    $patient : /patients[(detectSymptomValue("Fe")<170)
+    && (detectSymptomValue("Haptoglobin")>41)
+    && (getGender().equals(gender.MALE))]
+then
+    Anemia a = new Anemia (AnemiaType.HEMOLYTIC_ANEMIA_MALE);
+    $patient.addAnemia(a);
+    patientsWithHemolyticAnemia.add($patient);
+    System.out.println( $patient + " -> 4.1. FinalMale_HemolyticAnemia_Fe&Haptoglobin");
+end
+
+rule "4.2. FinalFemale_HemolyticAnemia_Fe&Haptoglobin"
+when
+    $patient : /patients[(detectSymptomValue("Fe")<170)
+    && (detectSymptomValue("Haptoglobin")>41)
+    && (getGender().equals(gender.FEMALE))]
+then
+    Anemia a = new Anemia (AnemiaType.HEMOLYTIC_ANEMIA_FEMALE);
+    $patient.addAnemia(a);
+    patientsWithHemolyticAnemia.add($patient);
+    System.out.println( $patient + " -> 4.2. FinalFemale_HemolyticAnemia_Fe&Haptoglobin");
+end
+
+
+
+rule "5.1. FinalMale_InheritedSpherocytosis_Bilirrubine&Jaundice"
+when
+    $patient : /patients[(detectSymptomValue("Bilirubin")>1)
+    && (detectSymptomValue("Jaundice")==1)
+    && (getGender().equals(gender.MALE))]
+then
+    Anemia a = new Anemia (AnemiaType.INHERITED_SPHEROCYTOSIS_MALE);
+    $patient.addAnemia(a);
+    patientsWithInheritedSpherocythosis.add($patient);
+    System.out.println( $patient + " -> 5.1. FinalMale_InheritedSpherocytosis_Bilirrubine&Jaundice");
+end
+
+rule "5.2. FinalFemale_InheritedSpherocytosis_Bilirrubine&Jaundice"
+when
+    $patient : /patients[(detectSymptomValue("Bilirubin")>1)
+    && (detectSymptomValue("Jaundice")==1)
+    && (getGender().equals(gender.FEMALE))]
+then
+    Anemia a = new Anemia (AnemiaType.INHERITED_SPHEROCYTOSIS_FEMALE);
+    $patient.addAnemia(a);
+    patientsWithInheritedSpherocythosis.add($patient);
+    System.out.println( $patient + " -> 5.2. FinalFemale_InheritedSpherocytosis_Bilirrubine&Jaundice");
+end
+
+
+
+rule "6.1. FinalMale_InheritedSpherocytosis_CranealB|MaxilarBoneH"
+when
+    $patient : /patients[(detectSymptomValue("Cranial ballooning")==1)
+    && (detectSymptomValue("Maxila bone hyperplasia")==1)
+    && (getGender().equals(gender.MALE))]
+then
+    Anemia a = new Anemia (AnemiaType.INHERITED_SPHEROCYTOSIS_MALE);
+    $patient.addAnemia(a);
+    patientsWithInheritedSpherocythosis.add($patient);
+    System.out.println( $patient + " -> 6.1. FinalMale_InheritedSpherocytosis_CranealB|MaxilarBoneH");
+end
+
+rule "6.2. FinalFemale_InheritedSpherocytosis_CranealB|MaxilarBoneH"
+when
+    $patient : /patients[(detectSymptomValue("Cranial ballooning")==1)
+    && (detectSymptomValue("Maxila bone hyperplasia")==1)
+    && (getGender().equals(gender.FEMALE))]
+then
+    Anemia a = new Anemia (AnemiaType.INHERITED_SPHEROCYTOSIS_FEMALE);
+    $patient.addAnemia(a);
+    patientsWithInheritedSpherocythosis.add($patient);
+    System.out.println( $patient + " -> 6.2. FinalFemale_InheritedSpherocytosis_CranealB|MaxilarBoneH");
+end
+
+
+rule "7.1. FinalMale_Thalassemia_BoneDeformations"
+when
+    $patient : /patients[(detectSymptomValue("Bone deformations")==1)
+     && (getGender().equals(gender.MALE))]
+then
+    Anemia a = new Anemia (AnemiaType.THALASSEMIA_MALE);
+    $patient.addAnemia(a);
+    patientsWithThalassemia.add($patient);
+    System.out.println( $patient + " -> 7.1 FinalMale_Thalassemia_BoneDeformations");
+end
+
+rule "7.2. FinalFemale_Thalassemia_BoneDeformations"
+when
+    $patient : /patients[(detectSymptomValue("Bone deformations")==1)
+     && (getGender().equals(gender.FEMALE))]
+then
+    Anemia a = new Anemia (AnemiaType.THALASSEMIA_FEMALE);
+    $patient.addAnemia(a);
+    patientsWithThalassemia.add($patient);
+    System.out.println( $patient + " -> 7.2 FinalFemale_Thalassemia_BoneDeformations");
+end
+
+
+
+rule "8.1. FinalMale_IronDefAnemia_Reticulocytes&MCH"
+when
+    $patient : /patients[(detectSymptomValue("Reticulocytes")<2.5) &&
+    (detectSymptomValue("MCH")<27)
+    && (getGender().equals(gender.MALE))]
+then
+    Anemia a = new Anemia (AnemiaType.IRON_DEFICIENCY_ANEMIA_MALE);
+    $patient.addAnemia(a);
+    patientsWithIronDeficiencyAnemia.add($patient);
+    System.out.println( $patient + " -> 8.1. FinalMale_IronDefAnemia_Reticulocytes&MCH");
+end
+
+rule "8.2. FinalFemale_IronDefAnemia_Reticulocytes&MCH"
+when
+    $patient : /patients[(detectSymptomValue("Reticulocytes")<2.5) &&
+    (detectSymptomValue("MCH")<27)
+    && (getGender().equals(gender.FEMALE))]
+then
+    Anemia a = new Anemia (AnemiaType.IRON_DEFICIENCY_ANEMIA_FEMALE);
+    $patient.addAnemia(a);
+    patientsWithIronDeficiencyAnemia.add($patient);
+    System.out.println( $patient + " -> 8.2. FinalFemale_IronDefAnemia_Reticulocytes&MCH");
+end
+
+
+rule "9.1. FinalMale_IronDefAnemia_Ferritin"
+when
+    $patient : /patients[(detectSymptomValue("Ferritin")<12) &&
+    (getGender().equals(gender.MALE))]
+then
+    Anemia a = new Anemia (AnemiaType.IRON_DEFICIENCY_ANEMIA_MALE);
+    $patient.addAnemia(a);
+    patientsWithIronDeficiencyAnemia.add($patient);
+    System.out.println( $patient + " -> 9.1. FinalMale_IronDefAnemia_Ferritin");
+end
+
+rule "9.2. FinalFemale_IronDefAnemia_Ferritin"
+when
+    $patient : /patients[(detectSymptomValue("Ferritin")<12) &&
+    (getGender().equals(gender.FEMALE))]
+then
+    Anemia a = new Anemia (AnemiaType.IRON_DEFICIENCY_ANEMIA_FEMALE);
+    $patient.addAnemia(a);
+    patientsWithIronDeficiencyAnemia.add($patient);
+    System.out.println( $patient + " -> 9.2. FinalFemale_IronDefAnemia_Ferritin");
+end
+
+rule "10.1. FinalMale_IronDefAnemia_Reticulocytes|MCH&SkinPaleness"
+when
+    $patient : /patients[((detectSymptomValue("Reticulocytes")<2.5) ||
+    (detectSymptomValue("MCH")<27))
+    && (detectSymptomValue("Skin paleness")==1)
+    && (getGender().equals(gender.MALE))]
+then
+    Anemia a = new Anemia (AnemiaType.IRON_DEFICIENCY_ANEMIA_MALE);
+    $patient.addAnemia(a);
+    patientsWithIronDeficiencyAnemia.add($patient);
+    System.out.println( $patient + " -> 10.1. FinalMale_IronDefAnemia_Reticulocytes|MCH&SkinPaleness");
+end
+
+
+rule "10.2. FinalFemale_IronDefAnemia_Reticulocytes|MCH&SkinPaleness"
+when
+    $patient : /patients[((detectSymptomValue("Reticulocytes")<2.5) ||
+    (detectSymptomValue("MCH")<27))
+    && (detectSymptomValue("Skin paleness")==1)
+    && (getGender().equals(gender.FEMALE))]
+then
+    Anemia a = new Anemia (AnemiaType.IRON_DEFICIENCY_ANEMIA_FEMALE);
+    $patient.addAnemia(a);
+    patientsWithIronDeficiencyAnemia.add($patient);
+    System.out.println( $patient + " -> 10.2. FinalFemale_IronDefAnemia_Reticulocytes|MCH&SkinPaleness");
+end
+
+
+rule "11.1. FinalMale_MegaloblasticAnemia_TongueInflm"
+when
+    $patient : /patients[(detectSymptomValue("Tongue Inflammation")==1)
+    && (getGender().equals(gender.MALE))]
+
+then
+    Anemia a = new Anemia (AnemiaType.MEGALOBLASTIC_ANEMIA_MALE);
+    $patient.addAnemia(a);
+    patientsWithMegaloblasticAnemia.add($patient);
+    System.out.println( $patient + " -> 11.1. FinalMale_MegaloblasticAnemia_TongueInflm");
+end
+
+rule "11.2. FinalFemale_MegaloblasticAnemia_TongueInflm"
+when
+    $patient : /patients[(detectSymptomValue("Tongue Inflammation")==1)
+    && (getGender().equals(gender.FEMALE))]
+
+then
+    Anemia a = new Anemia (AnemiaType.MEGALOBLASTIC_ANEMIA_FEMALE);
+    $patient.addAnemia(a);
+    patientsWithMegaloblasticAnemia.add($patient);
+    System.out.println( $patient + " -> 11.2. FinalFemale_MegaloblasticAnemia_TongueInflm");
+end
+
+
+rule "12.1. FinalMale_MegaloblasticAnemia_B12|FolicAcid&Fatigue"
+when
+    $patient : /patients[((detectSymptomValue("B12")<200)
+    || (detectSymptomValue("Folic acid")<2.7))
+    && (getGender().equals(gender.MALE))]
+
+then
+    Anemia a = new Anemia (AnemiaType.MEGALOBLASTIC_ANEMIA_MALE);
+    $patient.addAnemia(a);
+    patientsWithMegaloblasticAnemia.add($patient);
+    System.out.println( $patient + " -> 12.1. FinalMale_MegaloblasticAnemia_B12|FolicAcid&Fatigue");
+end
+
+rule "12.2. FinalFemale_MegaloblasticAnemia_B12|FolicAcid&Fatigue"
+when
+    $patient : /patients[((detectSymptomValue("B12")<200)
+    || (detectSymptomValue("Folic acid")<2.7))
+    && (getGender().equals(gender.FEMALE))]
+
+then
+    Anemia a = new Anemia (AnemiaType.MEGALOBLASTIC_ANEMIA_FEMALE);
+    $patient.addAnemia(a);
+    patientsWithMegaloblasticAnemia.add($patient);
+    System.out.println( $patient + " -> 12.2. FinalFemale_MegaloblasticAnemia_B12|FolicAcid&Fatigue");
+end
+
+
+rule "13.1. FinalMale_AplasicAnemia_Plaquets&Leukocytes&RBC"
+when
+    $patient : /patients[(detectSymptomValue("Platelets")<7.4)
+    && (detectSymptomValue("Leukocytes")<4.5)
+    && (detectSymptomValue("RBC")<4.5)
+    && (getGender().equals(gender.MALE))]
+then
+    Anemia a = new Anemia (AnemiaType.APLASTIC_ANEMIA_MALE);
+    $patient.addAnemia(a);
+    patientsWithAplasticAnemia.add($patient);
+    System.out.println( $patient + " -> 13.1. FinalMale_AplasicAnemia_Plaquets&Leukocytes&RBC");
+end
+
+rule "13.2. FinalFemale_AplasicAnemia_Plaquets&Leukocytes&RBC"
+when
+    $patient : /patients[(detectSymptomValue("Platelets")<7.4)
+    && (detectSymptomValue("Leukocytes")<4.5)
+    && (detectSymptomValue("RBC")<4.1)
+    && (getGender().equals(gender.FEMALE))]
+then
+    Anemia a = new Anemia (AnemiaType.APLASTIC_ANEMIA_FEMALE);
+    $patient.addAnemia(a);
+    patientsWithAplasticAnemia.add($patient);
+    System.out.println( $patient + " -> 13.2. FinalFemale_AplasicAnemia_Plaquets&Leukocytes&RBC");
+end
+
+rule "14.1. FinalMale_AplasicAnemia_Intern|ExternHemorrhage"
+when
+    $patient : /patients[((detectSymptomValue("Intern Hemorrhage")==1)
+    || (detectSymptomValue("Extern Hemorrhage")==1))
+    && (getGender().equals(gender.MALE))]
+then
+    Anemia a = new Anemia (AnemiaType.APLASTIC_ANEMIA_MALE);
+    $patient.addAnemia(a);
+    patientsWithAplasticAnemia.add($patient);
+    System.out.println( $patient + " -> 14.1. FinalMale_AplasicAnemia_Intern|ExternHemorrhage");
+end
+
+rule "14.2. FinalFemale_AplasicAnemia_Intern|ExternHemorrhage"
+when
+    $patient : /patients[((detectSymptomValue("Intern Hemorrhage")==1)
+    || (detectSymptomValue("Extern Hemorrhage")==1))
+    && (getGender().equals(gender.FEMALE))]
+then
+    Anemia a = new Anemia (AnemiaType.APLASTIC_ANEMIA_FEMALE);
+    $patient.addAnemia(a);
+    patientsWithAplasticAnemia.add($patient);
+    System.out.println( $patient + " -> 14.2. FinalFemale_AplasicAnemia_Intern|ExternHemorrhage");
+end
+
+rule "15.1. FinalMale_ChronicDiseaseAnemia_EPO&SkinPaleness"
+when
+    $patient : /patients[(detectSymptomValue("EPO")<2.6)
+    && (detectSymptomValue("Skin Paleness")==1)
+    && (getGender().equals(gender.MALE))]
+then
+    Anemia a = new Anemia (AnemiaType.CHRONIC_DISEASE_ANEMIA_MALE);
+    $patient.addAnemia(a);
+    patientsWithChronicDiseaseAnemia.add($patient);
+    System.out.println( $patient + " -> 15.1. FinalMale_ChronicDiseaseAnemia_EPO&SkinPaleness");
+end
+
+rule "15.2. FinalFemale_ChronicDiseaseAnemia_EPO&SkinPaleness"
+when
+    $patient : /patients[(detectSymptomValue("EPO")<2.6)
+    && (detectSymptomValue("Skin Paleness")==1)
+    && (getGender().equals(gender.FEMALE))]
+then
+    Anemia a = new Anemia (AnemiaType.CHRONIC_DISEASE_ANEMIA_FEMALE);
+    $patient.addAnemia(a);
+    patientsWithChronicDiseaseAnemia.add($patient);
+    System.out.println( $patient + " -> 15.2. FinalFemale_ChronicDiseaseAnemia_EPO&SkinPaleness");
+end
+
+
+rule "16.1. FinalMale_ChronicDiseaseAnemia_Ferritin&SkinPaleness"
+when
+    $patient : /patients[(detectSymptomValue("Ferritin")>300)
+    && (detectSymptomValue("Skin Paleness")==1)
+    && (getGender().equals(gender.MALE))]
+then
+    Anemia a = new Anemia (AnemiaType.CHRONIC_DISEASE_ANEMIA_MALE);
+    $patient.addAnemia(a);
+    patientsWithChronicDiseaseAnemia.add($patient);
+    System.out.println( $patient + " -> 16.1. FinalMale_ChronicDiseaseAnemia_Ferritin&SkinPaleness");
+end
+
+rule "16.2. FinalFemale_ChronicDiseaseAnemia_Ferritin&SkinPaleness"
+when
+    $patient : /patients[(detectSymptomValue("Ferritin")>150)
+    && (detectSymptomValue("Skin Paleness")==1)
+    && (getGender().equals(gender.FEMALE))]
+then
+    Anemia a = new Anemia (AnemiaType.CHRONIC_DISEASE_ANEMIA_FEMALE);
+    $patient.addAnemia(a);
+    patientsWithChronicDiseaseAnemia.add($patient);
+    System.out.println( $patient + " -> 16.2. FinalFemale_ChronicDiseaseAnemia_Ferritin&SkinPaleness");
+end
+
+rule "17.1. FinalMale_Polycythemia_Hb&PVM&RBC"
+when
+    $patient : /patients[(detectSymptomValue("Hb")>17.5)
+    && (detectSymptomValue("Hematocrit/PVM")>53)
+    && (detectSymptomValue("RBC")>5.9)
+    && (getGender().equals(gender.MALE))]
+then
+    Anemia a = new Anemia (AnemiaType.POLYCYTHEMIA_MALE);
+    $patient.addAnemia(a);
+    patientsWithPolycythemia.add($patient);
+    System.out.println( $patient + " -> 17.1. FinalMale_Polycythemia_Hb&PVM&RBC");
+end
+
+rule "17.2. FinalFemale_Polycythemia_Hb&PVM&RBC"
+when
+    $patient : /patients[(detectSymptomValue("Hb")>15.3)
+    && (detectSymptomValue("Hematocrit/PVM")>47)
+    && (detectSymptomValue("RBC")>5.3)
+    && (getGender().equals(gender.FEMALE))]
+then
+    Anemia a = new Anemia (AnemiaType.POLYCYTHEMIA_FEMALE);
+    $patient.addAnemia(a);
+    patientsWithPolycythemia.add($patient);
+    System.out.println( $patient + " -> 17.2. FinalFemale_Polycythemia_Hb&PVM&RBC");
+end
+
+
+rule "18.1. FinalMale_Polycythemia_IBV&Glucocorticoids"
+when
+    $patient : /patients[(detectSymptomValue("Increased blood volume")==1)
+    && (detectSymptomValue("Glucocorticoids")>25)
+    && (getGender().equals(gender.MALE))]
+then
+    Anemia a = new Anemia (AnemiaType.POLYCYTHEMIA_MALE);
+    $patient.addAnemia(a);
+    patientsWithPolycythemia.add($patient);
+    System.out.println( $patient + " -> 18.1. FinalMale_Polycythemia_IBV&Glucocorticoids");
+end
+
+rule "18.2. FinalFemale_Polycythemia_IBV&Glucocorticoids"
+when
+    $patient : /patients[(detectSymptomValue("Increased blood volume")==1)
+    && (detectSymptomValue("Glucocorticoids")>25)
+    && (getGender().equals(gender.FEMALE))]
+then
+    Anemia a = new Anemia (AnemiaType.POLYCYTHEMIA_FEMALE);
+    $patient.addAnemia(a);
+    patientsWithPolycythemia.add($patient);
+    System.out.println( $patient + " -> 18.2. FinalFemale_Polycythemia_IBV&Glucocorticoids");
+end

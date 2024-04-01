@@ -138,8 +138,8 @@ end
 
 rule "6.1. FinalMale_InheritedSpherocytosis_CranealB|MaxilarBoneH"
 when
-    $patient : /patients[(detectSymptomValue("Cranial ballooning")==1)
-    && (detectSymptomValue("Maxila bone hyperplasia")==1)
+    $patient : /patients[(detectSymptomValue("Craneal ballooning")==1)
+    && (detectSymptomValue("Maxilar bone hyperplasia")==1)
     && (getGender().equals(gender.MALE))]
 then
     Anemia a = new Anemia (AnemiaType.INHERITED_SPHEROCYTOSIS_MALE);

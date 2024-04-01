@@ -305,7 +305,7 @@ public static void patientHandlerMenu(){
         float weight = InputException.getFloat("\nWeight: ");
 
         patient = new Patient(name, age, gender, weight);
-        System.out.println(patient);
+        //System.out.println(patient);
         jdbcPatientManager.addPatient(patient);
         return patient;
     }
@@ -439,7 +439,7 @@ public static void patientHandlerMenu(){
             jdbcSymptomManager.addSymptom(mhch, clinicalHistory.getId());
 
             valueF = getFloatSympTRUE("Hemoglobin in urine (YES: 1 / NO: 0):");
-            Symptom hbUrine = new Symptom(valueF, "Hemoglobin in urine");
+            Symptom hbUrine = new Symptom(valueF, "Hb in urine");
             patient.addSymptom(hbUrine);
             jdbcSymptomManager.addSymptom(hbUrine, clinicalHistory.getId());
 
@@ -493,7 +493,7 @@ public static void patientHandlerMenu(){
             patient.addSymptom(skinPal);
             jdbcSymptomManager.addSymptom(skinPal, clinicalHistory.getId());
 
-            valueF = getFloatSympTRUE("Tachycardia");
+            valueF = getFloatSympTRUE("Tachycardia:");
             Symptom tach = new Symptom(valueF, "Tachycardia");
             patient.addSymptom(tach);
             jdbcSymptomManager.addSymptom(tach, clinicalHistory.getId());
@@ -764,10 +764,10 @@ public static void patientHandlerMenu(){
             //calculamos los scores para cada anemia
             for(Anemia a : anemiasList) {
                 List<Condition> conditionList = a.getConditions();
-                //System.out.println(conditionList);
+                //System.out.println(conditionList.size());
                 List<Boolean> booleanList = Utilities.equalsSymptomCondition(symptomsList, conditionList);
-                //System.out.println(booleanList);
-                //System.out.println(symptomsList);
+                //System.out.println(booleanList.size());
+                //System.out.println(symptomsList.size());
                 Float score = Utilities.getScore(a,booleanList);
                 //System.out.println(score);
                 scoresList.add(score);
